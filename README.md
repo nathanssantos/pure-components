@@ -1,3 +1,3 @@
 # Pure Components
 
-## Dependency-free component library.
+## Dependency-free ui library.
