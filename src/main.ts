@@ -12,4 +12,4 @@ class App {
 
 new App();
 
-export { App };
+export default App;
