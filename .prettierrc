@@ -5,10 +5,7 @@
   "semi": true,
   "jsxSingleQuote": true,
   "useTabs": false,
-  "printWidth": 96,
+  "printWidth": 128,
   "endOfLine": "crlf",
-  "arrowParens": "always",
-  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "arrowParens": "always"
 }

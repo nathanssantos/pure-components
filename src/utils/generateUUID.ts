@@ -1,9 +1,8 @@
 const generateUUID = () => {
   let d = new Date().getTime();
-  let d2 =
-    (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0;
+  let d2 = performance.now() * 1000;
 
-  return 'xxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+  return 'xxxxxxxxxxxxxxxx'.replace(/[xy]/g, () => {
     let r = Math.random() * 16;
 
     if (d > 0) {
@@ -14,7 +13,7 @@ const generateUUID = () => {
       d2 = Math.floor(d2 / 16);
     }
 
-    return (c == 'x' ? r : (r & 0x7) | 0x8).toString(16);
+    return ((r & 0x7) | 0x8).toString(16);
   });
 };
 
