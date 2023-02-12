@@ -1,12 +1,11 @@
-import Preview from './components/preview';
-
 class App {
-  target = document.querySelector('#app');
-  preview = new Preview(this);
-
   constructor() {
-    this.preview.render();
+    this.renderPreview();
   }
+
+  renderPreview = () => {
+    document.body.innerHTML = 'Preview';
+  };
 }
 
 new App();
