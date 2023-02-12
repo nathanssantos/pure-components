@@ -1,38 +1,34 @@
-import { App } from '../../main';
 import generateUUID from '../../utils/generateUUID';
 import './style.scss';
 
 type ComponentConstructorProps = {
-  app?: App;
   id?: string;
   type?: string;
   className?: string;
+  innerHTML?: string;
 };
 
 class Component {
-  app: App;
   id: string;
   type: string;
-  className: string;
   target: HTMLElement;
 
   constructor(props: ComponentConstructorProps = {}) {
     const uuid = generateUUID();
 
-    const { app, id = uuid, type = 'div', className = `component--${uuid}` } = props;
+    const { id = uuid, type = 'div', className = `component--${uuid}`, innerHTML = '' } = props;
 
-    this.app = app || new App();
     this.id = id;
     this.type = type;
-    this.className = className;
     this.target = document.createElement(type);
-
-    this.prepare();
+    this.target.classList.add('component', className);
+    this.target.setAttribute('data-testid', id);
+    this.target.setAttribute('data-testid', id);
+    this.setInnerHTML(innerHTML);
   }
 
-  prepare = () => {
-    this.target.classList.add('component', this.className);
-    this.target.setAttribute('data-testid', this.id);
+  setInnerHTML = (content: string) => {
+    this.target.innerHTML = content;
   };
 
   render = (target = document.body) => {
