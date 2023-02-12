@@ -3,7 +3,7 @@ const generateUUID = () => {
   let d2 =
     (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0;
 
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+  return 'xxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     let r = Math.random() * 16;
 
     if (d > 0) {
