@@ -1,10 +1,12 @@
+import Drawer from './components/drawer';
+
 class App {
   constructor() {
     this.renderPreview();
   }
 
   renderPreview = () => {
-    document.body.innerHTML = 'Preview';
+    new Drawer().render();
   };
 }
 

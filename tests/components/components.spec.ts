@@ -3,13 +3,23 @@ import Component from '../../src/components/component';
 describe('components', () => {
   describe('component', () => {
     describe('instance', () => {
-      it('Should create a new component.', () => {
+      it('Should create a new component instance.', () => {
         const component = new Component();
 
         expect(component.id).toHaveLength(16);
         expect(component.type).toBe('div');
-        expect(component.className).toHaveLength(27);
         expect(component.target).toBeInstanceOf(HTMLElement);
+        expect(component.target.classList).toContain('component');
+      });
+    });
+
+    describe('setInnerHTML', () => {
+      it('Should set the component inner HTML.', () => {
+        const content = '<div>Test</div>';
+        const component = new Component({ id: '123' });
+        component.setInnerHTML(content);
+
+        expect(component.target.innerHTML).toBe('<div>Test</div>');
       });
     });
 
