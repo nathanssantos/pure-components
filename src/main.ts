@@ -1,7 +1,14 @@
-import './style.scss';
+import Preview from './components/preview';
 
-const init = () => {
-  console.log('INIT');
-};
+class App {
+  target = document.querySelector('#app');
+  preview = new Preview(this);
 
-init();
+  init = () => {
+    this.preview.render();
+  };
+}
+
+new App().init();
+
+export { App };
