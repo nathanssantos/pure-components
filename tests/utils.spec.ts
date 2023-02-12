@@ -1,6 +1,6 @@
 import generateUUID from '../src/utils/generateUUID';
 
-describe('Utils', () => {
+describe('utils', () => {
   describe('generateUUID', () => {
     it('Should generate a 16 characters universal unique identifier.', () => {
       const uuid1 = generateUUID();
