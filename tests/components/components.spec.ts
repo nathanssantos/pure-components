@@ -16,10 +16,19 @@ describe('components', () => {
     describe('setInnerHTML', () => {
       it('Should set the component inner HTML.', () => {
         const content = '<div>Test</div>';
-        const component = new Component({ id: '123' });
+        const component = new Component();
         component.setInnerHTML(content);
 
         expect(component.target.innerHTML).toBe('<div>Test</div>');
+      });
+    });
+
+    describe('setStyle', () => {
+      it("Should set one of the component's style props value.", () => {
+        const component = new Component();
+        component.setStyle('backgroundColor', 'red');
+
+        expect(component.target.style.backgroundColor).toBe('red');
       });
     });
 

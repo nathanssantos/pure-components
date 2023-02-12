@@ -31,6 +31,10 @@ class Component {
     this.target.innerHTML = content;
   };
 
+  setStyle = (prop: keyof CSSStyleDeclaration, value: string) => {
+    this.target.style[prop as string] = value;
+  };
+
   render = (target = document.body) => {
     target.append(this.target);
   };
