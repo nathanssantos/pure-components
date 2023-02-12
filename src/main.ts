@@ -4,11 +4,11 @@ class App {
   target = document.querySelector('#app');
   preview = new Preview(this);
 
-  init = () => {
+  constructor() {
     this.preview.render();
-  };
+  }
 }
 
-new App().init();
+new App();
 
 export { App };
