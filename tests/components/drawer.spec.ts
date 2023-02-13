@@ -7,5 +7,11 @@ describe('components', () => {
         expect(new Drawer().target.classList).toContain('drawer');
       });
     });
+
+    describe('assemble', () => {
+      it('Should assemble a new drawer component.', () => {
+        expect(new Drawer().target.classList).toContain('drawer');
+      });
+    });
   });
 });

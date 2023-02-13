@@ -28,7 +28,10 @@ describe('components', () => {
     describe('appendChildren', () => {
       it('Should append children to component.', () => {
         const component = new Component();
-        component.appendChildren([new Component({ id: '123' }), new Component({ id: '456' })]);
+        component.appendChildren({
+          child1: new Component({ id: '123' }),
+          child2: new Component({ id: '456' }),
+        });
 
         expect(component.target.querySelector(`[id="123"]`)).toBeTruthy();
         expect(component.target.querySelector(`[id="456"]`)).toBeTruthy();
