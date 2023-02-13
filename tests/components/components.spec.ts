@@ -4,9 +4,13 @@ describe('components', () => {
   describe('component', () => {
     describe('instance', () => {
       it('Should create a new component instance.', () => {
-        const component = new Component();
+        const component = new Component({
+          id: '123',
+          innerHTML: '<div>abc</div>',
+          className: ['component', 'test'],
+        });
 
-        expect(component.id).toHaveLength(16);
+        expect(component.id).toBe('123');
         expect(component.target).toBeInstanceOf(HTMLElement);
       });
     });
@@ -21,13 +25,13 @@ describe('components', () => {
       });
     });
 
-    describe('appendChild', () => {
-      it('Should append a child to component.', () => {
+    describe('appendChildren', () => {
+      it('Should append children to component.', () => {
         const component = new Component();
-        const id = '123';
-        component.appendChild(new Component({ id }));
+        component.appendChildren([new Component({ id: '123' }), new Component({ id: '456' })]);
 
-        expect(component.target.querySelector(`[id="${id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[id="123"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[id="456"]`)).toBeTruthy();
       });
     });
   });
