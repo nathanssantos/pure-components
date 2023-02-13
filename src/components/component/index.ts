@@ -11,25 +11,28 @@ type ComponentConstructorProps = {
 class Component {
   id: string;
   target: HTMLElement;
+  children: Component[];
 
   constructor(props: ComponentConstructorProps = {}) {
     const uuid = generateUUID();
 
-    const { id = uuid, type = 'div', className = `component--${uuid}`, innerHTML = '' } = props;
+    const { id, type = 'div', className, innerHTML = '' } = props;
 
-    this.id = id;
+    this.id = id || uuid;
     this.target = document.createElement(type);
-    this.target.classList.add('component', className);
+    if (id) this.target.setAttribute('id', id);
+    if (className?.length) this.target.classList.add(className);
     this.target.innerHTML = innerHTML;
-    this.target.setAttribute('testid', id);
+    this.children = [];
   }
 
   setStyle = (payload: Partial<CSSStyleDeclaration>) => {
     for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
   };
 
-  render = (container: HTMLElement) => {
-    container.append(this.target);
+  appendChild = (child: Component) => {
+    this.children.push(child);
+    this.target.append(child.target);
   };
 }
 

@@ -8,25 +8,26 @@ describe('components', () => {
 
         expect(component.id).toHaveLength(16);
         expect(component.target).toBeInstanceOf(HTMLElement);
-        expect(component.target.tagName).toBe('DIV');
-        expect(component.target.classList).toContain('component');
       });
     });
 
     describe('setStyle', () => {
-      it("Should set one of the component's style props value.", () => {
+      it("Should set component's style props.", () => {
         const component = new Component();
-        component.setStyle({ backgroundColor: 'red' });
+        component.setStyle({ backgroundColor: 'red', fontFamily: 'Arial' });
 
         expect(component.target.style.backgroundColor).toBe('red');
+        expect(component.target.style.fontFamily).toBe('Arial');
       });
     });
 
-    describe('render', () => {
-      it('Should append a component to the target.', () => {
-        new Component({ id: '123' }).render(document.body);
+    describe('appendChild', () => {
+      it('Should append a child to component.', () => {
+        const component = new Component();
+        const id = '123';
+        component.appendChild(new Component({ id }));
 
-        expect(document.body.querySelector('[testid="123"]')).toBeTruthy();
+        expect(component.target.querySelector(`[id="${id}"]`)).toBeTruthy();
       });
     });
   });
