@@ -1,4 +1,5 @@
 import Drawer from './components/drawer';
+import './style.scss';
 
 class App {
   constructor() {
