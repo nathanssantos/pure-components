@@ -21,7 +21,7 @@ class Component {
     this.target = document.createElement(type);
     this.target.classList.add('component', className);
     this.target.innerHTML = innerHTML;
-    this.target.setAttribute('data-testid', id);
+    this.target.setAttribute('testid', id);
   }
 
   setStyle = (payload: Partial<CSSStyleDeclaration>) => {

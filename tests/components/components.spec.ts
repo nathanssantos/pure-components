@@ -26,7 +26,7 @@ describe('components', () => {
       it('Should append a component to the target.', () => {
         new Component({ id: '123' }).render(document.body);
 
-        expect(document.body.querySelector('[data-testid="123"]')).toBeTruthy();
+        expect(document.body.querySelector('[testid="123"]')).toBeTruthy();
       });
     });
   });
