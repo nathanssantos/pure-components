@@ -26,7 +26,7 @@ describe('components', () => {
     describe('setStyle', () => {
       it("Should set one of the component's style props value.", () => {
         const component = new Component();
-        component.setStyle('backgroundColor', 'red');
+        component.setStyle({ backgroundColor: 'red' });
 
         expect(component.target.style.backgroundColor).toBe('red');
       });

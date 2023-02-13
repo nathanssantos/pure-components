@@ -31,8 +31,8 @@ class Component {
     this.target.innerHTML = content;
   };
 
-  setStyle = (prop: keyof CSSStyleDeclaration, value: string) => {
-    this.target.style[prop as string] = value;
+  setStyle = (payload: Partial<CSSStyleDeclaration>) => {
+    for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
   };
 
   render = (target = document.body) => {
