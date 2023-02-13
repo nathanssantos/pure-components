@@ -10,7 +10,6 @@ type ComponentConstructorProps = {
 
 class Component {
   id: string;
-  type: string;
   target: HTMLElement;
 
   constructor(props: ComponentConstructorProps = {}) {
@@ -19,24 +18,18 @@ class Component {
     const { id = uuid, type = 'div', className = `component--${uuid}`, innerHTML = '' } = props;
 
     this.id = id;
-    this.type = type;
     this.target = document.createElement(type);
     this.target.classList.add('component', className);
+    this.target.innerHTML = innerHTML;
     this.target.setAttribute('data-testid', id);
-    this.target.setAttribute('data-testid', id);
-    this.setInnerHTML(innerHTML);
   }
-
-  setInnerHTML = (content: string) => {
-    this.target.innerHTML = content;
-  };
 
   setStyle = (payload: Partial<CSSStyleDeclaration>) => {
     for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
   };
 
-  render = (target = document.body) => {
-    target.append(this.target);
+  render = (container: HTMLElement) => {
+    container.append(this.target);
   };
 }
 

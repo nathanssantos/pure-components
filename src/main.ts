@@ -6,7 +6,7 @@ class App {
   }
 
   renderPreview = () => {
-    new Drawer().render();
+    new Drawer().render(document.body);
   };
 }
 

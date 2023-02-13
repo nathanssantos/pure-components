@@ -7,19 +7,9 @@ describe('components', () => {
         const component = new Component();
 
         expect(component.id).toHaveLength(16);
-        expect(component.type).toBe('div');
         expect(component.target).toBeInstanceOf(HTMLElement);
+        expect(component.target.tagName).toBe('DIV');
         expect(component.target.classList).toContain('component');
-      });
-    });
-
-    describe('setInnerHTML', () => {
-      it('Should set the component inner HTML.', () => {
-        const content = '<div>Test</div>';
-        const component = new Component();
-        component.setInnerHTML(content);
-
-        expect(component.target.innerHTML).toBe('<div>Test</div>');
       });
     });
 
