@@ -25,20 +25,25 @@ class Drawer extends Component {
     return new Promise((resolve) => {
       const overlay = new Component({ className: `${this.target.className}__overlay` });
       const content = new Component({ className: `${this.target.className}__content` });
-      const header = new Component({ className: `${this.target.className}__header` });
+      const header = new Component({
+        className: `${this.target.className}__header`,
+        innerHTML: headerInnerHTML,
+      });
       const closeButton = new Component({
         type: 'button',
         className: `${this.target.className}__bt-close`,
         innerHTML: 'x',
       });
-      const body = new Component({ className: `${this.target.className}__body` });
-      const footer = new Component({ className: `${this.target.className}__footer` });
+      const body = new Component({
+        className: `${this.target.className}__body`,
+        innerHTML: bodyInnerHTML,
+      });
+      const footer = new Component({
+        className: `${this.target.className}__footer`,
+        innerHTML: footerInnerHTML,
+      });
 
-      if (typeof headerInnerHTML === 'string') header.target.innerHTML = headerInnerHTML;
-      if (typeof bodyInnerHTML === 'string') body.target.innerHTML = bodyInnerHTML;
-      if (typeof footerInnerHTML === 'string') footer.target.innerHTML = footerInnerHTML;
-
-      header.appendChildren({ closeButton });
+      if (typeof headerInnerHTML !== 'string') header.appendChildren({ closeButton });
       content.appendChildren({ header, body, footer });
       this.appendChildren({ overlay, content });
 

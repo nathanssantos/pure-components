@@ -29,7 +29,7 @@ class Component {
         ? this.target.classList.add(...className)
         : this.target.classList.add(className);
     }
-    if (innerHTML?.length) this.target.innerHTML = innerHTML;
+    if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
     this.transitionTime = transitionTime || 500;
     this.children = {};
   }
