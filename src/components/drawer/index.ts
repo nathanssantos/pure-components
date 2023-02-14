@@ -7,22 +7,6 @@ class Drawer extends Component {
     this.init();
   }
 
-  open = async () => {
-    this.show();
-    await Promise.allSettled([
-      this.children.content.fadeIn({ transform: 'translateX(0)' }),
-      this.children.overlay.fadeIn({ opacity: '1' }),
-    ]);
-  };
-
-  close = async () => {
-    await Promise.allSettled([
-      this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
-      this.children.overlay.fadeOut({ opacity: '0' }),
-    ]);
-    this.hide();
-  };
-
   assemble = () => {
     return new Promise((resolve) => {
       const overlay = new Component({ className: `${this.target.className}__overlay` });
@@ -52,9 +36,25 @@ class Drawer extends Component {
     this.children.overlay.target.addEventListener('click', this.close);
   };
 
+  close = async () => {
+    await Promise.allSettled([
+      this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
+      this.children.overlay.fadeOut({ opacity: '0' }),
+    ]);
+    this.hide();
+  };
+
   init = async () => {
     await this.assemble();
     this.bindEvents();
+  };
+
+  open = async () => {
+    this.show();
+    await Promise.allSettled([
+      this.children.content.fadeIn({ transform: 'translateX(0)' }),
+      this.children.overlay.fadeIn({ opacity: '1' }),
+    ]);
   };
 }
 
