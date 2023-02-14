@@ -35,21 +35,13 @@ describe('components', () => {
       });
     });
 
-    describe('hide', () => {
-      it('Should set component display to "none".', () => {
-        const component = new Component();
-        component.hide();
+    describe('destroy', () => {
+      it('Should append children to component.', () => {
+        const component = new Component({ id: '123' });
+        document.body.append(component.target);
+        component.destroy();
 
-        expect(component.target.style.display).toBe('none');
-      });
-    });
-
-    describe('show', () => {
-      it('Should set component display to "flex".', () => {
-        const component = new Component();
-        component.show();
-
-        expect(component.target.style.display).toBe('flex');
+        expect(document.body.querySelector(`[id="123"]`)).toBeFalsy();
       });
     });
 
@@ -74,6 +66,15 @@ describe('components', () => {
       });
     });
 
+    describe('hide', () => {
+      it('Should set component display to "none".', () => {
+        const component = new Component();
+        component.hide();
+
+        expect(component.target.style.display).toBe('none');
+      });
+    });
+
     describe('setStyle', () => {
       it("Should set component's style props.", () => {
         const component = new Component();
@@ -81,6 +82,15 @@ describe('components', () => {
 
         expect(component.target.style.backgroundColor).toBe('red');
         expect(component.target.style.fontFamily).toBe('Arial');
+      });
+    });
+
+    describe('show', () => {
+      it('Should set component display to "flex".', () => {
+        const component = new Component();
+        component.show();
+
+        expect(component.target.style.display).toBe('flex');
       });
     });
   });
