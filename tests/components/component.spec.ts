@@ -23,7 +23,7 @@ describe('components', () => {
     });
 
     describe('appendChildren', () => {
-      it('Should append children to component.', () => {
+      it('Should append children to the component.', () => {
         const component = new Component();
         component.appendChildren({
           child1: new Component({ id: '123' }),
@@ -36,7 +36,7 @@ describe('components', () => {
     });
 
     describe('destroy', () => {
-      it('Should append children to component.', () => {
+      it('Should destroy the component.', () => {
         const component = new Component({ id: '123' });
         document.body.append(component.target);
         component.destroy();
