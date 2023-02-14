@@ -34,13 +34,28 @@ class Component {
     this.children = {};
   }
 
+  appendChildren = (children: { [name: string]: Component }) => {
+    for (const [name, component] of Object.entries(children)) {
+      this.children[name] = component;
+      this.target.append(component.target);
+    }
+  };
+
   setStyle = (styleDeclaration: Partial<CSSStyleDeclaration>) => {
     for (const [key, value] of Object.entries(styleDeclaration)) this.target.style[key] = value;
   };
 
+  show = () => {
+    this.target.style.display = 'flex';
+  };
+
+  hide = () => {
+    this.target.style.display = 'none';
+  };
+
   fadeIn = (to: Partial<CSSStyleDeclaration> = {}) => {
     return new Promise((resolve) => {
-      this.setStyle({ display: 'flex' });
+      this.show();
       setTimeout(() => {
         this.setStyle(to);
         resolve(true);
@@ -52,17 +67,10 @@ class Component {
     return new Promise((resolve) => {
       this.setStyle(to);
       setTimeout(() => {
-        this.setStyle({ display: 'none' });
+        this.hide();
         resolve(true);
       }, this.transitionTime);
     });
-  };
-
-  appendChildren = (children: { [name: string]: Component }) => {
-    for (const [name, component] of Object.entries(children)) {
-      this.children[name] = component;
-      this.target.append(component.target);
-    }
   };
 }
 

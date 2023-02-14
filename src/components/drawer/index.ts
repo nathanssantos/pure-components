@@ -7,10 +7,12 @@ class Drawer extends Component {
     this.init();
   }
 
-  open = () => {
-    this.setStyle({ display: 'flex' });
-    this.children.content.fadeIn({ transform: 'translateX(0)' });
-    this.children.overlay.fadeIn({ opacity: '1' });
+  open = async () => {
+    this.show();
+    await Promise.allSettled([
+      this.children.content.fadeIn({ transform: 'translateX(0)' }),
+      this.children.overlay.fadeIn({ opacity: '1' }),
+    ]);
   };
 
   close = async () => {
@@ -18,7 +20,7 @@ class Drawer extends Component {
       this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
       this.children.overlay.fadeOut({ opacity: '0' }),
     ]);
-    this.setStyle({ display: 'none' });
+    this.hide();
   };
 
   assemble = () => {
