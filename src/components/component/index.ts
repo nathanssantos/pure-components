@@ -41,16 +41,8 @@ class Component {
     }
   };
 
-  setStyle = (styleDeclaration: Partial<CSSStyleDeclaration>) => {
-    for (const [key, value] of Object.entries(styleDeclaration)) this.target.style[key] = value;
-  };
-
-  show = () => {
-    this.target.style.display = 'flex';
-  };
-
-  hide = () => {
-    this.target.style.display = 'none';
+  destroy = () => {
+    this.target.parentNode?.removeChild(this.target);
   };
 
   fadeIn = (to: Partial<CSSStyleDeclaration> = {}) => {
@@ -71,6 +63,18 @@ class Component {
         resolve(true);
       }, this.transitionTime);
     });
+  };
+
+  hide = () => {
+    this.target.style.display = 'none';
+  };
+
+  setStyle = (styleDeclaration: Partial<CSSStyleDeclaration>) => {
+    for (const [key, value] of Object.entries(styleDeclaration)) this.target.style[key] = value;
+  };
+
+  show = () => {
+    this.target.style.display = 'flex';
   };
 }
 
