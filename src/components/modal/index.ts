@@ -1,18 +1,18 @@
 import Component from '../component';
 import './style.scss';
 
-type DrawerConstructorProps = {
+type ModalConstructorProps = {
   className?: string;
   headerInnerHTML?: string;
   bodyInnerHTML?: string;
   footerInnerHTML?: string;
 };
 
-class Drawer extends Component {
-  constructor(props: DrawerConstructorProps = {}) {
-    const { className, headerInnerHTML, bodyInnerHTML, footerInnerHTML } = props;
+class Modal extends Component {
+  constructor(props: ModalConstructorProps = {}) {
+    const { className = 'modal', headerInnerHTML, bodyInnerHTML, footerInnerHTML } = props;
 
-    super({ className: className || 'drawer' });
+    super({ className });
 
     this.init({ headerInnerHTML, bodyInnerHTML, footerInnerHTML });
   }
@@ -21,31 +21,26 @@ class Drawer extends Component {
     headerInnerHTML,
     bodyInnerHTML,
     footerInnerHTML,
-  }: Partial<DrawerConstructorProps>) => {
+  }: Partial<ModalConstructorProps>) => {
     return new Promise((resolve) => {
       const overlay = new Component({ className: `${this.target.className}__overlay` });
       const content = new Component({ className: `${this.target.className}__content` });
-      const header = new Component({
-        className: `${this.target.className}__header`,
-        innerHTML: headerInnerHTML,
-      });
+      const header = new Component({ className: `${this.target.className}__header` });
       const closeButton = new Component({
         type: 'button',
         className: `${this.target.className}__bt-close`,
         innerHTML: 'x',
       });
-      const body = new Component({
-        className: `${this.target.className}__body`,
-        innerHTML: bodyInnerHTML,
-      });
-      const footer = new Component({
-        className: `${this.target.className}__footer`,
-        innerHTML: footerInnerHTML,
-      });
+      const body = new Component({ className: `${this.target.className}__body` });
+      const footer = new Component({ className: `${this.target.className}__footer` });
 
-      if (typeof headerInnerHTML !== 'string') header.appendChildren({ closeButton });
+      header.appendChildren({ closeButton });
       content.appendChildren({ header, body, footer });
       this.appendChildren({ overlay, content });
+
+      if (typeof headerInnerHTML === 'string') header.target.innerHTML = headerInnerHTML;
+      if (typeof bodyInnerHTML === 'string') body.target.innerHTML = bodyInnerHTML;
+      if (typeof footerInnerHTML === 'string') footer.target.innerHTML = footerInnerHTML;
 
       resolve(true);
     });
@@ -60,7 +55,7 @@ class Drawer extends Component {
 
   close = async () => {
     await Promise.allSettled([
-      this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
+      this.children.content.fadeOut({ opacity: '0' }),
       this.children.overlay.fadeOut({ opacity: '0' }),
     ]);
     this.hide();
@@ -70,18 +65,22 @@ class Drawer extends Component {
     headerInnerHTML,
     bodyInnerHTML,
     footerInnerHTML,
-  }: Partial<DrawerConstructorProps>) => {
-    await this.assemble({ headerInnerHTML, bodyInnerHTML, footerInnerHTML });
+  }: Partial<ModalConstructorProps>) => {
+    await this.assemble({
+      headerInnerHTML,
+      bodyInnerHTML,
+      footerInnerHTML,
+    });
     this.bindEvents();
   };
 
   open = async () => {
     this.show();
     await Promise.allSettled([
-      this.children.content.fadeIn({ transform: 'translateX(0)' }),
+      this.children.content.fadeIn({ opacity: '1' }),
       this.children.overlay.fadeIn({ opacity: '1' }),
     ]);
   };
 }
 
-export default Drawer;
+export default Modal;
