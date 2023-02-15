@@ -2,60 +2,57 @@ import Component from '../component';
 import './style.scss';
 
 type DrawerConstructorProps = {
+  body?: ComponentConstructorProps;
   className?: string;
-  headerInnerHTML?: string;
-  bodyInnerHTML?: string;
-  footerInnerHTML?: string;
+  footer?: ComponentConstructorProps;
+  header?: ComponentConstructorProps;
 };
 
 class Drawer extends Component {
   constructor(props: DrawerConstructorProps = {}) {
-    const { className, headerInnerHTML, bodyInnerHTML, footerInnerHTML } = props;
+    const { body, className = 'drawer', footer, header } = props;
 
-    super({ className: className || 'drawer' });
+    super({ className });
 
-    this.init({ headerInnerHTML, bodyInnerHTML, footerInnerHTML });
+    this.init({ header, body, footer });
   }
 
-  assemble = ({
-    headerInnerHTML,
-    bodyInnerHTML,
-    footerInnerHTML,
-  }: Partial<DrawerConstructorProps>) => {
+  assemble = (payload: Partial<DrawerConstructorProps>) => {
     return new Promise((resolve) => {
-      const overlay = new Component({ className: `${this.target.className}__overlay` });
-      const content = new Component({ className: `${this.target.className}__content` });
-      const header = new Component({
-        className: `${this.target.className}__header`,
-        innerHTML: headerInnerHTML,
-      });
-      const closeButton = new Component({
+      const btClose = new Component({
         type: 'button',
         className: `${this.target.className}__bt-close`,
         innerHTML: 'x',
       });
+      const header = new Component({
+        ...payload.header,
+        children: typeof payload.header?.innerHTML !== 'string' ? { btClose } : {},
+        className: `${this.target.className}__header${
+          payload.header?.className?.length ? ` ${payload.header.className}` : ''
+        }`,
+      });
       const body = new Component({
-        className: `${this.target.className}__body`,
-        innerHTML: bodyInnerHTML,
+        ...payload.body,
+        className: `${this.target.className}__body${
+          payload.body?.className?.length ? ` ${payload.body.className}` : ''
+        }`,
       });
       const footer = new Component({
-        className: `${this.target.className}__footer`,
-        innerHTML: footerInnerHTML,
+        ...payload.footer,
+        className: `${this.target.className}__footer${
+          payload.footer?.className?.length ? ` ${payload.footer.className}` : ''
+        }`,
       });
+      const content = new Component({
+        children: { header, body, footer },
+        className: `${this.target.className}__content`,
+      });
+      const overlay = new Component({ className: `${this.target.className}__overlay` });
 
-      if (typeof headerInnerHTML !== 'string') header.appendChildren({ closeButton });
-      content.appendChildren({ header, body, footer });
       this.appendChildren({ overlay, content });
 
       resolve(true);
     });
-  };
-
-  bindEvents = async () => {
-    [
-      this.children.content.children.header.children.closeButton.target,
-      this.children.overlay.target,
-    ].forEach((target) => target.addEventListener('click', this.close));
   };
 
   close = async () => {
@@ -63,20 +60,21 @@ class Drawer extends Component {
       this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
       this.children.overlay.fadeOut({ opacity: '0' }),
     ]);
+
     this.hide();
   };
 
-  init = async ({
-    headerInnerHTML,
-    bodyInnerHTML,
-    footerInnerHTML,
-  }: Partial<DrawerConstructorProps>) => {
-    await this.assemble({ headerInnerHTML, bodyInnerHTML, footerInnerHTML });
-    this.bindEvents();
+  init = async (payload: Partial<DrawerConstructorProps>) => {
+    await this.assemble(payload);
+
+    [this.children.content.children.header.children.btClose, this.children.overlay].forEach(
+      (component) => component.bindEvents({ click: this.close }),
+    );
   };
 
   open = async () => {
     this.show();
+
     await Promise.allSettled([
       this.children.content.fadeIn({ transform: 'translateX(0)' }),
       this.children.overlay.fadeIn({ opacity: '1' }),

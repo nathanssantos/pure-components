@@ -2,55 +2,57 @@ import Component from '../component';
 import './style.scss';
 
 type ModalConstructorProps = {
+  body?: ComponentConstructorProps;
   className?: string;
-  headerInnerHTML?: string;
-  bodyInnerHTML?: string;
-  footerInnerHTML?: string;
+  footer?: ComponentConstructorProps;
+  header?: ComponentConstructorProps;
 };
 
 class Modal extends Component {
   constructor(props: ModalConstructorProps = {}) {
-    const { className = 'modal', headerInnerHTML, bodyInnerHTML, footerInnerHTML } = props;
+    const { body, className = 'modal', footer, header } = props;
 
     super({ className });
 
-    this.init({ headerInnerHTML, bodyInnerHTML, footerInnerHTML });
+    this.init({ header, body, footer });
   }
 
-  assemble = ({
-    headerInnerHTML,
-    bodyInnerHTML,
-    footerInnerHTML,
-  }: Partial<ModalConstructorProps>) => {
+  assemble = (payload: Partial<ModalConstructorProps>) => {
     return new Promise((resolve) => {
-      const overlay = new Component({ className: `${this.target.className}__overlay` });
-      const content = new Component({ className: `${this.target.className}__content` });
-      const header = new Component({ className: `${this.target.className}__header` });
-      const closeButton = new Component({
+      const btClose = new Component({
         type: 'button',
         className: `${this.target.className}__bt-close`,
         innerHTML: 'x',
       });
-      const body = new Component({ className: `${this.target.className}__body` });
-      const footer = new Component({ className: `${this.target.className}__footer` });
+      const header = new Component({
+        ...payload.header,
+        children: typeof payload.header?.innerHTML !== 'string' ? { btClose } : {},
+        className: `${this.target.className}__header${
+          payload.header?.className?.length ? ` ${payload.header.className}` : ''
+        }`,
+      });
+      const body = new Component({
+        ...payload.body,
+        className: `${this.target.className}__body${
+          payload.body?.className?.length ? ` ${payload.body.className}` : ''
+        }`,
+      });
+      const footer = new Component({
+        ...payload.footer,
+        className: `${this.target.className}__footer${
+          payload.footer?.className?.length ? ` ${payload.footer.className}` : ''
+        }`,
+      });
+      const content = new Component({
+        children: { header, body, footer },
+        className: `${this.target.className}__content`,
+      });
+      const overlay = new Component({ className: `${this.target.className}__overlay` });
 
-      header.appendChildren({ closeButton });
-      content.appendChildren({ header, body, footer });
       this.appendChildren({ overlay, content });
-
-      if (typeof headerInnerHTML === 'string') header.target.innerHTML = headerInnerHTML;
-      if (typeof bodyInnerHTML === 'string') body.target.innerHTML = bodyInnerHTML;
-      if (typeof footerInnerHTML === 'string') footer.target.innerHTML = footerInnerHTML;
 
       resolve(true);
     });
-  };
-
-  bindEvents = async () => {
-    [
-      this.children.content.children.header.children.closeButton.target,
-      this.children.overlay.target,
-    ].forEach((target) => target.addEventListener('click', this.close));
   };
 
   close = async () => {
@@ -58,24 +60,21 @@ class Modal extends Component {
       this.children.content.fadeOut({ opacity: '0' }),
       this.children.overlay.fadeOut({ opacity: '0' }),
     ]);
+
     this.hide();
   };
 
-  init = async ({
-    headerInnerHTML,
-    bodyInnerHTML,
-    footerInnerHTML,
-  }: Partial<ModalConstructorProps>) => {
-    await this.assemble({
-      headerInnerHTML,
-      bodyInnerHTML,
-      footerInnerHTML,
-    });
-    this.bindEvents();
+  init = async (payload: Partial<ModalConstructorProps>) => {
+    await this.assemble(payload);
+
+    [this.children.content.children.header.children.btClose, this.children.overlay].forEach(
+      (component) => component.bindEvents({ click: this.close }),
+    );
   };
 
   open = async () => {
     this.show();
+
     await Promise.allSettled([
       this.children.content.fadeIn({ opacity: '1' }),
       this.children.overlay.fadeIn({ opacity: '1' }),

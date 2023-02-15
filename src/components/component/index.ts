@@ -1,43 +1,47 @@
 import generateUUID from '../../utils/generateUUID';
 import './style.scss';
 
-type ComponentConstructorProps = {
-  id?: string;
-  type?: string;
-  className?: string | string[];
-  style?: Partial<CSSStyleDeclaration>;
-  innerHTML?: string;
-  transitionTime?: number;
-};
-
 class Component {
+  children: { [name: string]: Component } = {};
   id: string;
   target: HTMLElement;
-  children: { [name: string]: Component };
   transitionTime: number;
 
   constructor(props: ComponentConstructorProps = {}) {
     const uuid = generateUUID();
 
-    const { id, type, className, innerHTML, transitionTime } = props;
+    const { children, className, events, id, innerHTML, style, transitionTime, type } = props;
 
-    this.id = id || uuid;
     this.target = document.createElement(type || 'div');
-    if (id) this.target.setAttribute('id', id);
+
+    if (children) this.appendChildren(children);
     if (className?.length) {
       Array.isArray(className)
         ? this.target.classList.add(...className)
         : this.target.classList.add(className);
     }
+    if (events) this.bindEvents(events);
+    this.id = id || uuid;
+    if (id) this.target.setAttribute('id', id);
     if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
+    if (style) this.setStyle(style);
     this.transitionTime = transitionTime || 500;
-    this.children = {};
   }
 
-  appendChildren = (children: { [name: string]: Component }) => {
-    for (const [name, component] of Object.entries(children)) {
+  appendChildren = (payload: ComponentConstructorProps['children']) => {
+    if (!payload) return;
+
+    for (const [name, component] of Object.entries(payload)) {
       this.children[name] = component;
       this.target.append(component.target);
+    }
+  };
+
+  bindEvents = async (payload: ComponentConstructorProps['events']) => {
+    if (!payload) return;
+
+    for (const [name, action] of Object.entries(payload)) {
+      this.target.addEventListener(name, action);
     }
   };
 
@@ -69,8 +73,8 @@ class Component {
     this.target.style.display = 'none';
   };
 
-  setStyle = (styleDeclaration: Partial<CSSStyleDeclaration>) => {
-    for (const [key, value] of Object.entries(styleDeclaration)) this.target.style[key] = value;
+  setStyle = (payload: Partial<CSSStyleDeclaration>) => {
+    for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
   };
 
   show = () => {
