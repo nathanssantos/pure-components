@@ -7,3 +7,21 @@ type ComponentConstructorProps = {
   transitionTime?: number;
   events?: { [name: string]: () => unknown };
 };
+
+type DrawerConstructorProps = {
+  body?: ComponentConstructorProps;
+  btClose?: ComponentConstructorProps;
+  content?: ComponentConstructorProps;
+  footer?: ComponentConstructorProps;
+  header?: ComponentConstructorProps;
+  overlay?: ComponentConstructorProps;
+};
+
+type ModalConstructorProps = {
+  body?: ComponentConstructorProps;
+  btClose?: ComponentConstructorProps;
+  content?: ComponentConstructorProps;
+  footer?: ComponentConstructorProps;
+  header?: ComponentConstructorProps;
+  overlay?: ComponentConstructorProps;
+};

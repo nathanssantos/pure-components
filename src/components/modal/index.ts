@@ -1,15 +1,6 @@
 import Component from '../component';
 import './style.scss';
 
-type ModalConstructorProps = {
-  body?: ComponentConstructorProps;
-  btClose?: ComponentConstructorProps;
-  content?: ComponentConstructorProps;
-  footer?: ComponentConstructorProps;
-  header?: ComponentConstructorProps;
-  overlay?: ComponentConstructorProps;
-};
-
 class Modal extends Component {
   constructor(props: ModalConstructorProps = {}) {
     super({ className: 'modal' });
@@ -19,32 +10,32 @@ class Modal extends Component {
   private assemble = (payload: ModalConstructorProps) => {
     return new Promise((resolve) => {
       const btClose = new Component({
-        ...payload.btClose,
-        type: 'button',
         className: 'modal__bt-close',
         innerHTML: 'x',
+        type: 'button',
+        ...payload.btClose,
       });
       const header = new Component({
-        ...payload.header,
         children: { btClose },
         className: 'modal__header',
+        ...payload.header,
       });
       const body = new Component({
-        ...payload.body,
         className: 'modal__body',
+        ...payload.body,
       });
       const footer = new Component({
-        ...payload.footer,
         className: 'modal__footer',
+        ...payload.footer,
       });
       const content = new Component({
-        ...payload.content,
         children: { header, body, footer },
         className: 'modal__content',
+        ...payload.content,
       });
       const overlay = new Component({
-        ...payload.overlay,
         className: 'modal__overlay',
+        ...payload.overlay,
       });
 
       this.appendChildren({ overlay, content });

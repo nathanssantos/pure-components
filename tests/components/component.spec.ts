@@ -7,6 +7,7 @@ describe('components', () => {
         const testChild = new Component({ innerHTML: 'child' });
 
         const component = new Component({
+          innerHTML: '<div>abc</div>',
           children: {
             testChild,
           },
@@ -14,7 +15,6 @@ describe('components', () => {
           events: {
             click: () => '',
           },
-          innerHTML: '<div>abc</div>',
           style: { backgroundColor: 'red' },
           type: 'header',
         });

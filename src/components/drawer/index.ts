@@ -1,15 +1,6 @@
 import Component from '../component';
 import './style.scss';
 
-type DrawerConstructorProps = {
-  body?: ComponentConstructorProps;
-  btClose?: ComponentConstructorProps;
-  content?: ComponentConstructorProps;
-  footer?: ComponentConstructorProps;
-  header?: ComponentConstructorProps;
-  overlay?: ComponentConstructorProps;
-};
-
 class Drawer extends Component {
   constructor(props: DrawerConstructorProps = {}) {
     super({ className: 'drawer' });
@@ -37,7 +28,7 @@ class Drawer extends Component {
         className: 'drawer__footer',
         ...payload.footer,
       });
-      const content = new Component({
+      const content = Component.create({
         children: { header, body, footer },
         className: 'drawer__content',
         ...payload.content,
