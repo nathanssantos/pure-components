@@ -3,51 +3,49 @@ import './style.scss';
 
 type ModalConstructorProps = {
   body?: ComponentConstructorProps;
-  className?: string;
+  btClose?: ComponentConstructorProps;
+  content?: ComponentConstructorProps;
   footer?: ComponentConstructorProps;
   header?: ComponentConstructorProps;
+  overlay?: ComponentConstructorProps;
 };
 
 class Modal extends Component {
   constructor(props: ModalConstructorProps = {}) {
-    const { body, className = 'modal', footer, header } = props;
-
-    super({ className });
-
-    this.init({ header, body, footer });
+    super({ className: 'modal' });
+    this.init(props);
   }
 
-  assemble = (payload: Partial<ModalConstructorProps>) => {
+  private assemble = (payload: ModalConstructorProps) => {
     return new Promise((resolve) => {
       const btClose = new Component({
+        ...payload.btClose,
         type: 'button',
-        className: `${this.target.className}__bt-close`,
+        className: 'modal__bt-close',
         innerHTML: 'x',
       });
       const header = new Component({
         ...payload.header,
-        children: typeof payload.header?.innerHTML !== 'string' ? { btClose } : {},
-        className: `${this.target.className}__header${
-          payload.header?.className?.length ? ` ${payload.header.className}` : ''
-        }`,
+        children: { btClose },
+        className: 'modal__header',
       });
       const body = new Component({
         ...payload.body,
-        className: `${this.target.className}__body${
-          payload.body?.className?.length ? ` ${payload.body.className}` : ''
-        }`,
+        className: 'modal__body',
       });
       const footer = new Component({
         ...payload.footer,
-        className: `${this.target.className}__footer${
-          payload.footer?.className?.length ? ` ${payload.footer.className}` : ''
-        }`,
+        className: 'modal__footer',
       });
       const content = new Component({
+        ...payload.content,
         children: { header, body, footer },
-        className: `${this.target.className}__content`,
+        className: 'modal__content',
       });
-      const overlay = new Component({ className: `${this.target.className}__overlay` });
+      const overlay = new Component({
+        ...payload.overlay,
+        className: 'modal__overlay',
+      });
 
       this.appendChildren({ overlay, content });
 
@@ -55,7 +53,7 @@ class Modal extends Component {
     });
   };
 
-  close = async () => {
+  public close = async () => {
     await Promise.allSettled([
       this.children.content.fadeOut({ opacity: '0' }),
       this.children.overlay.fadeOut({ opacity: '0' }),
@@ -64,7 +62,7 @@ class Modal extends Component {
     this.hide();
   };
 
-  init = async (payload: Partial<ModalConstructorProps>) => {
+  private init = async (payload: ModalConstructorProps) => {
     await this.assemble(payload);
 
     [this.children.content.children.header.children.btClose, this.children.overlay].forEach(
@@ -72,7 +70,7 @@ class Modal extends Component {
     );
   };
 
-  open = async () => {
+  public open = async () => {
     this.show();
 
     await Promise.allSettled([
