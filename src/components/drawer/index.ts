@@ -3,51 +3,49 @@ import './style.scss';
 
 type DrawerConstructorProps = {
   body?: ComponentConstructorProps;
-  className?: string;
+  btClose?: ComponentConstructorProps;
+  content?: ComponentConstructorProps;
   footer?: ComponentConstructorProps;
   header?: ComponentConstructorProps;
+  overlay?: ComponentConstructorProps;
 };
 
 class Drawer extends Component {
   constructor(props: DrawerConstructorProps = {}) {
-    const { body, className = 'drawer', footer, header } = props;
-
-    super({ className });
-
-    this.init({ header, body, footer });
+    super({ className: 'drawer' });
+    this.init(props);
   }
 
-  assemble = (payload: Partial<DrawerConstructorProps>) => {
+  private assemble = (payload: DrawerConstructorProps) => {
     return new Promise((resolve) => {
       const btClose = new Component({
-        type: 'button',
-        className: `${this.target.className}__bt-close`,
+        className: 'drawer__bt-close',
         innerHTML: 'x',
+        type: 'button',
+        ...payload.btClose,
       });
       const header = new Component({
+        children: { btClose },
+        className: 'drawer__header',
         ...payload.header,
-        children: typeof payload.header?.innerHTML !== 'string' ? { btClose } : {},
-        className: `${this.target.className}__header${
-          payload.header?.className?.length ? ` ${payload.header.className}` : ''
-        }`,
       });
       const body = new Component({
+        className: 'drawer__body',
         ...payload.body,
-        className: `${this.target.className}__body${
-          payload.body?.className?.length ? ` ${payload.body.className}` : ''
-        }`,
       });
       const footer = new Component({
+        className: 'drawer__footer',
         ...payload.footer,
-        className: `${this.target.className}__footer${
-          payload.footer?.className?.length ? ` ${payload.footer.className}` : ''
-        }`,
       });
       const content = new Component({
         children: { header, body, footer },
-        className: `${this.target.className}__content`,
+        className: 'drawer__content',
+        ...payload.content,
       });
-      const overlay = new Component({ className: `${this.target.className}__overlay` });
+      const overlay = new Component({
+        className: 'drawer__overlay',
+        ...payload.overlay,
+      });
 
       this.appendChildren({ overlay, content });
 
@@ -55,7 +53,7 @@ class Drawer extends Component {
     });
   };
 
-  close = async () => {
+  public close = async () => {
     await Promise.allSettled([
       this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
       this.children.overlay.fadeOut({ opacity: '0' }),
@@ -64,7 +62,7 @@ class Drawer extends Component {
     this.hide();
   };
 
-  init = async (payload: Partial<DrawerConstructorProps>) => {
+  private init = async (payload: DrawerConstructorProps) => {
     await this.assemble(payload);
 
     [this.children.content.children.header.children.btClose, this.children.overlay].forEach(
@@ -72,7 +70,7 @@ class Drawer extends Component {
     );
   };
 
-  open = async () => {
+  public open = async () => {
     this.show();
 
     await Promise.allSettled([

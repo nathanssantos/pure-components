@@ -3,45 +3,59 @@ import Component from '../../src/components/component';
 describe('components', () => {
   describe('component', () => {
     describe('instance', () => {
-      it('Should create a new component instance.', () => {
+      it('Should create a new Component instance.', () => {
+        const testChild = new Component({ innerHTML: 'child' });
+
         const component = new Component({
-          id: '123',
-          type: 'header',
-          innerHTML: '<div>abc</div>',
+          children: {
+            testChild,
+          },
           className: ['component', 'test'],
-          transitionTime: 1200,
+          events: {
+            click: () => '',
+          },
+          innerHTML: '<div>abc</div>',
+          style: { backgroundColor: 'red' },
+          type: 'header',
         });
 
-        expect(component.id).toBe('123');
+        expect(component.id).toHaveLength(16);
         expect(component.target.tagName).toBe('HEADER');
         expect(component.target).toBeInstanceOf(HTMLElement);
-        expect(component.target.innerHTML).toBe('<div>abc</div>');
+        expect(component.target.innerHTML).toBe(
+          `<div>abc</div><div id="${testChild.id}">child</div>`,
+        );
         expect(component.target.classList).toContain('component');
         expect(component.target.classList).toContain('test');
-        expect(component.transitionTime).toBe(1200);
+        expect(component.target.style.backgroundColor).toBe('red');
+        expect(component.children.testChild).toBeInstanceOf(Component);
       });
     });
 
     describe('appendChildren', () => {
       it('Should append children to the component.', () => {
         const component = new Component();
+
+        const child1 = new Component();
+        const child2 = new Component();
+
         component.appendChildren({
-          child1: new Component({ id: '123' }),
-          child2: new Component({ id: '456' }),
+          child1,
+          child2,
         });
 
-        expect(component.target.querySelector(`[id="123"]`)).toBeTruthy();
-        expect(component.target.querySelector(`[id="456"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[id="${child2.id}"]`)).toBeTruthy();
       });
     });
 
     describe('destroy', () => {
       it('Should destroy the component.', () => {
-        const component = new Component({ id: '123' });
+        const component = new Component();
         document.body.append(component.target);
         component.destroy();
 
-        expect(document.body.querySelector(`[id="123"]`)).toBeFalsy();
+        expect(document.body.querySelector(`[id="${component.id}"]`)).toBeFalsy();
       });
     });
 
