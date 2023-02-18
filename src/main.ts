@@ -106,3 +106,5 @@ class App {
 }
 
 new App();
+
+export { Avatar, Component, Drawer, Modal };
