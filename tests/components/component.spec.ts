@@ -5,7 +5,6 @@ describe('components', () => {
     describe('instance', () => {
       it('Should create a new Component instance.', () => {
         const testChild = new Component({ innerHTML: 'child' });
-
         const component = new Component({
           innerHTML: '<div>abc</div>',
           children: {
@@ -35,7 +34,6 @@ describe('components', () => {
     describe('appendChildren', () => {
       it('Should append children to the component.', () => {
         const component = new Component();
-
         const child1 = new Component();
         const child2 = new Component();
 
@@ -101,9 +99,8 @@ describe('components', () => {
     });
 
     describe('prependChildren', () => {
-      it('Should append children to the component.', () => {
+      it('Should prepend children to the component.', () => {
         const component = new Component();
-
         const child1 = new Component();
         const child2 = new Component();
 
@@ -118,7 +115,7 @@ describe('components', () => {
     });
 
     describe('prependTo', () => {
-      it('Should append the component to a target.', () => {
+      it('Should prepend the component to a target.', () => {
         const component = new Component();
         const child1 = new Component();
 
