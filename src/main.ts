@@ -34,20 +34,20 @@ class App {
         `,
       },
       footer: {
-        innerHTML: `
-          <div>Footer</div>
-        `,
+        innerHTML: 'Footer',
         style: {
           backgroundColor: '#2a2a2a',
         },
       },
     });
+
     drawer.target
       .querySelectorAll('.menu__item')
       .forEach((link) => link.addEventListener('click', drawer.close));
+
     const btOpenDrawer = new Component({
       className: 'bt-open-drawer',
-      type: 'button',
+      tagName: 'button',
       innerHTML: 'Open Drawer',
       events: {
         click: drawer.open,
@@ -56,19 +56,16 @@ class App {
 
     const modal = new Modal({
       body: {
-        innerHTML: `
-          <div>Body</div>
-        `,
+        innerHTML: 'Body',
       },
       footer: {
-        innerHTML: `
-          <div>Footer</div>
-        `,
+        innerHTML: 'Footer',
       },
     });
+
     const btOpenModal = new Component({
       className: 'bt-open-modal',
-      type: 'button',
+      tagName: 'button',
       innerHTML: 'Open Modal',
       events: {
         click: modal.open,
@@ -76,9 +73,23 @@ class App {
     });
 
     const avatar = new Avatar({
-      src: 'https://i.pravatar.cc/300',
-      name: 'John Doe',
-      description: 'john@doe.com',
+      image: {
+        attributes: {
+          src: 'https://i.pravatar.cc/300',
+        },
+      },
+      imageContainer: {
+        style: {
+          width: '3rem',
+          height: '3rem',
+        },
+      },
+      name: {
+        innerHTML: 'John Doe',
+      },
+      description: {
+        innerHTML: 'john@doe.com',
+      },
     });
 
     new Component({
@@ -95,3 +106,5 @@ class App {
 }
 
 new App();
+
+export { Avatar, Component, Drawer, Modal };
