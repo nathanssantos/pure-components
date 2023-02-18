@@ -1,6 +1,7 @@
 {
   "name": "@nathanssantos/pure-components",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "author": {
     "name": "Nathan Silva Santos",
