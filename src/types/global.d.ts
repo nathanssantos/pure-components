@@ -1,11 +1,24 @@
+type AvatarConstructorProps = {
+  description?: string;
+  descriptionComponent?: ComponentConstructorProps;
+  imageComponent?: ComponentConstructorProps;
+  imageWrapperComponent?: ComponentConstructorProps;
+  name?: string;
+  nameComponent?: ComponentConstructorProps;
+  size?: string;
+  src?: string;
+  textWrapperComponent?: ComponentConstructorProps;
+};
+
 type ComponentConstructorProps = {
-  type?: string;
-  className?: string | string[];
+  attributes?: { [name: string]: string };
   children?: { [name: string]: import('../components/component').default };
-  style?: Partial<CSSStyleDeclaration>;
-  innerHTML?: string;
-  transitionTime?: number;
+  className?: string | string[];
   events?: { [name: string]: () => unknown };
+  innerHTML?: string;
+  style?: Partial<CSSStyleDeclaration>;
+  transitionTime?: number;
+  type?: string;
 };
 
 type DrawerConstructorProps = {
