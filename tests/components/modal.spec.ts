@@ -1,13 +1,13 @@
 import Component from '../../src/components/component';
-import Drawer from '../../src/components/drawer';
+import Modal from '../../src/components/modal';
 
 describe('components', () => {
-  describe('drawer', () => {
+  describe('modal', () => {
     describe('assemble', () => {
-      it('Should assemble the drawer.', () => {
-        const component = new Drawer();
+      it('Should assemble the modal.', () => {
+        const component = new Modal();
 
-        expect(component.target.classList).toContain('drawer');
+        expect(component.target.classList).toContain('modal');
         expect(component.children.content.children.header.children.btClose).toBeInstanceOf(
           Component,
         );
@@ -20,28 +20,26 @@ describe('components', () => {
     });
 
     describe('close', () => {
-      it('Should close the drawer.', async () => {
-        const component = new Drawer();
+      it('Should close the modal.', async () => {
+        const component = new Modal();
         await component.close();
 
         expect(component.target.style.display).toBe('none');
         expect(component.children.overlay.target.style.display).toBe('none');
         expect(component.children.overlay.target.style.opacity).toBe('0');
         expect(component.children.content.target.style.display).toBe('none');
-        expect(component.children.content.target.style.transform).toBe('translateX(-100%)');
       });
     });
 
     describe('open', () => {
-      it('Should open the drawer.', async () => {
-        const component = new Drawer();
+      it('Should open the modal.', async () => {
+        const component = new Modal();
         await component.open();
 
         expect(component.target.style.display).toBe('flex');
         expect(component.children.overlay.target.style.display).toBe('flex');
         expect(component.children.overlay.target.style.opacity).toBe('1');
         expect(component.children.content.target.style.display).toBe('flex');
-        expect(component.children.content.target.style.transform).toBe('translateX(0)');
       });
     });
   });

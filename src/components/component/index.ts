@@ -1,51 +1,61 @@
 import generateUUID from '../../utils/generateUUID';
 import './style.scss';
 
-type ComponentConstructorProps = {
-  id?: string;
-  type?: string;
-  className?: string | string[];
-  style?: Partial<CSSStyleDeclaration>;
-  innerHTML?: string;
-  transitionTime?: number;
-};
-
 class Component {
-  id: string;
-  target: HTMLElement;
-  children: { [name: string]: Component };
-  transitionTime: number;
+  public children: { [name: string]: Component } = {};
+  public id: string;
+  public target: HTMLElement;
 
-  constructor(props: ComponentConstructorProps = {}) {
-    const uuid = generateUUID();
+  constructor(public props: ComponentConstructorProps = {}) {
+    const { children, className, events, innerHTML, style, type } = props;
 
-    const { id, type, className, innerHTML, transitionTime } = props;
+    const id = generateUUID();
 
-    this.id = id || uuid;
     this.target = document.createElement(type || 'div');
-    if (id) this.target.setAttribute('id', id);
+    this.target.setAttribute('id', id);
+    this.id = id;
+
     if (className?.length) {
       Array.isArray(className)
-        ? this.target.classList.add(...className)
-        : this.target.classList.add(className);
+        ? this.target.classList.add('pure-components', ...className)
+        : this.target.classList.add('pure-components', className);
     }
-    if (innerHTML?.length) this.target.innerHTML = innerHTML;
-    this.transitionTime = transitionTime || 500;
-    this.children = {};
+    if (style) this.setStyle(style);
+    if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
+    if (children) this.appendChildren(children);
+    if (events) this.bindEvents(events);
   }
 
-  appendChildren = (children: { [name: string]: Component }) => {
-    for (const [name, component] of Object.entries(children)) {
-      this.children[name] = component;
-      this.target.append(component.target);
+  public appendChildren = (payload: ComponentConstructorProps['children']) => {
+    if (payload) {
+      for (const [name, component] of Object.entries(payload)) {
+        this.children[name] = component;
+        this.target.append(component.target);
+      }
     }
   };
 
-  destroy = () => {
+  public appendTo = (target: HTMLElement) => {
+    target.append(this.target);
+  };
+
+  public bindEvents = async (payload: ComponentConstructorProps['events']) => {
+    if (payload) {
+      for (const [name, action] of Object.entries(payload)) {
+        this.target.addEventListener(name, action);
+      }
+    }
+  };
+
+  static create = (payload: ComponentConstructorProps) => {
+    return new Component(payload);
+  };
+
+  public destroy = () => {
     this.target.parentNode?.removeChild(this.target);
   };
 
-  fadeIn = (to: Partial<CSSStyleDeclaration> = {}) => {
+  public fadeIn = (to: Partial<CSSStyleDeclaration> = {}) => {
     return new Promise((resolve) => {
       this.show();
       setTimeout(() => {
@@ -55,25 +65,38 @@ class Component {
     });
   };
 
-  fadeOut = (to: Partial<CSSStyleDeclaration> = {}) => {
+  public fadeOut = (to: Partial<CSSStyleDeclaration> = {}) => {
     return new Promise((resolve) => {
       this.setStyle(to);
       setTimeout(() => {
         this.hide();
         resolve(true);
-      }, this.transitionTime);
+      }, 500);
     });
   };
 
-  hide = () => {
+  public hide = () => {
     this.target.style.display = 'none';
   };
 
-  setStyle = (styleDeclaration: Partial<CSSStyleDeclaration>) => {
-    for (const [key, value] of Object.entries(styleDeclaration)) this.target.style[key] = value;
+  public prependChildren = (payload: ComponentConstructorProps['children']) => {
+    if (payload) {
+      for (const [name, component] of Object.entries(payload)) {
+        this.children[name] = component;
+        this.target.prepend(component.target);
+      }
+    }
   };
 
-  show = () => {
+  public prependTo = (target: HTMLElement) => {
+    target.prepend(this.target);
+  };
+
+  public setStyle = (payload: Partial<CSSStyleDeclaration>) => {
+    for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
+  };
+
+  public show = () => {
     this.target.style.display = 'flex';
   };
 }
