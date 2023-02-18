@@ -49,6 +49,17 @@ describe('components', () => {
       });
     });
 
+    describe('appendTo', () => {
+      it('Should append the component to a target.', () => {
+        const component = new Component();
+        const child1 = new Component();
+
+        child1.appendTo(component.target);
+
+        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
+      });
+    });
+
     describe('destroy', () => {
       it('Should destroy the component.', () => {
         const component = new Component();
@@ -86,6 +97,34 @@ describe('components', () => {
         component.hide();
 
         expect(component.target.style.display).toBe('none');
+      });
+    });
+
+    describe('prependChildren', () => {
+      it('Should append children to the component.', () => {
+        const component = new Component();
+
+        const child1 = new Component();
+        const child2 = new Component();
+
+        component.prependChildren({
+          child1,
+          child2,
+        });
+
+        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[id="${child2.id}"]`)).toBeTruthy();
+      });
+    });
+
+    describe('prependTo', () => {
+      it('Should append the component to a target.', () => {
+        const component = new Component();
+        const child1 = new Component();
+
+        child1.prependTo(component.target);
+
+        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
       });
     });
 
