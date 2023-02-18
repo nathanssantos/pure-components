@@ -12,7 +12,7 @@ class Modal extends Component {
       const btClose = new Component({
         className: 'modal__bt-close',
         innerHTML: 'x',
-        type: 'button',
+        tagName: 'button',
         ...payload.btClose,
       });
       const header = new Component({

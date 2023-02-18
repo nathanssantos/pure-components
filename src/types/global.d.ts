@@ -1,13 +1,9 @@
 type AvatarConstructorProps = {
-  description?: string;
-  descriptionComponent?: ComponentConstructorProps;
-  imageComponent?: ComponentConstructorProps;
-  imageWrapperComponent?: ComponentConstructorProps;
-  name?: string;
-  nameComponent?: ComponentConstructorProps;
-  size?: string;
-  src?: string;
-  textWrapperComponent?: ComponentConstructorProps;
+  description?: ComponentConstructorProps;
+  image?: ComponentConstructorProps;
+  imageContainer?: ComponentConstructorProps;
+  name?: ComponentConstructorProps;
+  textContainer?: ComponentConstructorProps;
 };
 
 type ComponentConstructorProps = {
@@ -18,7 +14,7 @@ type ComponentConstructorProps = {
   innerHTML?: string;
   style?: Partial<CSSStyleDeclaration>;
   transitionTime?: number;
-  type?: string;
+  tagName?: string;
 };
 
 type DrawerConstructorProps = {

@@ -6,7 +6,10 @@ describe('components', () => {
       it('Should create a new Component instance.', () => {
         const testChild = new Component({ innerHTML: 'child' });
         const component = new Component({
-          innerHTML: '<div>abc</div>',
+          attributes: {
+            href: 'https://link.com',
+          },
+          innerHTML: '<div>link</div>',
           children: {
             testChild,
           },
@@ -15,14 +18,15 @@ describe('components', () => {
             click: () => '',
           },
           style: { backgroundColor: 'red' },
-          type: 'header',
+          tagName: 'a',
         });
 
         expect(component.id).toHaveLength(16);
-        expect(component.target.tagName).toBe('HEADER');
+        expect(component.target.tagName).toBe('A');
         expect(component.target).toBeInstanceOf(HTMLElement);
+        expect(component.target.getAttribute('href')).toBe('https://link.com');
         expect(component.target.innerHTML).toBe(
-          `<div>abc</div><div id="${testChild.id}">child</div>`,
+          `<div>link</div><div id="${testChild.id}">child</div>`,
         );
         expect(component.target.classList).toContain('component');
         expect(component.target.classList).toContain('test');
