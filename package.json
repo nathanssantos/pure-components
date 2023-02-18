@@ -1,13 +1,44 @@
 {
   "name": "@nathanssantos/pure-components",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Nathan Silva Santos",
+    "email": "nathansilvasantos@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanssantos/pure-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nathanssantos/pure-components/issues"
+  },
+  "homepage": "https://nathanssantos.github.io/pure-components",
+  "keywords": [
+    "scss",
+    "customizable",
+    "dependency-free",
+    "dependency free",
+    "components",
+    "ui library",
+    "javascript",
+    "js",
+    "typescript",
+    "ts",
+    "responsive",
+    "avatar",
+    "drawer",
+    "modal",
+    "button"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
@@ -17,6 +48,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.4.2",
