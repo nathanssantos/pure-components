@@ -40,9 +40,11 @@ class App {
         },
       },
     });
+
     drawer.target
       .querySelectorAll('.menu__item')
       .forEach((link) => link.addEventListener('click', drawer.close));
+
     const btOpenDrawer = new Component({
       className: 'bt-open-drawer',
       tagName: 'button',
@@ -60,6 +62,7 @@ class App {
         innerHTML: 'Footer',
       },
     });
+
     const btOpenModal = new Component({
       className: 'bt-open-modal',
       tagName: 'button',
