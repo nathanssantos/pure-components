@@ -1,4 +1,5 @@
 import Avatar from './components/avatar';
+import Button from './components/button';
 import Component from './components/component';
 import Drawer from './components/drawer';
 import Modal from './components/modal';
@@ -11,27 +12,14 @@ class App {
 
   renderPreview = () => {
     const drawer = new Drawer({
+      innerHTML: '',
       header: {
         style: {
           backgroundColor: '#2a2a2a',
         },
       },
       body: {
-        innerHTML: `
-          <nav class="menu" style="color: var(--text-color);">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li class="menu__item" style="cursor: pointer;">
-                Item 1
-              </li>
-              <li class="menu__item" style="cursor: pointer;">
-                Item 2
-              </li>
-              <li class="menu__item" style="cursor: pointer;">
-                Item 3
-              </li>
-            </ul>
-          </nav>
-        `,
+        innerHTML: 'Body',
       },
       footer: {
         innerHTML: 'Footer',
@@ -41,13 +29,7 @@ class App {
       },
     });
 
-    drawer.target
-      .querySelectorAll('.menu__item')
-      .forEach((link) => link.addEventListener('click', drawer.close));
-
-    const btOpenDrawer = new Component({
-      className: 'bt-open-drawer',
-      tagName: 'button',
+    const btOpenDrawer = new Button({
       innerHTML: 'Open Drawer',
       events: {
         click: drawer.open,
@@ -59,13 +41,26 @@ class App {
         innerHTML: 'Body',
       },
       footer: {
-        innerHTML: 'Footer',
+        children: {
+          btCancel: new Button({
+            innerHTML: 'Cancel',
+          }),
+          btConfirm: new Button({
+            innerHTML: 'Confirm',
+          }),
+        },
       },
     });
 
-    const btOpenModal = new Component({
-      className: 'bt-open-modal',
-      tagName: 'button',
+    modal.children.content.children.footer.children.btCancel.bindEvents({ click: modal.close });
+    modal.children.content.children.footer.children.btConfirm.bindEvents({
+      click: () => {
+        modal.close();
+        console.log('Do something...');
+      },
+    });
+
+    const btOpenModal = new Button({
       innerHTML: 'Open Modal',
       events: {
         click: modal.open,
@@ -97,6 +92,7 @@ class App {
       style: {
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         gap: '0.5rem',
         padding: '2rem',
       },

@@ -1,18 +1,32 @@
+import Button from '../button';
 import Component from '../component';
 import './style.scss';
 
 class Drawer extends Component {
-  constructor(props: DrawerConstructorProps = {}) {
-    super({ className: 'drawer' });
-    this.init(props);
+  constructor(props: Partial<DrawerConstructorProps> = {}) {
+    const {
+      className: newClassName,
+      btClose,
+      header,
+      body,
+      footer,
+      content,
+      overlay,
+      ...rest
+    } = props;
+
+    const className = newClassName?.length ? `drawer ${newClassName}` : 'drawer';
+
+    super({ className, ...rest });
+
+    this.init({ btClose, header, body, footer, content, overlay });
   }
 
-  private assemble = (payload: DrawerConstructorProps) => {
+  private assemble = (payload: Partial<DrawerConstructorProps>) => {
     return new Promise((resolve) => {
-      const btClose = new Component({
+      const btClose = new Button({
         className: 'drawer__bt-close',
         innerHTML: 'x',
-        tagName: 'button',
         ...payload.btClose,
       });
       const header = new Component({
@@ -28,7 +42,7 @@ class Drawer extends Component {
         className: 'drawer__footer',
         ...payload.footer,
       });
-      const content = Component.create({
+      const content = new Component({
         children: { header, body, footer },
         className: 'drawer__content',
         ...payload.content,
@@ -53,7 +67,7 @@ class Drawer extends Component {
     this.hide();
   };
 
-  private init = async (payload: DrawerConstructorProps) => {
+  private init = async (payload: Partial<DrawerConstructorProps>) => {
     await this.assemble(payload);
 
     [this.children.content.children.header.children.btClose, this.children.overlay].forEach(
