@@ -1,5 +1,4 @@
 import generateUUID from '../../utils/generateUUID';
-import './style.scss';
 
 class Component {
   public children: { [name: string]: Component } = {};
@@ -7,12 +6,12 @@ class Component {
   public target: HTMLElement;
 
   constructor(public props: ComponentConstructorProps = {}) {
-    const { attributes, children, className, events, innerHTML, style, type } = props;
+    const { attributes, children, className, events, innerHTML, style, tagName } = props;
 
     const id = generateUUID();
 
-    this.target = document.createElement(type || 'div');
-    this.target.setAttribute('id', id);
+    this.target = document.createElement(tagName || 'div');
+    this.setAttributes({ id });
     this.id = id;
 
     if (attributes) this.setAttributes(attributes);
