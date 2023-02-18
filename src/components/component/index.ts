@@ -42,7 +42,7 @@ class Component {
     }
   };
 
-  static create = (payload: Partial<ComponentConstructorProps>) => {
+  static create = (payload: Partial<ComponentConstructorProps> = {}) => {
     return new Component(payload);
   };
 

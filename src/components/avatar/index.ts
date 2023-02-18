@@ -3,9 +3,19 @@ import './style.scss';
 
 class Avatar extends Component {
   constructor(props: Partial<AvatarConstructorProps> = {}) {
-    const { image, imageContainer, name, description, textContainer, ...rest } = props;
+    const {
+      className: newClassName,
+      image,
+      imageContainer,
+      name,
+      description,
+      textContainer,
+      ...rest
+    } = props;
 
-    super({ className: 'avatar', ...rest });
+    const className = newClassName?.length ? `avatar ${newClassName}` : 'avatar';
+
+    super({ className, ...rest });
 
     this.init({ image, imageContainer, name, description, textContainer });
   }

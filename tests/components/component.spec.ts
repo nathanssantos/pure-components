@@ -4,14 +4,14 @@ describe('components', () => {
   describe('component', () => {
     describe('instance', () => {
       it('Should create a new Component instance.', () => {
-        const testChild = new Component({ innerHTML: 'child' });
+        const child = new Component({ innerHTML: 'child' });
         const component = new Component({
           attributes: {
             href: 'https://link.com',
           },
           innerHTML: '<div>link</div>',
           children: {
-            testChild,
+            child,
           },
           className: 'component test',
           events: {
@@ -26,12 +26,12 @@ describe('components', () => {
         expect(component.target).toBeInstanceOf(HTMLElement);
         expect(component.target.getAttribute('href')).toBe('https://link.com');
         expect(component.target.innerHTML).toBe(
-          `<div>link</div><div id="${testChild.id}">child</div>`,
+          `<div>link</div><div id="${child.id}">child</div>`,
         );
         expect(component.target.classList).toContain('component');
         expect(component.target.classList).toContain('test');
         expect(component.target.style.backgroundColor).toBe('red');
-        expect(component.children.testChild).toBeInstanceOf(Component);
+        expect(component.children.child).toBeInstanceOf(Component);
       });
     });
 
@@ -54,9 +54,22 @@ describe('components', () => {
     describe('appendTo', () => {
       it('Should append the component to a target.', () => {
         const component = new Component();
-        const child1 = new Component();
+        const child = new Component();
 
-        child1.appendTo(component.target);
+        child.appendTo(component.target);
+
+        expect(component.target.querySelector(`[id="${child.id}"]`)).toBeTruthy();
+      });
+    });
+
+    describe('create', () => {
+      it('Should create a component.', () => {
+        const child1 = Component.create();
+        const component = Component.create({
+          children: {
+            child1,
+          },
+        });
 
         expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
       });
@@ -121,11 +134,11 @@ describe('components', () => {
     describe('prependTo', () => {
       it('Should prepend the component to a target.', () => {
         const component = new Component();
-        const child1 = new Component();
+        const child = new Component();
 
-        child1.prependTo(component.target);
+        child.prependTo(component.target);
 
-        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[id="${child.id}"]`)).toBeTruthy();
       });
     });
 
