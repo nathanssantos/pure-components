@@ -7,14 +7,14 @@ Dependency-free ui components library.
 - [x] Component
 - [x] Drawer
 - [x] Modal
-- [ ] Header
-- [ ] Floating Action Button
-- [ ] Checkbox
-- [ ] Radio
+- [ ] Avatar
 - [ ] Tag
 - [ ] Progress
 - [ ] Breadcrumbs
-- [ ] Avatar
+- [ ] Floating Action Button
+- [ ] Header
+- [ ] Checkbox
+- [ ] Radio
 - [ ] Org Chart
 - [ ] Autocomplete
 - [ ] Toast
