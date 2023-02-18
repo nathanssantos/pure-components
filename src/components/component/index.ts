@@ -7,7 +7,7 @@ class Component {
   public target: HTMLElement;
 
   constructor(public props: ComponentConstructorProps = {}) {
-    const { children, className, events, innerHTML, style, type } = props;
+    const { attributes, children, className, events, innerHTML, style, type } = props;
 
     const id = generateUUID();
 
@@ -15,6 +15,7 @@ class Component {
     this.target.setAttribute('id', id);
     this.id = id;
 
+    if (attributes) this.setAttributes(attributes);
     if (className?.length) {
       Array.isArray(className)
         ? this.target.classList.add('pure-components', ...className)
@@ -90,6 +91,10 @@ class Component {
 
   public prependTo = (target: HTMLElement) => {
     target.prepend(this.target);
+  };
+
+  public setAttributes = (payload: { [key: string]: string }) => {
+    for (const [key, value] of Object.entries(payload)) this.target.setAttribute(key, value);
   };
 
   public setStyle = (payload: Partial<CSSStyleDeclaration>) => {

@@ -1,3 +1,4 @@
+import Avatar from './components/avatar';
 import Component from './components/component';
 import Drawer from './components/drawer';
 import Modal from './components/modal';
@@ -68,18 +69,28 @@ class App {
     const btOpenModal = new Component({
       className: 'bt-open-modal',
       type: 'button',
-      innerHTML: 'Open modal',
+      innerHTML: 'Open Modal',
       events: {
         click: modal.open,
       },
     });
 
-    const preview = new Component({
-      className: 'preview',
-      children: { btOpenDrawer, btOpenModal, drawer, modal },
+    const avatar = new Avatar({
+      src: 'https://i.pravatar.cc/300',
+      name: 'John Doe',
+      description: 'john@doe.com',
     });
 
-    document.body.querySelector('#app')?.append(preview.target);
+    new Component({
+      children: { btOpenDrawer, btOpenModal, avatar, drawer, modal },
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.5rem',
+        padding: '2rem',
+      },
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    }).appendTo(document.body.querySelector('#app')!);
   };
 }
 
