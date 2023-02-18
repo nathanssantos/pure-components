@@ -1,36 +1,39 @@
-type AvatarConstructorProps = {
-  description?: ComponentConstructorProps;
-  image?: ComponentConstructorProps;
-  imageContainer?: ComponentConstructorProps;
-  name?: ComponentConstructorProps;
-  textContainer?: ComponentConstructorProps;
-};
+interface AvatarConstructorProps extends ComponentConstructorProps {
+  description: Partial<ComponentConstructorProps>;
+  image: Partial<ComponentConstructorProps>;
+  imageContainer: Partial<ComponentConstructorProps>;
+  name: Partial<ComponentConstructorProps>;
+  textContainer: Partial<ComponentConstructorProps>;
+}
 
-type ComponentConstructorProps = {
-  attributes?: { [name: string]: string };
-  children?: { [name: string]: import('../components/component').default };
-  className?: string | string[];
-  events?: { [name: string]: () => unknown };
-  innerHTML?: string;
-  style?: Partial<CSSStyleDeclaration>;
-  transitionTime?: number;
-  tagName?: string;
-};
+interface ButtonConstructorProps extends ComponentConstructorProps {
+  label: Partial<ComponentConstructorProps>;
+}
 
-type DrawerConstructorProps = {
-  body?: ComponentConstructorProps;
-  btClose?: ComponentConstructorProps;
-  content?: ComponentConstructorProps;
-  footer?: ComponentConstructorProps;
-  header?: ComponentConstructorProps;
-  overlay?: ComponentConstructorProps;
-};
+interface ComponentConstructorProps {
+  attributes: { [name: string]: string | boolean };
+  children: { [name: string]: import('../components/component').default };
+  className: string;
+  events: { [name: string]: () => unknown };
+  innerHTML: string;
+  style: Partial<CSSStyleDeclaration>;
+  tagName: string;
+}
 
-type ModalConstructorProps = {
-  body?: ComponentConstructorProps;
-  btClose?: ComponentConstructorProps;
-  content?: ComponentConstructorProps;
-  footer?: ComponentConstructorProps;
-  header?: ComponentConstructorProps;
-  overlay?: ComponentConstructorProps;
-};
+interface DrawerConstructorProps extends ComponentConstructorProps {
+  body: Partial<ComponentConstructorProps>;
+  btClose: Partial<ButtonConstructorProps>;
+  content: Partial<ComponentConstructorProps>;
+  footer: Partial<ComponentConstructorProps>;
+  header: Partial<ComponentConstructorProps>;
+  overlay: Partial<ComponentConstructorProps>;
+}
+
+interface ModalConstructorProps extends ComponentConstructorProps {
+  body: Partial<ComponentConstructorProps>;
+  btClose: Partial<ButtonConstructorProps>;
+  content: Partial<ComponentConstructorProps>;
+  footer: Partial<ComponentConstructorProps>;
+  header: Partial<ComponentConstructorProps>;
+  overlay: Partial<ComponentConstructorProps>;
+}

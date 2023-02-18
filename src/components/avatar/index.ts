@@ -2,12 +2,15 @@ import Component from '../component';
 import './style.scss';
 
 class Avatar extends Component {
-  constructor(props: AvatarConstructorProps = {}) {
-    super({ className: 'avatar' });
-    this.init(props);
+  constructor(props: Partial<AvatarConstructorProps> = {}) {
+    const { image, imageContainer, name, description, textContainer, ...rest } = props;
+
+    super({ className: 'avatar', ...rest });
+
+    this.init({ image, imageContainer, name, description, textContainer });
   }
 
-  private assemble = (payload: AvatarConstructorProps) => {
+  private assemble = (payload: Partial<AvatarConstructorProps>) => {
     return new Promise((resolve) => {
       const image = new Component({
         className: 'avatar__image',
@@ -39,8 +42,8 @@ class Avatar extends Component {
     });
   };
 
-  private init = async (payload: AvatarConstructorProps) => {
-    await this.assemble(payload);
+  private init = (payload: Partial<AvatarConstructorProps>) => {
+    this.assemble(payload);
   };
 }
 

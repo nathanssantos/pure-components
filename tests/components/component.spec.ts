@@ -13,7 +13,7 @@ describe('components', () => {
           children: {
             testChild,
           },
-          className: ['component', 'test'],
+          className: 'component test',
           events: {
             click: () => '',
           },

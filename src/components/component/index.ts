@@ -5,7 +5,7 @@ class Component {
   public id: string;
   public target: HTMLElement;
 
-  constructor(public props: ComponentConstructorProps = {}) {
+  constructor(props: Partial<ComponentConstructorProps> = {}) {
     const { attributes, children, className, events, innerHTML, style, tagName } = props;
 
     const id = generateUUID();
@@ -16,10 +16,9 @@ class Component {
 
     if (attributes) this.setAttributes(attributes);
     if (className?.length) {
-      Array.isArray(className)
-        ? this.target.classList.add('pure-components', ...className)
-        : this.target.classList.add('pure-components', className);
+      this.target.classList.add('pure-components', ...className.split(' '));
     }
+
     if (style) this.setStyle(style);
     if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
     if (children) this.appendChildren(children);
@@ -27,11 +26,9 @@ class Component {
   }
 
   public appendChildren = (payload: ComponentConstructorProps['children']) => {
-    if (payload) {
-      for (const [name, component] of Object.entries(payload)) {
-        this.children[name] = component;
-        this.target.append(component.target);
-      }
+    for (const [name, component] of Object.entries(payload)) {
+      this.children[name] = component;
+      this.target.append(component.target);
     }
   };
 
@@ -40,14 +37,12 @@ class Component {
   };
 
   public bindEvents = async (payload: ComponentConstructorProps['events']) => {
-    if (payload) {
-      for (const [name, action] of Object.entries(payload)) {
-        this.target.addEventListener(name, action);
-      }
+    for (const [name, action] of Object.entries(payload)) {
+      this.target.addEventListener(name, action);
     }
   };
 
-  static create = (payload: ComponentConstructorProps) => {
+  static create = (payload: Partial<ComponentConstructorProps>) => {
     return new Component(payload);
   };
 
@@ -55,7 +50,7 @@ class Component {
     this.target.parentNode?.removeChild(this.target);
   };
 
-  public fadeIn = (to: Partial<CSSStyleDeclaration> = {}) => {
+  public fadeIn = (to: ComponentConstructorProps['style'] = {}) => {
     return new Promise((resolve) => {
       this.show();
       setTimeout(() => {
@@ -65,13 +60,13 @@ class Component {
     });
   };
 
-  public fadeOut = (to: Partial<CSSStyleDeclaration> = {}) => {
+  public fadeOut = (to: ComponentConstructorProps['style'] = {}) => {
     return new Promise((resolve) => {
       this.setStyle(to);
       setTimeout(() => {
         this.hide();
         resolve(true);
-      }, 500);
+      }, Number(getComputedStyle(this.target).transitionDuration.split('s')[0]) * 1000);
     });
   };
 
@@ -80,11 +75,9 @@ class Component {
   };
 
   public prependChildren = (payload: ComponentConstructorProps['children']) => {
-    if (payload) {
-      for (const [name, component] of Object.entries(payload)) {
-        this.children[name] = component;
-        this.target.prepend(component.target);
-      }
+    for (const [name, component] of Object.entries(payload)) {
+      this.children[name] = component;
+      this.target.prepend(component.target);
     }
   };
 
@@ -92,11 +85,13 @@ class Component {
     target.prepend(this.target);
   };
 
-  public setAttributes = (payload: { [key: string]: string }) => {
-    for (const [key, value] of Object.entries(payload)) this.target.setAttribute(key, value);
+  public setAttributes = (payload: ComponentConstructorProps['attributes']) => {
+    for (const [key, value] of Object.entries(payload)) {
+      this.target.setAttribute(key, value.toString());
+    }
   };
 
-  public setStyle = (payload: Partial<CSSStyleDeclaration>) => {
+  public setStyle = (payload: ComponentConstructorProps['style']) => {
     for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
   };
 

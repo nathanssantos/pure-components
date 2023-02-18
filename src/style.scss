@@ -1,20 +1,22 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
 
   --surface-background: #222;
   --overlay-background: rgba(34, 34, 34, 0.5);
   --clickable-background: #333;
+  --clickable-hover: #444;
+  --clickable-active: #555;
+  --clickable-disabled: #aaa;
   --text-color: #eee;
   --border-color: #333;
-
   --spacing: 0.25rem;
-
+  --border-radius: 0.25rem;
   --transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -29,9 +31,4 @@ body {
   place-items: center;
   min-width: 20rem;
   min-height: 100vh;
-}
-
-button {
-  cursor: pointer;
-  border: none;
 }
