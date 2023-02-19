@@ -59,6 +59,7 @@ class Preview extends Component {
         style: {
           fontWeight: 'bold',
           fontSize: '1.25rem',
+          textAlign: 'center',
         },
       },
       rightContent: {
@@ -84,9 +85,6 @@ class Preview extends Component {
       body: {
         innerHTML: 'Body',
       },
-      footer: {
-        children: {},
-      },
     });
     const btCancel = new Button({
       innerHTML: 'Cancel',
@@ -108,9 +106,26 @@ class Preview extends Component {
       events: {
         click: modal.open,
       },
+      style: {
+        base: {
+          backgroundColor: 'orange',
+        },
+        sm: {
+          backgroundColor: 'blue',
+        },
+        md: {
+          backgroundColor: 'green',
+        },
+        lg: {
+          backgroundColor: 'yellow',
+        },
+        xl: {
+          backgroundColor: 'purple',
+        },
+      },
     });
 
-    modal.appendChildren({ btCancel, btConfirm });
+    modal.children.content.children.footer.appendChildren({ btCancel, btConfirm });
 
     this.appendChildren({ header, btOpenModal, drawer, modal });
   };

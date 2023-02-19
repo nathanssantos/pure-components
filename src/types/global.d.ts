@@ -12,17 +12,7 @@ interface ComponentConstructorProps {
   className: string;
   events: { [name: string]: () => unknown };
   innerHTML: string;
-  style: Partial<CSSStyleDeclaration>;
-  tagName: string;
-}
-
-interface ComponentConstructorProps {
-  attributes: { [name: string]: string | boolean };
-  children: { [name: string]: import('../components/component').default };
-  className: string;
-  events: { [name: string]: () => unknown };
-  innerHTML: string;
-  style: Partial<CSSStyleDeclaration>;
+  style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
   tagName: string;
 }
 
@@ -49,4 +39,12 @@ interface ModalConstructorProps extends ComponentConstructorProps {
   footer: Partial<ComponentConstructorProps>;
   header: Partial<ComponentConstructorProps>;
   overlay: Partial<ComponentConstructorProps>;
+}
+
+interface ResponsiveObject<T> {
+  base: T;
+  md: T;
+  sm: T;
+  lg: T;
+  xl: T;
 }

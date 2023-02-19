@@ -11,6 +11,7 @@ Dependency-free ui components library.
 - [x] Button
 - [x] Container
 - [x] Header
+- [ ] Tabs
 - [ ] Floating Action Button
 - [ ] Breadcrumbs
 - [ ] Tag

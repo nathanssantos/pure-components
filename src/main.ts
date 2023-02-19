@@ -8,7 +8,6 @@ import Modal from './components/modal';
 import Preview from './components/preview';
 import './style.scss';
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 new Preview().appendTo(document.querySelector('#app')!);
 
 export { Avatar, Button, Component, Container, Drawer, Header, Modal };
