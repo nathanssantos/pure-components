@@ -1,0 +1,32 @@
+.header {
+  background: var(--surface-background);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  color: var(--text-color);
+
+  &__container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--spacing) * 2);
+    min-height: 60px;
+  }
+
+  &__left-content,
+  &__center-content,
+  &__right-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    flex: 1;
+  }
+
+  &__center-content {
+    justify-content: center;
+  }
+
+  &__right-content {
+    justify-content: flex-end;
+  }
+}

@@ -4,22 +4,11 @@ import './style.scss';
 
 class Drawer extends Component {
   constructor(props: Partial<DrawerConstructorProps> = {}) {
-    const {
-      className: newClassName,
-      btClose,
-      header,
-      body,
-      footer,
-      content,
-      overlay,
-      ...rest
-    } = props;
+    const { className, ...rest } = props;
 
-    const className = newClassName?.length ? `drawer ${newClassName}` : 'drawer';
+    super({ className: `drawer${className?.length ? ` ${className}` : ''}`, ...rest });
 
-    super({ className, ...rest });
-
-    this.init({ btClose, header, body, footer, content, overlay });
+    this.init(props);
   }
 
   private assemble = (payload: Partial<DrawerConstructorProps>) => {
@@ -59,9 +48,11 @@ class Drawer extends Component {
   };
 
   public close = async () => {
+    const { content, overlay } = this.children;
+
     await Promise.allSettled([
-      this.children.content.fadeOut({ transform: 'translateX(-100%)' }),
-      this.children.overlay.fadeOut({ opacity: '0' }),
+      content.fadeOut({ transform: 'translateX(-100%)' }),
+      overlay.fadeOut({ opacity: '0' }),
     ]);
 
     this.hide();
@@ -70,17 +61,21 @@ class Drawer extends Component {
   private init = async (payload: Partial<DrawerConstructorProps>) => {
     await this.assemble(payload);
 
-    [this.children.content.children.header.children.btClose, this.children.overlay].forEach(
-      (component) => component.bindEvents({ click: this.close }),
-    );
+    const { content, overlay } = this.children;
+
+    for (const component of [content.children.header.children.btClose, overlay]) {
+      component.bindEvents({ click: this.close });
+    }
   };
 
   public open = async () => {
     this.show();
 
+    const { content, overlay } = this.children;
+
     await Promise.allSettled([
-      this.children.content.fadeIn({ transform: 'translateX(0)' }),
-      this.children.overlay.fadeIn({ opacity: '1' }),
+      content.fadeIn({ transform: 'translateX(0)' }),
+      overlay.fadeIn({ opacity: '1' }),
     ]);
   };
 }

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing) * 4);
+
+  @media screen and (min-width: 48rem) {
+    padding: 0 calc(var(--spacing) * 6);
+  }
+}

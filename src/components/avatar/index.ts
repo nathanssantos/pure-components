@@ -3,21 +3,11 @@ import './style.scss';
 
 class Avatar extends Component {
   constructor(props: Partial<AvatarConstructorProps> = {}) {
-    const {
-      className: newClassName,
-      image,
-      imageContainer,
-      name,
-      description,
-      textContainer,
-      ...rest
-    } = props;
+    const { className, ...rest } = props;
 
-    const className = newClassName?.length ? `avatar ${newClassName}` : 'avatar';
+    super({ className: `avatar${className?.length ? ` ${className}` : ''}`, ...rest });
 
-    super({ className, ...rest });
-
-    this.init({ image, imageContainer, name, description, textContainer });
+    this.init(props);
   }
 
   private assemble = (payload: Partial<AvatarConstructorProps>) => {
@@ -27,10 +17,10 @@ class Avatar extends Component {
         tagName: 'img',
         ...payload.image,
       });
-      const imageContainer = new Component({
+      const imageWrapper = new Component({
         children: { image },
         className: 'avatar__image-wrapper',
-        ...payload.imageContainer,
+        ...payload.imageWrapper,
       });
       const name = new Component({
         className: 'avatar__name',
@@ -40,13 +30,13 @@ class Avatar extends Component {
         className: 'avatar__description',
         ...payload.description,
       });
-      const textContainer = new Component({
+      const textWrapper = new Component({
         children: { name, description },
         className: 'avatar__text-wrapper',
-        ...payload.textContainer,
+        ...payload.textWrapper,
       });
 
-      this.appendChildren({ imageContainer, textContainer });
+      this.appendChildren({ imageWrapper, textWrapper });
 
       resolve(true);
     });

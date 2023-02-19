@@ -22,6 +22,12 @@
   &__text-wrapper {
     display: flex;
     flex-direction: column;
+    color: currentColor;
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: bold;
   }
 
   &__description {
