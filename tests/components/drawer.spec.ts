@@ -3,11 +3,13 @@ import Drawer from '../../src/components/drawer';
 
 describe('components', () => {
   describe('drawer', () => {
-    describe('assemble', () => {
-      it('Should assemble the drawer.', () => {
-        const component = new Drawer();
+    describe('instance and assemble', () => {
+      it('Should create a new drawer instance and assemble it.', () => {
+        const component = new Drawer({ className: 'test my-drawer' });
 
         expect(component.target.classList).toContain('drawer');
+        expect(component.target.classList).toContain('test');
+        expect(component.target.classList).toContain('my-drawer');
         expect(component.children.content.children.header.children.btClose).toBeInstanceOf(
           Component,
         );

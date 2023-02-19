@@ -1,18 +1,32 @@
+import Button from '../button';
 import Component from '../component';
 import './style.scss';
 
 class Modal extends Component {
-  constructor(props: ModalConstructorProps = {}) {
-    super({ className: 'modal' });
-    this.init(props);
+  constructor(props: Partial<ModalConstructorProps> = {}) {
+    const {
+      className: newClassName,
+      btClose,
+      header,
+      body,
+      footer,
+      content,
+      overlay,
+      ...rest
+    } = props;
+
+    const className = newClassName?.length ? `modal ${newClassName}` : 'modal';
+
+    super({ className, ...rest });
+
+    this.init({ btClose, header, body, footer, content, overlay });
   }
 
-  private assemble = (payload: ModalConstructorProps) => {
+  private assemble = (payload: Partial<ModalConstructorProps>) => {
     return new Promise((resolve) => {
-      const btClose = new Component({
+      const btClose = new Button({
         className: 'modal__bt-close',
         innerHTML: 'x',
-        tagName: 'button',
         ...payload.btClose,
       });
       const header = new Component({
@@ -53,7 +67,7 @@ class Modal extends Component {
     this.hide();
   };
 
-  private init = async (payload: ModalConstructorProps) => {
+  private init = async (payload: Partial<ModalConstructorProps>) => {
     await this.assemble(payload);
 
     [this.children.content.children.header.children.btClose, this.children.overlay].forEach(

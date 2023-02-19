@@ -3,11 +3,13 @@ import Modal from '../../src/components/modal';
 
 describe('components', () => {
   describe('modal', () => {
-    describe('assemble', () => {
-      it('Should assemble the modal.', () => {
-        const component = new Modal();
+    describe('instance and assemble', () => {
+      it('Should create a new modal instance and assemble it.', () => {
+        const component = new Modal({ className: 'test my-modal' });
 
         expect(component.target.classList).toContain('modal');
+        expect(component.target.classList).toContain('test');
+        expect(component.target.classList).toContain('my-modal');
         expect(component.children.content.children.header.children.btClose).toBeInstanceOf(
           Component,
         );
