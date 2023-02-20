@@ -12,7 +12,6 @@ class App {
 
   renderPreview = () => {
     const drawer = new Drawer({
-      innerHTML: '',
       header: {
         style: {
           backgroundColor: '#2a2a2a',
