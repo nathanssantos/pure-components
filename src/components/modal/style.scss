@@ -7,14 +7,14 @@
   display: none;
 
   &__overlay {
-    background: var(--overlay-background);
-    backdrop-filter: blur(calc(var(--spacing) / 2));
+    background: var(--pc-overlay-background);
+    backdrop-filter: blur(calc(var(--pc-spacing) / 2));
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    transition: var(--transition);
+    transition: var(--pc-transition);
     opacity: 0;
     display: none;
   }
@@ -26,12 +26,12 @@
     height: 100%;
     max-width: 20rem;
     max-height: 16rem;
-    background-color: var(--surface-background);
-    color: var(--text-color);
-    border-radius: var(--border-radius);
+    background-color: var(--pc-surface-background);
+    color: var(--pc-text-color);
+    border-radius: var(--pc-border-radius);
     position: absolute;
     z-index: 1;
-    transition: var(--transition);
+    transition: var(--pc-transition);
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -41,20 +41,19 @@
   &__header {
     display: flex;
     justify-content: flex-end;
-    padding: calc(var(--spacing) * 4);
-    border-bottom: 0.063rem solid var(--border-color);
+    padding: calc(var(--pc-spacing) * 4);
+    border-bottom: 0.063rem solid var(--pc-border-color);
   }
 
   &__bt-close {
     padding: 0;
-    font-size: calc(var(--spacing) * 4);
-    line-height: calc(var(--spacing) * 4);
+    font-size: 1rem;
     font-weight: 700;
   }
 
   &__body {
     height: 100%;
-    padding: calc(var(--spacing) * 4);
+    padding: calc(var(--pc-spacing) * 4);
     overflow-y: auto;
   }
 
@@ -62,9 +61,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: calc(var(--spacing) * 2);
-    border-top: 0.063rem solid var(--border-color);
-    padding: calc(var(--spacing) * 4);
-    min-height: calc(var(--spacing) * 15 + 0.063rem);
+    gap: calc(var(--pc-spacing) * 2);
+    border-top: 0.063rem solid var(--pc-border-color);
+    padding: calc(var(--pc-spacing) * 4);
+    min-height: calc(var(--pc-spacing) * 15 + 0.063rem);
   }
 }

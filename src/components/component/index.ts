@@ -1,4 +1,5 @@
-import generateUUID from '../../utils/generateUUID';
+import Constants from '../../constants';
+import Utils from '../../utils';
 
 class Component {
   public children: { [name: string]: Component } = {};
@@ -8,7 +9,7 @@ class Component {
   constructor(props: Partial<ComponentConstructorProps> = {}) {
     const { attributes, children, className, events, innerHTML, style, tagName } = props;
 
-    const id = generateUUID();
+    const id = Utils.generateUUID();
 
     this.target = document.createElement(tagName || 'div');
     this.setAttributes({ id });
@@ -18,7 +19,6 @@ class Component {
     if (className?.length) {
       this.target.classList.add('pure-components', ...className.split(' '));
     }
-
     if (style) this.setStyle(style);
     if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
     if (children) this.appendChildren(children);
@@ -66,7 +66,7 @@ class Component {
       setTimeout(() => {
         this.hide();
         resolve(true);
-      }, Number(getComputedStyle(this.target).transitionDuration.split('s')[0]) * 1000);
+      }, Number(getComputedStyle(this.target).transitionDuration.replace('s', '')) * 1000);
     });
   };
 
@@ -92,7 +92,25 @@ class Component {
   };
 
   public setStyle = (payload: ComponentConstructorProps['style']) => {
-    for (const [key, value] of Object.entries(payload)) this.target.style[key] = value;
+    const { base, sm, md, lg, xl, ...rest } = payload as ResponsiveObject<
+      Partial<CSSStyleDeclaration>
+    >;
+
+    for (const [key, value] of Object.entries(rest)) this.target.style[key] = value;
+
+    const resposiveStyles = Object.entries({ xl, lg, md, sm, base }).filter(
+      ([responsiveKey, responsiveValue]) => responsiveKey && responsiveValue,
+    );
+
+    for (const [responsiveKey, responsiveValue] of resposiveStyles) {
+      for (const [key, value] of Object.entries(responsiveValue)) {
+        document.styleSheets[document.styleSheets.length - 1].insertRule(
+          `@media screen and (min-width: ${Constants.breakpoints[responsiveKey]}) { #${
+            this.id
+          } { ${`${Utils.camelCaseToKebabCase(key)}: ${value};`} } }`,
+        );
+      }
+    }
   };
 
   public show = () => {

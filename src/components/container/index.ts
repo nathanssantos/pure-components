@@ -1,16 +1,15 @@
 import Component from '../component';
 import './style.scss';
 
-class Button extends Component {
+class Container extends Component {
   constructor(props: Partial<ComponentConstructorProps> = {}) {
     const { className, ...rest } = props;
 
     super({
-      className: `button${className?.length ? ` ${className}` : ''}`,
-      tagName: 'button',
+      className: `container${className?.length ? ` ${className}` : ''}`,
       ...rest,
     });
   }
 }
 
-export default Button;
+export default Container;
