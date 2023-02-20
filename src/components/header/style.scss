@@ -1,19 +1,19 @@
 .header {
-  background: var(--surface-background);
+  background: var(--pc-surface-background);
   position: sticky;
   top: 0;
   width: 100%;
-  color: var(--text-color);
+  color: var(--pc-text-color);
 
   &__container {
     min-height: 3.75rem;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: calc(var(--spacing) * 2);
+    gap: calc(var(--pc-spacing) * 2);
     height: 100%;
-    padding-top: calc(var(--spacing) * 2);
-    padding-bottom: calc(var(--spacing) * 2);
+    padding-top: calc(var(--pc-spacing) * 2);
+    padding-bottom: calc(var(--pc-spacing) * 2);
   }
 
   &__left-content,
@@ -21,7 +21,7 @@
   &__right-content {
     display: flex;
     align-items: center;
-    gap: var(--spacing);
+    gap: var(--pc-spacing);
     flex: 1;
   }
 

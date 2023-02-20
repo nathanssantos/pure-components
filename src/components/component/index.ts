@@ -19,7 +19,6 @@ class Component {
     if (className?.length) {
       this.target.classList.add('pure-components', ...className.split(' '));
     }
-
     if (style) this.setStyle(style);
     if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
     if (children) this.appendChildren(children);

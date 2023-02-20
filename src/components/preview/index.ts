@@ -22,7 +22,6 @@ class Preview extends Component {
 
   assemble = () => {
     const drawer = new Drawer({
-      innerHTML: '',
       header: {
         style: {
           backgroundColor: '#2a2a2a',
