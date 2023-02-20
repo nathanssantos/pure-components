@@ -11,13 +11,11 @@ describe('components', () => {
         expect(component1.target.classList).toContain('avatar');
         expect(component1.target.classList).toContain('test');
         expect(component1.target.classList).toContain('my-avatar');
-        expect(component1.children.imageContainer).toBeInstanceOf(Component);
-        expect(component1.children.imageContainer.children.image).toBeInstanceOf(Component);
-        expect(component1.children.textContainer).toBeInstanceOf(Component);
-        expect(component1.children.textContainer.children.name).toBeInstanceOf(Component);
-        expect(component1.children.textContainer.children.description).toBeInstanceOf(
-          Component,
-        );
+        expect(component1.children.imageWrapper).toBeInstanceOf(Component);
+        expect(component1.children.imageWrapper.children.image).toBeInstanceOf(Component);
+        expect(component1.children.textWrapper).toBeInstanceOf(Component);
+        expect(component1.children.textWrapper.children.name).toBeInstanceOf(Component);
+        expect(component1.children.textWrapper.children.description).toBeInstanceOf(Component);
         expect(component2.target.classList).toContain('avatar');
       });
     });
