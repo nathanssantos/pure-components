@@ -12,6 +12,7 @@ interface ComponentConstructorProps {
   className: string;
   events: { [name: string]: () => unknown };
   innerHTML: string;
+  parent: import('../components/component').default;
   style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
   tagName: string;
 }
@@ -23,6 +24,13 @@ interface DrawerConstructorProps extends ComponentConstructorProps {
   footer: Partial<ComponentConstructorProps>;
   header: Partial<ComponentConstructorProps>;
   overlay: Partial<ComponentConstructorProps>;
+}
+
+interface LayoutConstructorProps extends ComponentConstructorProps {
+  leftContent: Partial<ComponentConstructorProps>;
+  centerContent: Partial<ComponentConstructorProps>;
+  rightContent: Partial<ComponentConstructorProps>;
+  container: Partial<ComponentConstructorProps>;
 }
 
 interface HeaderConstructorProps extends ComponentConstructorProps {
@@ -47,4 +55,16 @@ interface ResponsiveObject<T> {
   sm: T;
   lg: T;
   xl: T;
+}
+
+interface Route {
+  component: import('../components/component').default;
+  name: string;
+}
+
+interface RouterConstructorProps extends ComponentConstructorProps {
+  leftContent: Partial<ComponentConstructorProps>;
+  centerContent: Partial<ComponentConstructorProps>;
+  rightContent: Partial<ComponentConstructorProps>;
+  container: Partial<ComponentConstructorProps>;
 }
