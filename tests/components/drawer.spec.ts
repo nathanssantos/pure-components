@@ -26,11 +26,13 @@ describe('components', () => {
         const component = new Drawer();
         await component.close();
 
-        expect(component.target.style.display).toBe('none');
-        expect(component.children.overlay.target.style.display).toBe('none');
-        expect(component.children.overlay.target.style.opacity).toBe('0');
-        expect(component.children.content.target.style.display).toBe('none');
-        expect(component.children.content.target.style.transform).toBe('translateX(-100%)');
+        expect(getComputedStyle(component.target).display).toBe('none');
+        expect(getComputedStyle(component.children.overlay.target).display).toBe('none');
+        expect(getComputedStyle(component.children.overlay.target).opacity).toBe('0');
+        expect(getComputedStyle(component.children.content.target).display).toBe('none');
+        expect(getComputedStyle(component.children.content.target).transform).toBe(
+          'translateX(-100%)',
+        );
       });
     });
 
@@ -39,11 +41,13 @@ describe('components', () => {
         const component = new Drawer();
         await component.open();
 
-        expect(component.target.style.display).toBe('flex');
-        expect(component.children.overlay.target.style.display).toBe('flex');
-        expect(component.children.overlay.target.style.opacity).toBe('1');
-        expect(component.children.content.target.style.display).toBe('flex');
-        expect(component.children.content.target.style.transform).toBe('translateX(0)');
+        expect(getComputedStyle(component.target).display).toBe('flex');
+        expect(getComputedStyle(component.children.overlay.target).display).toBe('flex');
+        expect(getComputedStyle(component.children.overlay.target).opacity).toBe('1');
+        expect(getComputedStyle(component.children.content.target).display).toBe('flex');
+        expect(getComputedStyle(component.children.content.target).transform).toBe(
+          'translateX(0)',
+        );
       });
     });
   });
