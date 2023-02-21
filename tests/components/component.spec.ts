@@ -17,7 +17,7 @@ describe('components', () => {
           events: {
             click: () => '',
           },
-          style: { backgroundColor: 'red' },
+          style: { backgroundColor: 'red', md: { height: '100px' } },
           tagName: 'a',
         });
 
@@ -26,11 +26,11 @@ describe('components', () => {
         expect(component.target).toBeInstanceOf(HTMLElement);
         expect(component.target.getAttribute('href')).toBe('https://link.com');
         expect(component.target.innerHTML).toBe(
-          `<div>link</div><div id="${child.id}">child</div>`,
+          `<div>link</div><div data-testid="${child.id}" class="pure-components component--${child.id}">child</div>`,
         );
         expect(component.target.classList).toContain('component');
         expect(component.target.classList).toContain('test');
-        expect(component.target.style.backgroundColor).toBe('red');
+        expect(getComputedStyle(component.target).backgroundColor).toBe('red');
         expect(component.children.child).toBeInstanceOf(Component);
       });
     });
@@ -46,8 +46,8 @@ describe('components', () => {
           child2,
         });
 
-        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
-        expect(component.target.querySelector(`[id="${child2.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child1.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child2.id}"]`)).toBeTruthy();
       });
     });
 
@@ -58,7 +58,7 @@ describe('components', () => {
 
         child.appendTo(component.target);
 
-        expect(component.target.querySelector(`[id="${child.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child.id}"]`)).toBeTruthy();
       });
     });
 
@@ -71,7 +71,7 @@ describe('components', () => {
           },
         });
 
-        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child1.id}"]`)).toBeTruthy();
       });
     });
 
@@ -81,28 +81,27 @@ describe('components', () => {
         document.body.append(component.target);
         component.destroy();
 
-        expect(document.body.querySelector(`[id="${component.id}"]`)).toBeFalsy();
+        expect(document.body.querySelector(`[data-testid="${component.id}"]`)).toBeFalsy();
       });
     });
 
     describe('fadeIn', () => {
-      it('Should set fade the component in.', async () => {
+      it('Should fade the component in.', async () => {
         const component = new Component();
-        component.hide();
         await component.fadeIn({ opacity: '1' });
 
-        expect(component.target.style.display).toBe('flex');
-        expect(component.target.style.opacity).toBe('1');
+        expect(getComputedStyle(component.target).display).toBe('flex');
+        expect(getComputedStyle(component.target).opacity).toBe('1');
       });
     });
 
     describe('fadeOut', () => {
-      it('Should set fade the component out.', async () => {
+      it('Should fade the component out.', async () => {
         const component = new Component();
         await component.fadeOut({ opacity: '0' });
 
-        expect(component.target.style.display).toBe('none');
-        expect(component.target.style.opacity).toBe('0');
+        expect(getComputedStyle(component.target).display).toBe('none');
+        expect(getComputedStyle(component.target).opacity).toBe('0');
       });
     });
 
@@ -111,7 +110,7 @@ describe('components', () => {
         const component = new Component();
         component.hide();
 
-        expect(component.target.style.display).toBe('none');
+        expect(getComputedStyle(component.target).display).toBe('none');
       });
     });
 
@@ -126,8 +125,8 @@ describe('components', () => {
           child2,
         });
 
-        expect(component.target.querySelector(`[id="${child1.id}"]`)).toBeTruthy();
-        expect(component.target.querySelector(`[id="${child2.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child1.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child2.id}"]`)).toBeTruthy();
       });
     });
 
@@ -138,17 +137,27 @@ describe('components', () => {
 
         child.prependTo(component.target);
 
-        expect(component.target.querySelector(`[id="${child.id}"]`)).toBeTruthy();
+        expect(component.target.querySelector(`[data-testid="${child.id}"]`)).toBeTruthy();
       });
     });
 
     describe('setStyle', () => {
       it("Should set component's style props.", () => {
         const component = new Component();
-        component.setStyle({ backgroundColor: 'red', fontFamily: 'Arial' });
+        component.setStyle({
+          backgroundColor: 'red',
+          fontFamily: 'Arial',
+          md: { height: '100px' },
+        });
 
-        expect(component.target.style.backgroundColor).toBe('red');
-        expect(component.target.style.fontFamily).toBe('Arial');
+        expect(getComputedStyle(component.target).backgroundColor).toBe('red');
+        expect(getComputedStyle(component.target).fontFamily).toBe('Arial');
+        expect(
+          (document.querySelector('[id="pure-components__stylesheet"]') as HTMLStyleElement)
+            .sheet?.cssRules[0].cssText,
+        ).toBe(
+          `@media screen and (min-width: 48em) {.component--${component.id} {height: 100px;}}`,
+        );
       });
     });
 
@@ -157,7 +166,7 @@ describe('components', () => {
         const component = new Component();
         component.show();
 
-        expect(component.target.style.display).toBe('flex');
+        expect(getComputedStyle(component.target).display).toBe('flex');
       });
     });
   });

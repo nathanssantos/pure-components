@@ -124,9 +124,33 @@ class Preview extends Component {
       },
     });
 
+    const btOpenModal2 = new Button({
+      innerHTML: 'Open Modal',
+      events: {
+        click: modal.open,
+      },
+      style: {
+        base: {
+          backgroundColor: 'purple',
+        },
+        sm: {
+          backgroundColor: 'lightblue',
+        },
+        md: {
+          backgroundColor: 'lightgreen',
+        },
+        lg: {
+          backgroundColor: 'orange',
+        },
+        xl: {
+          backgroundColor: 'red',
+        },
+      },
+    });
+
     modal.children.content.children.footer.appendChildren({ btCancel, btConfirm });
 
-    this.appendChildren({ header, btOpenModal, drawer, modal });
+    this.appendChildren({ header, btOpenModal, btOpenModal2, drawer, modal });
   };
 }
 
