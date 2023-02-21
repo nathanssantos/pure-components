@@ -8,7 +8,7 @@
 
   &__overlay {
     background: var(--pc-overlay-background);
-    backdrop-filter: blur(calc(var(--pc-spacing) / 2));
+    backdrop-filter: blur(--pc-blur);
     position: absolute;
     left: 0;
     right: 0;
@@ -38,7 +38,6 @@
     display: flex;
     justify-content: flex-end;
     padding: calc(var(--pc-spacing) * 4);
-    border-bottom: 0.063rem solid var(--pc-border-color);
   }
 
   &__bt-close {
@@ -54,7 +53,6 @@
   }
 
   &__footer {
-    border-top: 0.063rem solid var(--pc-border-color);
     padding: calc(var(--pc-spacing) * 4);
     min-height: calc(var(--pc-spacing) * 15 + 0.063rem);
   }
