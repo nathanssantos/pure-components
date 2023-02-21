@@ -5,9 +5,9 @@ import Container from './components/container';
 import Drawer from './components/drawer';
 import Header from './components/header';
 import Modal from './components/modal';
-import Preview from './components/preview';
+import Demo from './demo';
 import './style.scss';
 
-new Preview().appendTo(document.querySelector('#app')!);
+Demo;
 
 export { Avatar, Button, Component, Container, Drawer, Header, Modal };
