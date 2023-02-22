@@ -10,7 +10,7 @@ class ComponentsScreen extends Component {
         hero: new Hero({
           title: 'Components',
           description:
-            'Pure Components provides prebuild components to help you build your projects faster.<br>Here is a list with examples:',
+            'Pure Components provide prebuild components to help you build your projects faster.<br>Here is a list with examples:',
         }),
         components: new Component({
           style: {
