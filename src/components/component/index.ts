@@ -44,7 +44,7 @@ class Component {
 
   public bindEvents = async (payload: ComponentConstructorProps['events']) => {
     for (const [name, action] of Object.entries(payload)) {
-      this.target.addEventListener(name, action);
+      this.target.addEventListener(name, (event) => action(this, event));
     }
   };
 

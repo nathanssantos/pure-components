@@ -1,11 +1,13 @@
 import { Component } from '../../main';
-import Hero from '../sections/hero';
+import Hero from '../components/hero';
+import InstallSection from '../sections/installSection';
 
 class GetStartedScreen extends Component {
   constructor() {
     super({
       children: {
-        hero: new Hero(),
+        hero: new Hero({ title: 'Get Started' }),
+        installSection: new InstallSection(),
       },
     });
   }

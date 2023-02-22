@@ -1,0 +1,89 @@
+import { Component, Container } from '../../main';
+import CodeExample from '../components/codeExample';
+import SectionTitle from '../components/sectionTitle';
+
+class ComponentSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: 'Component' }),
+            componentExamples: new Component({
+              style: {
+                display: 'flex',
+                gap: '1rem',
+              },
+              children: {
+                component: new Component({
+                  innerHTML: "I'm a Component.",
+                  style: {
+                    backgroundColor: 'lightskyblue',
+                    padding: '2rem',
+                    color: '#222',
+                    fontWeight: 'bold',
+                    borderRadius: '0.25rem',
+                    textAlign: 'center',
+                  },
+                  children: {
+                    otherComponent: new Component({
+                      innerHTML: 'Other Component',
+                      style: {
+                        backgroundColor: 'coral',
+                        padding: '2rem',
+                        borderRadius: '0.25rem',
+                        marginTop: '2rem',
+                      },
+                    }),
+                  },
+                  events: {
+                    click: (instance) => {
+                      instance.setStyle({ backgroundColor: 'tomato' });
+                    },
+                    mouseout: (instance) => {
+                      instance.setStyle({ backgroundColor: 'lightskyblue' });
+                    },
+                  },
+                }),
+              },
+            }),
+            codeExample: new CodeExample({
+              innerHTML: `new Component({
+  innerHTML: "I'm a Component.",
+  style: {
+    backgroundColor: 'lightskyblue',
+    padding: '2rem',
+    color: '#222',
+    fontWeight: 'bold',
+    borderRadius: '0.25rem',
+    textAlign: 'center',
+  },
+  children: {
+    otherComponent: new Component({
+      innerHTML: 'Other Component',
+      style: {
+        backgroundColor: 'coral',
+        padding: '2rem',
+        borderRadius: '0.25rem',
+        marginTop: '2rem',
+      },
+    }),
+  },
+  events: {
+    click: (instance) => {
+      instance.setStyle({ backgroundColor: 'tomato' });
+    },
+    mouseout: (instance) => {
+      instance.setStyle({ backgroundColor: 'lightskyblue' });
+    },
+  },
+})`,
+            }),
+          },
+        }),
+      },
+    });
+  }
+}
+
+export default ComponentSection;

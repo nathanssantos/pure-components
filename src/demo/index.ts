@@ -5,8 +5,9 @@ class App extends Component {
   constructor() {
     super({
       style: {
-        backgroundColor: 'var(--pc-background)',
         minHeight: '100vh',
+        backgroundColor: 'var(--pc-background)',
+        color: 'var(--pc-text-color)',
       },
       children: {
         router,
