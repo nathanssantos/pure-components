@@ -1,5 +1,6 @@
 import { Button, Component, Container } from '../../main';
 import CodeExample from '../components/codeExample';
+import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
 
 class ButtonSection extends Component {
@@ -9,6 +10,9 @@ class ButtonSection extends Component {
         container: new Container({
           children: {
             title: new SectionTitle({ innerHTML: 'Button' }),
+            description: new SectionDescription({
+              innerHTML: 'A simple button.',
+            }),
             componentExamples: new Component({
               style: {
                 display: 'flex',
