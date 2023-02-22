@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface AvatarConstructorProps extends ComponentConstructorProps {
   description: Partial<ComponentConstructorProps>;
   image: Partial<ComponentConstructorProps>;
@@ -13,6 +14,7 @@ interface ComponentConstructorProps {
   events: { [name: string]: (instance: Component, event: Event) => unknown };
   innerHTML: string;
   parent: import('../components/component').default;
+  state: { [key: string]: any };
   style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
   tagName: string;
 }
