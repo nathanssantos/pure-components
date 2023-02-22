@@ -1,5 +1,6 @@
 import { Component, Container } from '../../main';
 import CodeExample from '../components/codeExample';
+import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
 
 class ComponentSection extends Component {
@@ -9,6 +10,9 @@ class ComponentSection extends Component {
         container: new Container({
           children: {
             title: new SectionTitle({ innerHTML: 'Component' }),
+            description: new SectionDescription({
+              innerHTML: 'A generic component that can be anything.',
+            }),
             componentExamples: new Component({
               style: {
                 display: 'flex',
