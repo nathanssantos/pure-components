@@ -17,23 +17,37 @@ class Header extends Component {
 
   private assemble = (payload: Partial<HeaderConstructorProps>) => {
     return new Promise((resolve) => {
-      const leftContent = new Component({
-        className: 'header__left-content',
-        ...payload.leftContent,
-      });
-      const centerContent = new Component({
-        className: 'header__center-content',
-        ...payload.centerContent,
-      });
-      const rightContent = new Component({
-        className: 'header__right-content',
-        ...payload.rightContent,
-      });
       const container = new Container({
-        children: { leftContent, centerContent, rightContent },
         className: 'header__container',
         ...payload.container,
       });
+
+      if (payload.leftContent) {
+        container.appendChildren({
+          leftContent: new Component({
+            className: 'header__left-content',
+            ...payload.leftContent,
+          }),
+        });
+      }
+
+      if (payload.centerContent) {
+        container.appendChildren({
+          centerContent: new Component({
+            className: 'header__center-content',
+            ...payload.centerContent,
+          }),
+        });
+      }
+
+      if (payload.rightContent) {
+        container.appendChildren({
+          rightContent: new Component({
+            className: 'header__right-content',
+            ...payload.rightContent,
+          }),
+        });
+      }
 
       this.appendChildren({ container });
 

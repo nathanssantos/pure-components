@@ -55,7 +55,12 @@ class Layout extends Component {
       leftContent: {
         innerHTML: 'Pure Components',
         style: {
-          fontSize: '1.25rem',
+          base: {
+            fontSize: '1rem',
+          },
+          md: {
+            fontSize: '1.25rem',
+          },
         },
       },
     });

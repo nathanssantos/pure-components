@@ -4,7 +4,7 @@ import GetStartedScreen from '../screens/getStartedScreen';
 import Layout from './layout';
 
 class Router extends Component {
-  readonly initialRoute = 'getStarted';
+  readonly initialRoute = 'components';
   public routes: {
     [name: string]: Route;
   } = {
@@ -28,11 +28,11 @@ class Router extends Component {
   }
 
   public navigate = (screenName: string = this.initialRoute) => {
-    for (const child of Object.values(this.children)) {
-      if (!child.target.className.includes('layout')) child.destroy();
+    for (const [name, child] of Object.entries(this.children.layout.children)) {
+      if (name !== 'header' && name !== 'drawer') child.destroy();
     }
 
-    this.appendChildren({ [screenName]: this.routes[screenName].component });
+    this.children.layout.appendChildren({ [screenName]: this.routes[screenName].component });
   };
 }
 
