@@ -8,7 +8,7 @@
 
   &__overlay {
     background: var(--pc-overlay-background);
-    backdrop-filter: blur(calc(var(--pc-spacing) / 2));
+    backdrop-filter: blur(var(--pc-blur));
     position: absolute;
     left: 0;
     right: 0;
