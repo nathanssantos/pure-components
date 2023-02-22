@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Constants from '../../constants';
 import Utils from '../../utils';
 
 class Component {
-  public children: { [name: string]: Component } = {};
+  public children: ComponentConstructorProps['children'] = {};
   public id: string;
+  public state: ComponentConstructorProps['state'] = {};
   public target: HTMLElement;
 
   constructor(props: Partial<ComponentConstructorProps> = {}) {
-    const { attributes, children, className, events, innerHTML, style, tagName } = props;
+    const { attributes, children, className, events, innerHTML, state, style, tagName } = props;
 
     if (!(document.getElementById('pure-components__stylesheet') as HTMLStyleElement)?.sheet) {
       document.head.insertAdjacentHTML(
@@ -22,6 +24,8 @@ class Component {
     this.target = document.createElement(tagName || 'div');
     this.setAttributes({ 'data-testid': id });
     this.target.classList.add('pure-components', `component--${id}`);
+
+    if (state) this.setState(state);
 
     if (attributes) this.setAttributes(attributes);
     if (className?.length) this.target.classList.add(...className.split(' '));
@@ -95,6 +99,10 @@ class Component {
     for (const [key, value] of Object.entries(payload)) {
       this.target.setAttribute(key, value.toString());
     }
+  };
+
+  public setState = (payload: typeof this.state) => {
+    for (const [key, value] of Object.entries(payload)) this.state[key] = value;
   };
 
   public setStyle = (payload: ComponentConstructorProps['style']) => {
