@@ -10,7 +10,7 @@ interface ComponentConstructorProps {
   attributes: { [name: string]: string | boolean };
   children: { [name: string]: import('../components/component').default };
   className: string;
-  events: { [name: string]: () => unknown };
+  events: { [name: string]: (instance: Component, event: Event) => unknown };
   innerHTML: string;
   parent: import('../components/component').default;
   style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
