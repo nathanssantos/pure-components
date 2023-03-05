@@ -4,15 +4,15 @@ import router from './router';
 class Layout extends Component {
   constructor() {
     const navigationButtons = {
-      getStartedScreenButton: new Button({
-        innerHTML: 'Get Started',
-        events: {
-          click: () => {
-            router.navigate('getStarted');
-            drawer.close();
-          },
-        },
-      }),
+      // getStartedScreenButton: new Button({
+      //   innerHTML: 'Get Started',
+      //   events: {
+      //     click: () => {
+      //       router.navigate('getStarted');
+      //       drawer.close();
+      //     },
+      //   },
+      // }),
       componentsScreenButton: new Button({
         innerHTML: 'Components',
         events: {
