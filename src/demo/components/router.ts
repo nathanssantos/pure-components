@@ -1,6 +1,6 @@
 import Component from '../../components/component';
 import ComponentsScreen from '../screens/componentsScreen';
-import GetStartedScreen from '../screens/getStartedScreen';
+// import GetStartedScreen from '../screens/getStartedScreen';
 import Layout from './layout';
 
 class Router extends Component {
@@ -12,10 +12,10 @@ class Router extends Component {
       component: new ComponentsScreen(),
       name: 'Components',
     },
-    getStarted: {
-      component: new GetStartedScreen(),
-      name: 'Get Started',
-    },
+    // getStarted: {
+    //   component: new GetStartedScreen(),
+    //   name: 'Get Started',
+    // },
   };
 
   constructor() {
