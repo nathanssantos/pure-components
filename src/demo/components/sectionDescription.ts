@@ -1,4 +1,4 @@
-import { Component } from '../../main';
+import { Component } from '../..';
 
 class SectionDescription extends Component {
   constructor(props: Partial<ComponentConstructorProps>) {

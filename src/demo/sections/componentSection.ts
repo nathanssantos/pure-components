@@ -1,4 +1,4 @@
-import { Component, Container } from '../../main';
+import { Component, Container } from '../..';
 import CodeExample from '../components/codeExample';
 import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';

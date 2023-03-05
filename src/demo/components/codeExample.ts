@@ -1,4 +1,4 @@
-import { Component } from '../../main';
+import { Component } from '../..';
 
 class CodeExample extends Component {
   constructor(props: Partial<ComponentConstructorProps> = {}) {

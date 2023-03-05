@@ -1,4 +1,4 @@
-import { Component } from '../../main';
+import { Component } from '../..';
 import Hero from '../components/hero';
 import ButtonSection from '../sections/buttonSection';
 import ComponentSection from '../sections/componentSection';

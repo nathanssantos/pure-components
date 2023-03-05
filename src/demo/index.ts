@@ -1,14 +1,12 @@
 import Component from '../components/component';
 import router from './components/router';
+import '../style.scss';
+import './demo.scss';
 
-class App extends Component {
+class Demo extends Component {
   constructor() {
     super({
-      style: {
-        minHeight: '100vh',
-        backgroundColor: 'var(--pc-background)',
-        color: 'var(--pc-text-color)',
-      },
+      className: 'demo',
       children: {
         router,
       },
@@ -18,6 +16,10 @@ class App extends Component {
 
     router.navigate();
   }
+
+  static init = () => {
+    new Demo();
+  };
 }
 
-export default new App();
+export default Demo.init();

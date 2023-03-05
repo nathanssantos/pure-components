@@ -70,3 +70,8 @@ interface RouterConstructorProps extends ComponentConstructorProps {
   rightContent: Partial<ComponentConstructorProps>;
   container: Partial<ComponentConstructorProps>;
 }
+
+interface TabsConstructorProps extends ComponentConstructorProps {
+  tabList: Partial<ComponentConstructorProps>;
+  tabPanels: Partial<ComponentConstructorProps>;
+}
