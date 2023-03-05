@@ -1,4 +1,4 @@
-import Button from '../../src/components/button';
+import Button from '.';
 
 describe('components', () => {
   describe('button', () => {
