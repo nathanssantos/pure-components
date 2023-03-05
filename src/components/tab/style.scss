@@ -1,0 +1,15 @@
+.tab {
+  position: relative;
+  padding: calc(var(--pc-spacing) * 2) calc(var(--pc-spacing) * 6);
+  border-radius: 0;
+
+  &__activity-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0.188rem;
+    background-color: var(--pc-border-color);
+    transition: var(--pc-transition);
+  }
+}

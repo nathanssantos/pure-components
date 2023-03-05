@@ -1,4 +1,4 @@
-import { Component, Container } from '../../main';
+import { Component, Container } from '../..';
 import SectionDescription from './sectionDescription';
 
 type HeroProps = {

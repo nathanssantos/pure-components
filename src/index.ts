@@ -5,9 +5,8 @@ import Container from './components/container';
 import Drawer from './components/drawer';
 import Header from './components/header';
 import Modal from './components/modal';
-import Demo from './demo';
-import './style.scss';
+import Tab from './components/tab';
+import TabPanel from './components/tabPanel';
+import Tabs from './components/tabs';
 
-Demo;
-
-export { Avatar, Button, Component, Container, Drawer, Header, Modal };
+export { Avatar, Button, Component, Container, Drawer, Header, Modal, Tab, TabPanel, Tabs };
