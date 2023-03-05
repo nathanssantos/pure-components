@@ -1,15 +1,15 @@
-import Component from '../../src/components/component';
-import Modal from '../../src/components/modal';
+import Drawer from '.';
+import Component from '../component';
 
 describe('components', () => {
-  describe('modal', () => {
+  describe('drawer', () => {
     describe('instance and assemble', () => {
-      it('Should create a new modal instance and assemble it.', () => {
-        const component = new Modal({ className: 'test my-modal' });
+      it('Should create a new drawer instance and assemble it.', () => {
+        const component = new Drawer({ className: 'test my-drawer' });
 
-        expect(component.target.classList).toContain('modal');
+        expect(component.target.classList).toContain('drawer');
         expect(component.target.classList).toContain('test');
-        expect(component.target.classList).toContain('my-modal');
+        expect(component.target.classList).toContain('my-drawer');
         expect(component.children.content.children.header.children.btClose).toBeInstanceOf(
           Component,
         );
@@ -22,26 +22,32 @@ describe('components', () => {
     });
 
     describe('close', () => {
-      it('Should close the modal.', async () => {
-        const component = new Modal();
+      it('Should close the drawer.', async () => {
+        const component = new Drawer();
         await component.close();
 
         expect(getComputedStyle(component.target).display).toBe('none');
         expect(getComputedStyle(component.children.overlay.target).display).toBe('none');
         expect(getComputedStyle(component.children.overlay.target).opacity).toBe('0');
         expect(getComputedStyle(component.children.content.target).display).toBe('none');
+        expect(getComputedStyle(component.children.content.target).transform).toBe(
+          'translateX(-100%)',
+        );
       });
     });
 
     describe('open', () => {
-      it('Should open the modal.', async () => {
-        const component = new Modal();
+      it('Should open the drawer.', async () => {
+        const component = new Drawer();
         await component.open();
 
         expect(getComputedStyle(component.target).display).toBe('flex');
         expect(getComputedStyle(component.children.overlay.target).display).toBe('flex');
         expect(getComputedStyle(component.children.overlay.target).opacity).toBe('1');
         expect(getComputedStyle(component.children.content.target).display).toBe('flex');
+        expect(getComputedStyle(component.children.content.target).transform).toBe(
+          'translateX(0)',
+        );
       });
     });
   });
