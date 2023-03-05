@@ -3,7 +3,7 @@ var P=Object.defineProperty;var O=(o,t,e)=>t in o?P(o,t,{enumerable:!0,configura
   events: {
     click: () => alert('Button clicked!'),
   },
-})`});class K extends i{constructor(){super({children:{container:new g({children:{title:new S({innerHTML:"Button"}),description:new y({innerHTML:"A simple button."}),componentExample:z,codeExample:D}})}})}}const U=new i({style:{display:"flex",gap:"1rem"},children:{component:new i({innerHTML:"I'm a Component.",style:{backgroundColor:"lightskyblue",padding:"2rem",color:"#222",fontWeight:"bold",borderRadius:"0.25rem",textAlign:"center"},children:{otherComponent:new i({innerHTML:"Other Component",style:{backgroundColor:"coral",padding:"2rem",borderRadius:"0.25rem",marginTop:"2rem"},events:{click:(o,t)=>{t.stopPropagation(),o.setStyle({backgroundColor:"rebeccapurple",color:"white"})}}})},events:{click:o=>{o.setStyle({backgroundColor:"rebeccapurple",color:"white"})},mouseleave:o=>{o.setStyle({backgroundColor:"lightskyblue",color:"black"}),o.children.otherComponent.setStyle({backgroundColor:"coral",color:"black"})}}})}}),q=new L({innerHTML:`new Component({
+})`});class K extends i{constructor(){super({children:{container:new g({children:{title:new S({innerHTML:"Button"}),description:new y({innerHTML:"A simple button."}),componentExample:z,codeExample:D}})}})}}const U=new i({style:{display:"flex",gap:"1rem"},children:{component:new i({innerHTML:"I'm a Component.",style:{backgroundColor:"lightskyblue",padding:"2rem",color:"#222",fontWeight:"bold",borderRadius:"0.25rem",textAlign:"center"},events:{click:o=>{o.setStyle({backgroundColor:"rebeccapurple",color:"white"})},mouseleave:o=>{o.setStyle({backgroundColor:"lightskyblue",color:"black"}),o.children.otherComponent.setStyle({backgroundColor:"coral",color:"black"})}},children:{otherComponent:new i({innerHTML:"Other Component",style:{backgroundColor:"coral",padding:"2rem",borderRadius:"0.25rem",marginTop:"2rem"},events:{click:(o,t)=>{t.stopPropagation(),o.setStyle({backgroundColor:"rebeccapurple",color:"white"})}}})}})}}),q=new L({innerHTML:`new Component({
   innerHTML: "I'm a Component.",
   style: {
     backgroundColor: 'lightskyblue',
@@ -12,6 +12,18 @@ var P=Object.defineProperty;var O=(o,t,e)=>t in o?P(o,t,{enumerable:!0,configura
     fontWeight: 'bold',
     borderRadius: '0.25rem',
     textAlign: 'center',
+  },
+  events: {
+    click: (instance) => {
+      instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
+    },
+    mouseleave: (instance) => {
+      instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
+      instance.children.otherComponent.setStyle({
+        backgroundColor: 'coral',
+        color: 'black',
+      });
+    },
   },
   children: {
     otherComponent: new Component({
@@ -29,18 +41,6 @@ var P=Object.defineProperty;var O=(o,t,e)=>t in o?P(o,t,{enumerable:!0,configura
         },
       },
     }),
-  },
-  events: {
-    click: (instance) => {
-      instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
-    },
-    mouseout: (instance) => {
-      instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
-      instance.children.otherComponent.setStyle({
-        backgroundColor: 'coral',
-        color: 'black',
-      });
-    },
   },
 })`});class W extends i{constructor(){super({children:{container:new g({children:{title:new S({innerHTML:"Component"}),description:new y({innerHTML:"A generic component that can be anything."}),componentExample:U,codeExample:q}})}})}}const X=new i({style:{display:"flex",gap:"1rem"},children:{tabs:new R({tabList:{children:{tab1:new x({innerHTML:"Tab 1"}),tab2:new x({innerHTML:"Tab 2"}),tab3:new x({innerHTML:"Tab 3"})}},tabPanels:{children:{panel1:new C({innerHTML:"TabPanel 1"}),panel2:new C({innerHTML:"TabPanel 2"}),panel3:new C({innerHTML:"TabPanel 3"})}}})}}),F=new L({innerHTML:`new Tabs({
   tabList: {
