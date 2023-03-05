@@ -24,3 +24,5 @@ Dependency-free ui components library.
 - [ ] Tooltip
 - [ ] Popover
 - [ ] Carousel
+
+Documentation will be written as soon as possible.
