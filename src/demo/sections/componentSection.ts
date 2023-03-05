@@ -28,14 +28,24 @@ const componentExample = new Component({
             borderRadius: '0.25rem',
             marginTop: '2rem',
           },
+          events: {
+            click: (instance, event) => {
+              event.stopPropagation();
+              instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
+            },
+          },
         }),
       },
       events: {
         click: (instance) => {
-          instance.setStyle({ backgroundColor: 'tomato' });
+          instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
         },
-        mouseout: (instance) => {
-          instance.setStyle({ backgroundColor: 'lightskyblue' });
+        mouseleave: (instance) => {
+          instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
+          instance.children.otherComponent.setStyle({
+            backgroundColor: 'coral',
+            color: 'black',
+          });
         },
       },
     }),
@@ -62,14 +72,24 @@ const codeExample = new CodeExample({
         borderRadius: '0.25rem',
         marginTop: '2rem',
       },
+      events: {
+        click: (instance, event) => {
+          event.stopPropagation();
+          instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
+        },
+      },
     }),
   },
   events: {
     click: (instance) => {
-      instance.setStyle({ backgroundColor: 'tomato' });
+      instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
     },
     mouseout: (instance) => {
-      instance.setStyle({ backgroundColor: 'lightskyblue' });
+      instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
+      instance.children.otherComponent.setStyle({
+        backgroundColor: 'coral',
+        color: 'black',
+      });
     },
   },
 })`,
