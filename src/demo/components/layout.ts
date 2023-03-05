@@ -1,4 +1,4 @@
-import { Button, Component, Drawer, Header } from '../../main';
+import { Button, Component, Drawer, Header } from '../..';
 import router from './router';
 
 class Layout extends Component {

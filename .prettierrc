@@ -7,8 +7,5 @@
   "useTabs": false,
   "printWidth": 96,
   "endOfLine": "crlf",
-  "arrowParens": "always",
-  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "arrowParens": "always"
 }

@@ -70,3 +70,13 @@ interface RouterConstructorProps extends ComponentConstructorProps {
   rightContent: Partial<ComponentConstructorProps>;
   container: Partial<ComponentConstructorProps>;
 }
+
+interface TabConstructorProps extends ComponentConstructorProps {
+  activityIndicator: Partial<ComponentConstructorProps>;
+}
+
+interface TabsConstructorProps extends ComponentConstructorProps {
+  activeTabIndex: number;
+  tabList: Partial<ComponentConstructorProps>;
+  tabPanels: Partial<ComponentConstructorProps>;
+}
