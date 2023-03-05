@@ -19,6 +19,18 @@ const componentExample = new Component({
         borderRadius: '0.25rem',
         textAlign: 'center',
       },
+      events: {
+        click: (instance) => {
+          instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
+        },
+        mouseleave: (instance) => {
+          instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
+          instance.children.otherComponent.setStyle({
+            backgroundColor: 'coral',
+            color: 'black',
+          });
+        },
+      },
       children: {
         otherComponent: new Component({
           innerHTML: 'Other Component',
@@ -36,18 +48,6 @@ const componentExample = new Component({
           },
         }),
       },
-      events: {
-        click: (instance) => {
-          instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
-        },
-        mouseleave: (instance) => {
-          instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
-          instance.children.otherComponent.setStyle({
-            backgroundColor: 'coral',
-            color: 'black',
-          });
-        },
-      },
     }),
   },
 });
@@ -62,6 +62,18 @@ const codeExample = new CodeExample({
     fontWeight: 'bold',
     borderRadius: '0.25rem',
     textAlign: 'center',
+  },
+  events: {
+    click: (instance) => {
+      instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
+    },
+    mouseleave: (instance) => {
+      instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
+      instance.children.otherComponent.setStyle({
+        backgroundColor: 'coral',
+        color: 'black',
+      });
+    },
   },
   children: {
     otherComponent: new Component({
@@ -79,18 +91,6 @@ const codeExample = new CodeExample({
         },
       },
     }),
-  },
-  events: {
-    click: (instance) => {
-      instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
-    },
-    mouseout: (instance) => {
-      instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
-      instance.children.otherComponent.setStyle({
-        backgroundColor: 'coral',
-        color: 'black',
-      });
-    },
   },
 })`,
 });
