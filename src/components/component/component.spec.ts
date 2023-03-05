@@ -6,19 +6,19 @@ describe('components', () => {
       it('Should create a new Component instance.', () => {
         const child = new Component({ innerHTML: 'child' });
         const component = new Component({
+          tagName: 'a',
+          innerHTML: '<div>link</div>',
+          className: 'component test',
+          style: { backgroundColor: 'red', md: { height: '100px' } },
           attributes: {
             href: 'https://link.com',
           },
-          innerHTML: '<div>link</div>',
-          children: {
-            child,
-          },
-          className: 'component test',
           events: {
             click: () => '',
           },
-          style: { backgroundColor: 'red', md: { height: '100px' } },
-          tagName: 'a',
+          children: {
+            child,
+          },
         });
 
         expect(component.id).toHaveLength(16);
