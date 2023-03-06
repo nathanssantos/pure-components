@@ -30,14 +30,9 @@ class Tab extends Button {
     await this.assemble(payload);
   };
 
-  public setInactive = () => {
-    this.isActive = false;
-    this.children.activityIndicator.setStyle({ width: '0' });
-  };
-
-  public setActive = () => {
-    this.isActive = true;
-    this.children.activityIndicator.setStyle({ width: '100%' });
+  public setActive = (isActive: boolean) => {
+    this.isActive = isActive;
+    this.children.activityIndicator.setStyle({ width: isActive ? '100%' : '0' });
   };
 }
 
