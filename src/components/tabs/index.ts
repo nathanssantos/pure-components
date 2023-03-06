@@ -50,10 +50,10 @@ class Tabs extends Component {
     const tabs = Object.values(tabList.children) as Tab[];
     const panels = Object.values(tabPanels.children);
 
-    for (const tab of tabs) tab.setInactive();
+    for (const tab of tabs) tab.setActive(false);
     for (const panel of panels) panel.hide();
 
-    tabs[activeTabIndex].setActive();
+    tabs[activeTabIndex].setActive(true);
     panels[activeTabIndex].show();
   };
 }

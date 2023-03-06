@@ -5,6 +5,7 @@
   &__tab-list {
     display: flex;
     overflow-x: auto;
+    border-bottom: 0.063rem solid var(--pc-border-color);
 
     .tab:first-of-type {
       border-top-left-radius: var(--pc-border-radius);
@@ -14,8 +15,4 @@
       border-top-right-radius: var(--pc-border-radius);
     }
   }
-
-  // @media screen and (min-width: 48em) {
-  //   display: flex;
-  // }
 }
