@@ -68,7 +68,7 @@ const codeExample = new CodeExample({
       }),
     },
   },
-}),`,
+})`,
 });
 
 class TabsSection extends Component {
