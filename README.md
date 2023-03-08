@@ -7,7 +7,7 @@
 
 Dependency-free ui components library.
 
-**Work in progress!**
+## **Work in progress!**
 
 ## Install
 
