@@ -1,6 +1,13 @@
 # Pure Components
 
+![Dependency-free](https://img.shields.io/badge/Dependency-%20free-green)
+![Version 0.0.1](https://img.shields.io/badge/Version-%200.0.1-green)
+![Test coverage: 70.47%](https://img.shields.io/badge/Test%20Coverage-70.47%25-green)
+![Dependency-free](https://img.shields.io/badge/Components-%208-green)
+
 Dependency-free ui components library.
+
+**Work in progress!**
 
 ## Install
 
@@ -15,6 +22,8 @@ npm install @nathanssantos/pure-components
 ```
 
 ## Basic Example
+
+### [Take a look at the demo](https://nathanssantos.github.io/pure-components/)
 
 ```typescript
 import { Component, Button } from '@nathanssantos/pure-components';
@@ -112,4 +121,4 @@ new Tabs({
 - [ ] Popover
 - [ ] Carousel
 
-Documentation will be written as soon as possible.
+The complete documentation will be written as soon as possible.
