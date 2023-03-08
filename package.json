@@ -1,18 +1,25 @@
 {
   "name": "@nathanssantos/pure-components",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "author": {
     "name": "Nathan Silva Santos",
     "email": "nathansilvasantos@gmail.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/types.d.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./style.css": "./dist/style.css",
+    "./package.json": "./package.json"
+  },
   "files": [
-    "dist/index.js",
-    "dist/style.css",
-    "*.d.ts",
+    "dist",
     "package.json",
     "README.md"
   ],
@@ -23,7 +30,8 @@
     "test": "jest",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
-    "prepare": "npm run build"
+    "check": "tsc --noEmit",
+    "prepublishOnly": "npm run test && npm run check && npm run build"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

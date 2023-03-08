@@ -1,3 +1,4 @@
+import './style.scss';
 import Avatar from './components/avatar';
 import Button from './components/button';
 import Component from './components/component';

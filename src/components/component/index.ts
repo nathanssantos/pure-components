@@ -1,6 +1,5 @@
 import Constants from '../../constants';
 import Utils from '../../utils';
-import crypto from 'crypto';
 
 class Component {
   public children: ComponentConstructorProps['children'] = {};
@@ -18,7 +17,7 @@ class Component {
       );
     }
 
-    const id = crypto.randomUUID();
+    const id = Utils.generateUUID();
 
     this.id = id;
     this.target = document.createElement(tagName || 'div');
