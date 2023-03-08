@@ -27,6 +27,7 @@ npm install @nathanssantos/pure-components
 
 ```typescript
 import { Component, Button } from '@nathanssantos/pure-components';
+import '@nathanssantos/pure-components/style.css';
 
 const button = new Button({
   innerHTML: "I'm a button.",
