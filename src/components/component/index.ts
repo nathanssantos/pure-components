@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Constants from '../../constants';
 import Utils from '../../utils';
+import crypto from 'crypto';
 
 class Component {
   public children: ComponentConstructorProps['children'] = {};
@@ -18,7 +18,7 @@ class Component {
       );
     }
 
-    const id = Utils.generateUUID();
+    const id = crypto.randomUUID();
 
     this.id = id;
     this.target = document.createElement(tagName || 'div');
@@ -114,15 +114,17 @@ class Component {
       document.getElementById('pure-components__stylesheet') as HTMLStyleElement
     ).sheet!;
 
+    const componentSelector = `.component--${this.id}`;
+
     if (Object.entries(rest).length) {
-      let cssText = `.component--${this.id} { `;
+      let cssText = `${componentSelector} { `;
 
       const ruleIndex = Array.from(styleSheet.cssRules).findIndex(
-        (rule) => (rule as CSSStyleRule).selectorText === `.component--${this.id}`,
+        (rule) => (rule as CSSStyleRule).selectorText === componentSelector,
       );
 
       if (ruleIndex !== -1 && styleSheet.cssRules.item) {
-        cssText = (styleSheet.cssRules.item(ruleIndex) as CSSRule).cssText.replace(' }', '');
+        cssText += (styleSheet.cssRules.item(ruleIndex) as CSSRule).cssText.replace(' }', '');
         styleSheet.deleteRule(ruleIndex);
       }
 
@@ -141,7 +143,7 @@ class Component {
       for (const [key, value] of Object.entries(cssDeclaration)) {
         const cssText = `@media screen and (min-width: ${
           Constants.breakpoints[breakpoint]
-        }) { .component--${this.id} { ${Utils.camelCaseToKebabCase(key)}: ${value}; } }`;
+        }) { ${componentSelector} { ${Utils.camelCaseToKebabCase(key)}: ${value}; } }`;
 
         if (
           !Array.from(styleSheet.cssRules).some(

@@ -21,7 +21,7 @@ describe('components', () => {
           },
         });
 
-        expect(component.id).toHaveLength(16);
+        expect(component.id).toHaveLength(36);
         expect(component.target.tagName).toBe('A');
         expect(component.target).toBeInstanceOf(HTMLElement);
         expect(component.target.getAttribute('href')).toBe('https://link.com');
@@ -138,6 +138,19 @@ describe('components', () => {
         child.prependTo(component.target);
 
         expect(component.target.querySelector(`[data-testid="${child.id}"]`)).toBeTruthy();
+      });
+    });
+
+    describe('setState', () => {
+      it("Should set component's state props.", () => {
+        const component = new Component();
+        component.setState({
+          key1: 'value1',
+          key2: 'value2',
+        });
+
+        expect(component.state.key1).toBe('value1');
+        expect(component.state.key2).toBe('value2');
       });
     });
 
