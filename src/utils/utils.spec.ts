@@ -1,14 +1,12 @@
 import Utils from '.';
 
-describe('utils', () => {
-  describe('generateUUID', () => {
-    it('Should generate a 16 characters universal unique identifier.', () => {
-      const uuid1 = Utils.generateUUID();
-      const uuid2 = Utils.generateUUID();
+describe('Utils', () => {
+  describe('camelCaseToKebabCase', () => {
+    it('Should format a camel case string into a kebab case string.', () => {
+      const cameCaseString = 'testString';
+      const kebabCaseString = 'test-string';
 
-      expect(uuid1).toHaveLength(16);
-      expect(uuid2).toHaveLength(16);
-      expect(uuid1 !== uuid2).toBeTruthy();
+      expect(Utils.camelCaseToKebabCase(cameCaseString)).toBe(kebabCaseString);
     });
   });
 });
