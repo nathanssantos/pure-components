@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface AvatarConstructorProps extends ComponentConstructorProps {
   description: Partial<ComponentConstructorProps>;
   image: Partial<ComponentConstructorProps>;
@@ -10,8 +11,10 @@ interface ComponentConstructorProps {
   attributes: { [name: string]: string | boolean };
   children: { [name: string]: import('../components/component').default };
   className: string;
-  events: { [name: string]: () => unknown };
+  events: { [name: string]: (instance: Component, event: Event) => unknown };
   innerHTML: string;
+  parent: import('../components/component').default;
+  state: { [key: string]: any };
   style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
   tagName: string;
 }
@@ -23,6 +26,13 @@ interface DrawerConstructorProps extends ComponentConstructorProps {
   footer: Partial<ComponentConstructorProps>;
   header: Partial<ComponentConstructorProps>;
   overlay: Partial<ComponentConstructorProps>;
+}
+
+interface LayoutConstructorProps extends ComponentConstructorProps {
+  leftContent: Partial<ComponentConstructorProps>;
+  centerContent: Partial<ComponentConstructorProps>;
+  rightContent: Partial<ComponentConstructorProps>;
+  container: Partial<ComponentConstructorProps>;
 }
 
 interface HeaderConstructorProps extends ComponentConstructorProps {
@@ -47,4 +57,26 @@ interface ResponsiveObject<T> {
   sm: T;
   lg: T;
   xl: T;
+}
+
+interface Route {
+  component: import('../components/component').default;
+  name: string;
+}
+
+interface RouterConstructorProps extends ComponentConstructorProps {
+  leftContent: Partial<ComponentConstructorProps>;
+  centerContent: Partial<ComponentConstructorProps>;
+  rightContent: Partial<ComponentConstructorProps>;
+  container: Partial<ComponentConstructorProps>;
+}
+
+interface TabConstructorProps extends ComponentConstructorProps {
+  activityIndicator: Partial<ComponentConstructorProps>;
+}
+
+interface TabsConstructorProps extends ComponentConstructorProps {
+  activeTabIndex: number;
+  tabList: Partial<ComponentConstructorProps>;
+  tabPanels: Partial<ComponentConstructorProps>;
 }

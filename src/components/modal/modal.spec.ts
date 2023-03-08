@@ -1,5 +1,5 @@
-import Component from '../../src/components/component';
-import Modal from '../../src/components/modal';
+import Modal from '.';
+import Component from '../component';
 
 describe('components', () => {
   describe('modal', () => {
@@ -26,10 +26,10 @@ describe('components', () => {
         const component = new Modal();
         await component.close();
 
-        expect(component.target.style.display).toBe('none');
-        expect(component.children.overlay.target.style.display).toBe('none');
-        expect(component.children.overlay.target.style.opacity).toBe('0');
-        expect(component.children.content.target.style.display).toBe('none');
+        expect(getComputedStyle(component.target).display).toBe('none');
+        expect(getComputedStyle(component.children.overlay.target).display).toBe('none');
+        expect(getComputedStyle(component.children.overlay.target).opacity).toBe('0');
+        expect(getComputedStyle(component.children.content.target).display).toBe('none');
       });
     });
 
@@ -38,10 +38,10 @@ describe('components', () => {
         const component = new Modal();
         await component.open();
 
-        expect(component.target.style.display).toBe('flex');
-        expect(component.children.overlay.target.style.display).toBe('flex');
-        expect(component.children.overlay.target.style.opacity).toBe('1');
-        expect(component.children.content.target.style.display).toBe('flex');
+        expect(getComputedStyle(component.target).display).toBe('flex');
+        expect(getComputedStyle(component.children.overlay.target).display).toBe('flex');
+        expect(getComputedStyle(component.children.overlay.target).opacity).toBe('1');
+        expect(getComputedStyle(component.children.content.target).display).toBe('flex');
       });
     });
   });

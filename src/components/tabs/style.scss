@@ -1,0 +1,18 @@
+.tabs {
+  background-color: var(--pc-clickable-background);
+  border-radius: var(--pc-border-radius);
+
+  &__tab-list {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 0.063rem solid var(--pc-border-color);
+
+    .tab:first-of-type {
+      border-top-left-radius: var(--pc-border-radius);
+    }
+
+    .tab:last-of-type {
+      border-top-right-radius: var(--pc-border-radius);
+    }
+  }
+}

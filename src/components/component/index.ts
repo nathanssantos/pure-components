@@ -1,24 +1,34 @@
 import Constants from '../../constants';
 import Utils from '../../utils';
+import crypto from 'crypto';
 
 class Component {
-  public children: { [name: string]: Component } = {};
+  public children: ComponentConstructorProps['children'] = {};
   public id: string;
+  public state: ComponentConstructorProps['state'] = {};
   public target: HTMLElement;
 
   constructor(props: Partial<ComponentConstructorProps> = {}) {
-    const { attributes, children, className, events, innerHTML, style, tagName } = props;
+    const { attributes, children, className, events, innerHTML, state, style, tagName } = props;
 
-    const id = Utils.generateUUID();
+    if (!(document.getElementById('pure-components__stylesheet') as HTMLStyleElement)?.sheet) {
+      document.head.insertAdjacentHTML(
+        'beforeend',
+        `<style type="text/css" id="${'pure-components__stylesheet'}"></style>`,
+      );
+    }
 
-    this.target = document.createElement(tagName || 'div');
-    this.setAttributes({ id });
+    const id = crypto.randomUUID();
+
     this.id = id;
+    this.target = document.createElement(tagName || 'div');
+    this.setAttributes({ 'data-testid': id });
+    this.target.classList.add('pure-components', `component--${id}`);
+
+    if (state) this.setState(state);
 
     if (attributes) this.setAttributes(attributes);
-    if (className?.length) {
-      this.target.classList.add('pure-components', ...className.split(' '));
-    }
+    if (className?.length) this.target.classList.add(...className.split(' '));
     if (style) this.setStyle(style);
     if (typeof innerHTML === 'string') this.target.innerHTML = innerHTML;
     if (children) this.appendChildren(children);
@@ -38,7 +48,7 @@ class Component {
 
   public bindEvents = async (payload: ComponentConstructorProps['events']) => {
     for (const [name, action] of Object.entries(payload)) {
-      this.target.addEventListener(name, action);
+      this.target.addEventListener(name, (event) => action(this, event));
     }
   };
 
@@ -71,7 +81,7 @@ class Component {
   };
 
   public hide = () => {
-    this.target.style.display = 'none';
+    this.setStyle({ display: 'none' });
   };
 
   public prependChildren = (payload: ComponentConstructorProps['children']) => {
@@ -91,30 +101,63 @@ class Component {
     }
   };
 
+  public setState = (payload: typeof this.state) => {
+    for (const [key, value] of Object.entries(payload)) this.state[key] = value;
+  };
+
   public setStyle = (payload: ComponentConstructorProps['style']) => {
     const { base, sm, md, lg, xl, ...rest } = payload as ResponsiveObject<
       Partial<CSSStyleDeclaration>
     >;
 
-    for (const [key, value] of Object.entries(rest)) this.target.style[key] = value;
+    const styleSheet = (
+      document.getElementById('pure-components__stylesheet') as HTMLStyleElement
+    ).sheet!;
 
-    const resposiveStyles = Object.entries({ xl, lg, md, sm, base }).filter(
-      ([responsiveKey, responsiveValue]) => responsiveKey && responsiveValue,
+    const componentSelector = `.component--${this.id}`;
+
+    if (Object.entries(rest).length) {
+      let cssText = `${componentSelector} { `;
+
+      const ruleIndex = Array.from(styleSheet.cssRules).findIndex(
+        (rule) => (rule as CSSStyleRule).selectorText === componentSelector,
+      );
+
+      if (ruleIndex !== -1 && styleSheet.cssRules.item) {
+        cssText += (styleSheet.cssRules.item(ruleIndex) as CSSRule).cssText.replace(' }', '');
+        styleSheet.deleteRule(ruleIndex);
+      }
+
+      for (const [key, value] of Object.entries(rest)) {
+        cssText += ` ${Utils.camelCaseToKebabCase(key)}: ${value};`;
+      }
+
+      styleSheet.insertRule(`${cssText} }`);
+    }
+
+    const responsiveObject = Object.entries({ xl, lg, md, sm, base }).filter(
+      ([breakpoint, cssDeclaration]) => breakpoint && cssDeclaration,
     );
 
-    for (const [responsiveKey, responsiveValue] of resposiveStyles) {
-      for (const [key, value] of Object.entries(responsiveValue)) {
-        document.styleSheets[document.styleSheets.length - 1].insertRule(
-          `@media screen and (min-width: ${Constants.breakpoints[responsiveKey]}) { #${
-            this.id
-          } { ${`${Utils.camelCaseToKebabCase(key)}: ${value};`} } }`,
-        );
+    for (const [breakpoint, cssDeclaration] of responsiveObject) {
+      for (const [key, value] of Object.entries(cssDeclaration)) {
+        const cssText = `@media screen and (min-width: ${
+          Constants.breakpoints[breakpoint]
+        }) { ${componentSelector} { ${Utils.camelCaseToKebabCase(key)}: ${value}; } }`;
+
+        if (
+          !Array.from(styleSheet.cssRules).some(
+            (rule) => (rule as CSSStyleRule).cssText === cssText,
+          )
+        ) {
+          styleSheet.insertRule(cssText);
+        }
       }
     }
   };
 
   public show = () => {
-    this.target.style.display = 'flex';
+    this.setStyle({ display: 'flex' });
   };
 }
 

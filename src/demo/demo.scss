@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+  min-height: 100vh;
+}
+
+.demo {
+  min-height: 100vh;
+  background-color: var(--pc-background);
+  color: var(--pc-text-color);
+}

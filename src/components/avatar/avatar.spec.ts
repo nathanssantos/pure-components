@@ -1,5 +1,5 @@
-import Component from '../../src/components/component';
-import Avatar from '../../src/components/avatar';
+import Avatar from '.';
+import Component from '../component';
 
 describe('components', () => {
   describe('avatar', () => {
