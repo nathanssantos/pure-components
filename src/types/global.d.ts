@@ -11,7 +11,12 @@ interface ComponentConstructorProps {
   attributes: { [name: string]: string | boolean };
   children: { [name: string]: import('../components/component').default };
   className: string;
-  events: { [name: string]: (instance: Component, event: Event) => unknown };
+  events: {
+    [name: string]: (
+      instance: import('../components/component').default,
+      event: Event,
+    ) => unknown;
+  };
   innerHTML: string;
   parent: import('../components/component').default;
   state: { [key: string]: any };
@@ -21,7 +26,7 @@ interface ComponentConstructorProps {
 
 interface DrawerConstructorProps extends ComponentConstructorProps {
   body: Partial<ComponentConstructorProps>;
-  btClose: Partial<ButtonConstructorProps>;
+  btClose: Partial<ComponentConstructorProps>;
   content: Partial<ComponentConstructorProps>;
   footer: Partial<ComponentConstructorProps>;
   header: Partial<ComponentConstructorProps>;
@@ -44,7 +49,7 @@ interface HeaderConstructorProps extends ComponentConstructorProps {
 
 interface ModalConstructorProps extends ComponentConstructorProps {
   body: Partial<ComponentConstructorProps>;
-  btClose: Partial<ButtonConstructorProps>;
+  btClose: Partial<ComponentConstructorProps>;
   content: Partial<ComponentConstructorProps>;
   footer: Partial<ComponentConstructorProps>;
   header: Partial<ComponentConstructorProps>;
