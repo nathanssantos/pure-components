@@ -123,7 +123,7 @@ class Component {
       );
 
       if (ruleIndex !== -1 && styleSheet.cssRules.item) {
-        cssText += (styleSheet.cssRules.item(ruleIndex) as CSSRule).cssText.replace(' }', '');
+        cssText = (styleSheet.cssRules.item(ruleIndex) as CSSRule).cssText.replace(' }', '');
         styleSheet.deleteRule(ruleIndex);
       }
 

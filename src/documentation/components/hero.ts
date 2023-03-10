@@ -20,6 +20,7 @@ class Hero extends Component {
             title: new Component({
               innerHTML: props.title,
               style: {
+                fontWeight: 'bold',
                 base: {
                   fontSize: '1.85rem',
                 },

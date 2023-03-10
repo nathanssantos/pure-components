@@ -1,7 +1,8 @@
-import { Component, Container } from '../..';
+import { Button, Component, Container } from '../..';
 import CodeExample from '../components/codeExample';
 import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
+import router from '../components/router';
 
 class InstallSection extends Component {
   constructor() {
@@ -16,9 +17,35 @@ class InstallSection extends Component {
             }),
             codeExampleYarn: new CodeExample({
               innerHTML: 'yarn add @nathanssantos/pure-components',
+              style: {
+                marginBottom: '1rem',
+              },
             }),
             codeExampleNpm: new CodeExample({
               innerHTML: 'npm install @nathanssantos/pure-components',
+              style: {
+                marginBottom: '1rem',
+              },
+            }),
+            description2: new SectionDescription({
+              innerHTML: 'Import the styles in you app entry point file:',
+            }),
+            styleImport: new CodeExample({
+              innerHTML: 'import "@nathanssantos/pure-components/style.css";',
+              style: {
+                marginBottom: '3rem',
+              },
+            }),
+            btComponents: new Button({
+              innerHTML: 'Components',
+              style: {
+                alignSelf: 'center',
+              },
+              events: {
+                click: () => {
+                  router.navigate('components');
+                },
+              },
             }),
           },
         }),

@@ -1,12 +1,12 @@
 import Component from '../components/component';
 import router from './components/router';
 import '../style.scss';
-import './demo.scss';
+import './style.scss';
 
-class Demo extends Component {
+class Documentation extends Component {
   constructor() {
     super({
-      className: 'demo',
+      className: 'documentation',
       children: {
         router,
       },
@@ -18,8 +18,8 @@ class Demo extends Component {
   }
 
   static init = () => {
-    new Demo();
+    new Documentation();
   };
 }
 
-export default Demo.init();
+export default Documentation.init();

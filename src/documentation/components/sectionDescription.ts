@@ -1,15 +1,15 @@
 import { Component } from '../..';
 
-class SectionTitle extends Component {
+class SectionDescription extends Component {
   constructor(props: Partial<ComponentConstructorProps>) {
     super({
       style: {
         marginBottom: '1rem',
         base: {
-          fontSize: '1.5rem',
+          fontSize: '0.875rem',
         },
         md: {
-          fontSize: '1.75rem',
+          fontSize: '1rem',
         },
       },
       ...props,
@@ -17,4 +17,4 @@ class SectionTitle extends Component {
   }
 }
 
-export default SectionTitle;
+export default SectionDescription;

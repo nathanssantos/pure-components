@@ -53,8 +53,11 @@ class Tabs extends Component {
     for (const tab of tabs) tab.setActive(false);
     for (const panel of panels) panel.hide();
 
-    if (tabs[activeTabIndex]) tabs[activeTabIndex].setActive(true);
-    if (panels[activeTabIndex]) panels[activeTabIndex].show();
+    const currentTab = tabs[activeTabIndex];
+    const currentPanel = panels[activeTabIndex];
+
+    if (currentTab) currentTab.setActive(true);
+    if (currentPanel) currentPanel.show();
   };
 }
 

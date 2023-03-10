@@ -4,6 +4,7 @@
   top: 0;
   width: 100%;
   color: var(--pc-text-color);
+  z-index: 1;
 
   &__container {
     min-height: 3.75rem;
