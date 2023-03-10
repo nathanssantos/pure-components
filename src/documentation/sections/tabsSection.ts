@@ -41,7 +41,9 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `new Tabs({
+  innerHTML: `import { Tab, TabPanel, Tabs } from '@nathanssantos/pure-components';
+
+new Tabs({
   tabList: {
     children: {
       tab1: new Tab({
@@ -81,8 +83,34 @@ class TabsSection extends Component {
             description: new SectionDescription({
               innerHTML: 'A simple tabs component.',
             }),
-            componentExample,
-            codeExample,
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: 'Usage',
+                  }),
+                  tab2: new Tab({
+                    innerHTML: 'Props',
+                  }),
+                },
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: '1rem',
+                    },
+                    children: {
+                      componentExample,
+                      codeExample,
+                    },
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: 'Coming soon.',
+                  }),
+                },
+              },
+            }),
           },
         }),
       },

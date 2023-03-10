@@ -1,7 +1,8 @@
 .tab {
   position: relative;
-  padding: calc(var(--pc-spacing) * 2) calc(var(--pc-spacing) * 6);
+  padding: calc(var(--pc-spacing) * 3) calc(var(--pc-spacing) * 8);
   border-radius: 0;
+  font-weight: 400;
 
   &__activity-indicator {
     position: absolute;
