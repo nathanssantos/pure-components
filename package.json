@@ -72,9 +72,26 @@
     "typescript",
     "ts",
     "responsive",
-    "avatar",
+    "component",
     "drawer",
     "modal",
-    "button"
+    "avatar",
+    "button",
+    "container",
+    "header",
+    "tabs",
+    "tag",
+    "breadcrumbs",
+    "floating action button",
+    "fab",
+    "progress",
+    "checkbox",
+    "radio",
+    "org chart",
+    "autocomplete",
+    "toast",
+    "tooltip",
+    "popover",
+    "carousel"
   ]
 }
