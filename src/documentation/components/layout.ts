@@ -4,15 +4,15 @@ import router from './router';
 class Layout extends Component {
   constructor() {
     const navigationButtons = {
-      // getStartedScreenButton: new Button({
-      //   innerHTML: 'Get Started',
-      //   events: {
-      //     click: () => {
-      //       router.navigate('getStarted');
-      //       drawer.close();
-      //     },
-      //   },
-      // }),
+      getStartedScreenButton: new Button({
+        innerHTML: 'Get Started',
+        events: {
+          click: () => {
+            router.navigate('getStarted');
+            drawer.close();
+          },
+        },
+      }),
       componentsScreenButton: new Button({
         innerHTML: 'Components',
         events: {
@@ -42,10 +42,10 @@ class Layout extends Component {
         children: {
           btOpenDrawer: new Button({
             style: {
-              padding: '0.25rem',
+              padding: '0.375rem',
             },
             innerHTML:
-              '<svg width="1.5rem" height="1.5rem" focusable="false" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>',
+              '<svg width="1.25rem" height="1.25rem" focusable="false" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>',
             events: {
               click: drawer.open,
             },
@@ -53,14 +53,25 @@ class Layout extends Component {
         },
       },
       leftContent: {
-        innerHTML: 'Pure Components',
-        style: {
-          base: {
-            fontSize: '1rem',
-          },
-          md: {
-            fontSize: '1.25rem',
-          },
+        children: {
+          logo: new Component({
+            innerHTML: 'Pure Components',
+            style: {
+              cursor: 'pointer',
+              fontSize: '1rem',
+              base: {
+                fontWeight: 'bold',
+              },
+              md: {
+                fontSize: '1.25rem',
+              },
+            },
+            events: {
+              click: () => {
+                router.navigate('getStarted');
+              },
+            },
+          }),
         },
       },
     });
