@@ -1,8 +1,8 @@
 import Modal from '.';
 import Component from '../component';
 
-describe('components', () => {
-  describe('modal', () => {
+describe('Components', () => {
+  describe('Modal', () => {
     describe('instance and assemble', () => {
       it('Should create a new modal instance and assemble it.', () => {
         const component = new Modal({ className: 'test my-modal' });

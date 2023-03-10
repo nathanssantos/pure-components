@@ -1,8 +1,8 @@
 import Drawer from '.';
 import Component from '../component';
 
-describe('components', () => {
-  describe('drawer', () => {
+describe('Components', () => {
+  describe('Drawer', () => {
     describe('instance and assemble', () => {
       it('Should create a new drawer instance and assemble it.', () => {
         const component = new Drawer({ className: 'test my-drawer' });

@@ -1,8 +1,8 @@
 import Avatar from '.';
 import Component from '../component';
 
-describe('components', () => {
-  describe('avatar', () => {
+describe('Components', () => {
+  describe('Avatar', () => {
     describe('instance and assemble', () => {
       it('Should create a new avatar instance and assemble it.', () => {
         const component1 = new Avatar({ className: 'test my-avatar' });

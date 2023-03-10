@@ -1,7 +1,7 @@
 import Container from '.';
 
-describe('components', () => {
-  describe('container', () => {
+describe('Components', () => {
+  describe('Container', () => {
     describe('instance and assemble', () => {
       it('Should create a new container instance and assemble it.', () => {
         const component1 = new Container();
