@@ -122,4 +122,4 @@ new Tabs({
 - [ ] Popover
 - [ ] Carousel
 
-The complete documentation will be written as soon as possible.
+**The complete documentation will be written as soon as possible.**
