@@ -26,7 +26,7 @@ npm install @nathanssantos/pure-components
 ### [Take a look at the demo](https://nathanssantos.github.io/pure-components/)
 
 ```typescript
-import { Component, Button } from '@nathanssantos/pure-components';
+import { Component, Button, Tab, TabPanel, Tabs } from '@nathanssantos/pure-components';
 import '@nathanssantos/pure-components/style.css';
 
 const button = new Button({
