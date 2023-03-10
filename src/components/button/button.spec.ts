@@ -1,7 +1,7 @@
 import Button from '.';
 
-describe('components', () => {
-  describe('button', () => {
+describe('Components', () => {
+  describe('Button', () => {
     describe('instance and assemble', () => {
       it('Should create a new button instance and assemble it.', () => {
         const component1 = new Button({ className: 'test my-button' });

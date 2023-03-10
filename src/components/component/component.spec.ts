@@ -1,7 +1,7 @@
 import Component from '.';
 
-describe('components', () => {
-  describe('component', () => {
+describe('Components', () => {
+  describe('Component', () => {
     describe('instance', () => {
       it('Should create a new Component instance.', () => {
         const child = new Component({ innerHTML: 'child' });
