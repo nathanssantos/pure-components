@@ -1,72 +1,499 @@
-var P=Object.defineProperty;var O=(o,t,e)=>t in o?P(o,t,{enumerable:!0,configurable:!0,writable:!0,value:e}):o[t]=e;var r=(o,t,e)=>(O(o,typeof t!="symbol"?t+"":t,e),e);(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))n(s);new MutationObserver(s=>{for(const c of s)if(c.type==="childList")for(const a of c.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function e(s){const c={};return s.integrity&&(c.integrity=s.integrity),s.referrerpolicy&&(c.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?c.credentials="include":s.crossorigin==="anonymous"?c.credentials="omit":c.credentials="same-origin",c}function n(s){if(s.ep)return;s.ep=!0;const c=e(s);fetch(s.href,c)}})();const N={base:"0em",sm:"30em",md:"48em",lg:"62em",xl:"80em","2xl":"96em"};class ${}r($,"breakpoints",N);const A=o=>o.replace(/[A-Z]/g,t=>"-"+t.toLowerCase()),E=()=>{let o=new Date().getTime(),t=performance.now()*1e3;return"xxxxxxxxxxxxxxxx".replace(/[xy]/g,()=>{let e=Math.random()*16;return o>0?(e=(o+e)%16|0,o=Math.floor(o/16)):(e=(t+e)%16|0,t=Math.floor(t/16)),(e&7|8).toString(16)})};class b{}r(b,"camelCaseToKebabCase",A),r(b,"generateUUID",E);const k=class{constructor(t={}){r(this,"children",{});r(this,"id");r(this,"state",{});r(this,"target");r(this,"appendChildren",t=>{for(const[e,n]of Object.entries(t))this.children[e]=n,this.target.append(n.target)});r(this,"appendTo",t=>{t.append(this.target)});r(this,"bindEvents",async t=>{for(const[e,n]of Object.entries(t))this.target.addEventListener(e,s=>n(this,s))});r(this,"destroy",()=>{var t;(t=this.target.parentNode)==null||t.removeChild(this.target)});r(this,"fadeIn",(t={})=>new Promise(e=>{this.show(),setTimeout(()=>{this.setStyle(t),e(!0)},0)}));r(this,"fadeOut",(t={})=>new Promise(e=>{this.setStyle(t),setTimeout(()=>{this.hide(),e(!0)},Number(getComputedStyle(this.target).transitionDuration.replace("s",""))*1e3)}));r(this,"hide",()=>{this.setStyle({display:"none"})});r(this,"prependChildren",t=>{for(const[e,n]of Object.entries(t))this.children[e]=n,this.target.prepend(n.target)});r(this,"prependTo",t=>{t.prepend(this.target)});r(this,"setAttributes",t=>{for(const[e,n]of Object.entries(t))this.target.setAttribute(e,n.toString())});r(this,"setState",t=>{for(const[e,n]of Object.entries(t))this.state[e]=n});r(this,"setStyle",t=>{const{base:e,sm:n,md:s,lg:c,xl:a,...d}=t,l=document.getElementById("pure-components__stylesheet").sheet;if(Object.entries(d).length){let m=`.component--${this.id} { `;const h=Array.from(l.cssRules).findIndex(u=>u.selectorText===`.component--${this.id}`);h!==-1&&l.cssRules.item&&(m=l.cssRules.item(h).cssText.replace(" }",""),l.deleteRule(h));for(const[u,T]of Object.entries(d))m+=` ${b.camelCaseToKebabCase(u)}: ${T};`;l.insertRule(`${m} }`)}const p=Object.entries({xl:a,lg:c,md:s,sm:n,base:e}).filter(([m,h])=>m&&h);for(const[m,h]of p)for(const[u,T]of Object.entries(h)){const M=`@media screen and (min-width: ${$.breakpoints[m]}) { .component--${this.id} { ${b.camelCaseToKebabCase(u)}: ${T}; } }`;Array.from(l.cssRules).some(_=>_.cssText===M)||l.insertRule(M)}});r(this,"show",()=>{this.setStyle({display:"flex"})});var h;const{attributes:e,children:n,className:s,events:c,innerHTML:a,state:d,style:l,tagName:p}=t;(h=document.getElementById("pure-components__stylesheet"))!=null&&h.sheet||document.head.insertAdjacentHTML("beforeend",'<style type="text/css" id="pure-components__stylesheet"></style>');const m=b.generateUUID();this.id=m,this.target=document.createElement(p||"div"),this.setAttributes({"data-testid":m}),this.target.classList.add("pure-components",`component--${m}`),d&&this.setState(d),e&&this.setAttributes(e),s!=null&&s.length&&this.target.classList.add(...s.split(" ")),l&&this.setStyle(l),typeof a=="string"&&(this.target.innerHTML=a),n&&this.appendChildren(n),c&&this.bindEvents(c)}};let i=k;r(i,"create",(t={})=>new k(t));class f extends i{constructor(t={}){const{className:e,...n}=t;super({className:`button${e!=null&&e.length?` ${e}`:""}`,tagName:"button",...n})}}class g extends i{constructor(t={}){const{className:e,...n}=t;super({className:`container${e!=null&&e.length?` ${e}`:""}`,...n})}}class I extends i{constructor(e={}){const{className:n,...s}=e;super({className:`drawer${n!=null&&n.length?` ${n}`:""}`,...s});r(this,"assemble",e=>new Promise(n=>{const s=new f({className:"drawer__bt-close",innerHTML:"x",...e.btClose}),c=new i({children:{btClose:s},className:"drawer__header",...e.header}),a=new i({className:"drawer__body",...e.body}),d=new i({className:"drawer__footer",...e.footer}),l=new i({children:{header:c,body:a,footer:d},className:"drawer__content",...e.content}),p=new i({className:"drawer__overlay",...e.overlay});this.appendChildren({overlay:p,content:l}),n(!0)}));r(this,"close",async()=>{const{content:e,overlay:n}=this.children;await Promise.allSettled([e.fadeOut({transform:"translateX(-100%)"}),n.fadeOut({opacity:"0"})]),this.hide()});r(this,"init",async e=>{await this.assemble(e);const{content:n,overlay:s}=this.children;for(const c of[n.children.header.children.btClose,s])c.bindEvents({click:this.close})});r(this,"open",async()=>{this.show();const{content:e,overlay:n}=this.children;await Promise.allSettled([e.fadeIn({transform:"translateX(0)"}),n.fadeIn({opacity:"1"})])});this.init(e)}}class j extends i{constructor(e={}){const{className:n,...s}=e;super({className:`header${n!=null&&n.length?` ${n}`:""}`,tagName:"header",...s});r(this,"assemble",e=>new Promise(n=>{const s=new g({className:"header__container",...e.container});e.leftContent&&s.appendChildren({leftContent:new i({className:"header__left-content",...e.leftContent})}),e.centerContent&&s.appendChildren({centerContent:new i({className:"header__center-content",...e.centerContent})}),e.rightContent&&s.appendChildren({rightContent:new i({className:"header__right-content",...e.rightContent})}),this.appendChildren({container:s}),n(!0)}));r(this,"init",e=>{this.assemble(e)});this.init(e)}}class x extends f{constructor(e={}){const{className:n,...s}=e;super({className:`tab${n!=null&&n.length?` ${n}`:""}`,...s});r(this,"isActive",!1);r(this,"assemble",e=>new Promise(n=>{const s=new i({className:"tab__activity-indicator",...e.activityIndicator});this.appendChildren({activityIndicator:s}),n(!0)}));r(this,"init",async e=>{await this.assemble(e)});r(this,"setActive",e=>{this.isActive=e,this.children.activityIndicator.setStyle({width:e?"100%":"0"})});this.init(e)}}class C extends i{constructor(t={}){const{className:e,...n}=t;super({className:`tab-panel${e!=null&&e.length?` ${e}`:""}`,...n})}}class R extends i{constructor(e={}){const{className:n,...s}=e;super({className:`tabs${n!=null&&n.length?` ${n}`:""}`,...s});r(this,"activeTabIndex",0);r(this,"assemble",e=>new Promise(n=>{const s=new i({className:"tabs__tab-list",...e.tabList}),c=new i({className:"tabs__tab-panels",...e.tabPanels});this.appendChildren({tabList:s,tabPanels:c}),n(!0)}));r(this,"init",async e=>{const{activeTabIndex:n,tabList:s}=e;await this.assemble(e),this.setActiveTabIndex(n||0),s!=null&&s.children&&Object.values(s.children).forEach((c,a)=>{c.bindEvents({click:()=>this.setActiveTabIndex(a)})})});r(this,"setActiveTabIndex",e=>{const{tabList:n,tabPanels:s}=this.children,c=Object.values(n.children),a=Object.values(s.children);for(const d of c)d.setActive(!1);for(const d of a)d.hide();c[e].setActive(!0),a[e].show()});this.init(e)}}class y extends i{constructor(t){super({style:{marginBottom:"2rem",base:{fontSize:"0.875rem"},md:{fontSize:"1rem"}},...t})}}class B extends i{constructor(t){super({children:{container:new g({style:{gap:"1rem",paddingTop:"8rem",paddingBottom:"8rem"},children:{title:new i({innerHTML:t.title,style:{base:{fontSize:"1.85rem"},md:{fontSize:"2.5rem"}}}),description:new y({innerHTML:t.description})}})}})}}class L extends i{constructor(t={}){super({tagName:"pre",style:{whiteSpace:"break-spaces",backgroundColor:"#3f3f3f",padding:"1rem",borderRadius:"0.25rem",base:{fontSize:"0.875rem"},md:{fontSize:"1rem"}},...t})}}class S extends i{constructor(t){super({style:{marginBottom:"1rem",base:{fontSize:"1.5rem"},md:{fontSize:"1.75rem"}},...t})}}const z=new i({style:{display:"flex",gap:"1rem"},children:{button:new f({innerHTML:"Click me",events:{click:()=>alert("Button clicked!")}})}}),D=new L({innerHTML:`new Button({
-  innerHTML: 'Click me',
-  events: {
-    click: () => alert('Button clicked!'),
-  },
-})`});class K extends i{constructor(){super({children:{container:new g({children:{title:new S({innerHTML:"Button"}),description:new y({innerHTML:"A simple button."}),componentExample:z,codeExample:D}})}})}}const U=new i({style:{display:"flex",gap:"1rem"},children:{component:new i({innerHTML:"I'm a Component.",style:{backgroundColor:"lightskyblue",padding:"2rem",color:"#222",fontWeight:"bold",borderRadius:"0.25rem",textAlign:"center"},events:{click:o=>{o.setStyle({backgroundColor:"rebeccapurple",color:"white"})},mouseleave:o=>{o.setStyle({backgroundColor:"lightskyblue",color:"black"}),o.children.otherComponent.setStyle({backgroundColor:"coral",color:"black"})}},children:{otherComponent:new i({innerHTML:"Other Component",style:{backgroundColor:"coral",padding:"2rem",borderRadius:"0.25rem",marginTop:"2rem"},events:{click:(o,t)=>{t.stopPropagation(),o.setStyle({backgroundColor:"rebeccapurple",color:"white"})}}})}})}}),q=new L({innerHTML:`new Component({
-  innerHTML: "I'm a Component.",
-  style: {
-    backgroundColor: 'lightskyblue',
-    padding: '2rem',
-    color: '#222',
-    fontWeight: 'bold',
-    borderRadius: '0.25rem',
-    textAlign: 'center',
-  },
-  events: {
-    click: (instance) => {
-      instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
-    },
-    mouseleave: (instance) => {
-      instance.setStyle({ backgroundColor: 'lightskyblue', color: 'black' });
-      instance.children.otherComponent.setStyle({
-        backgroundColor: 'coral',
-        color: 'black',
+const style$9 = '';
+
+class Constants {
+  static breakpoints = {
+    base: "0em",
+    sm: "30em",
+    md: "48em",
+    lg: "62em",
+    xl: "80em",
+    "2xl": "96em"
+  };
+}
+
+class Utils {
+  static camelCaseToKebabCase = (string) => {
+    return string.replace(/[A-Z]/g, (character) => "-" + character.toLowerCase());
+  };
+  static generateUUID = () => {
+    let dt = new Date().getTime();
+    const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+      const r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == "x" ? r : r & 3 | 8).toString(16);
+    });
+    return uuid;
+  };
+}
+
+class Component {
+  children = {};
+  id;
+  state = {};
+  target;
+  constructor(props = {}) {
+    const { attributes, children, className, events, innerHTML, state, style, tagName } = props;
+    if (!document.getElementById("pure-components__stylesheet")?.sheet) {
+      document.head.insertAdjacentHTML(
+        "beforeend",
+        `<style type="text/css" id="${"pure-components__stylesheet"}"></style>`
+      );
+    }
+    const id = Utils.generateUUID();
+    this.id = id;
+    this.target = document.createElement(tagName || "div");
+    this.setAttributes({ "data-testid": id });
+    this.target.classList.add("pure-components", `component--${id}`);
+    if (state)
+      this.setState(state);
+    if (attributes)
+      this.setAttributes(attributes);
+    if (className?.length)
+      this.target.classList.add(...className.split(" "));
+    if (style)
+      this.setStyle(style);
+    if (typeof innerHTML === "string")
+      this.target.innerHTML = innerHTML;
+    if (children)
+      this.appendChildren(children);
+    if (events)
+      this.bindEvents(events);
+  }
+  appendChildren = (payload) => {
+    for (const [name, component] of Object.entries(payload)) {
+      this.children[name] = component;
+      this.target.append(component.target);
+    }
+  };
+  appendTo = (target) => {
+    target.append(this.target);
+  };
+  bindEvents = async (payload) => {
+    for (const [name, action] of Object.entries(payload)) {
+      this.target.addEventListener(name, (event) => action(this, event));
+    }
+  };
+  static create = (payload = {}) => {
+    return new Component(payload);
+  };
+  destroy = () => {
+    this.target.parentNode?.removeChild(this.target);
+  };
+  fadeIn = (to = {}) => {
+    return new Promise((resolve) => {
+      this.show();
+      setTimeout(() => {
+        this.setStyle(to);
+        resolve(true);
+      }, 0);
+    });
+  };
+  fadeOut = (to = {}) => {
+    return new Promise((resolve) => {
+      this.setStyle(to);
+      setTimeout(() => {
+        this.hide();
+        resolve(true);
+      }, Number(getComputedStyle(this.target).transitionDuration.replace("s", "")) * 1e3);
+    });
+  };
+  hide = () => {
+    this.setStyle({ display: "none" });
+  };
+  prependChildren = (payload) => {
+    for (const [name, component] of Object.entries(payload)) {
+      this.children[name] = component;
+      this.target.prepend(component.target);
+    }
+  };
+  prependTo = (target) => {
+    target.prepend(this.target);
+  };
+  setAttributes = (payload) => {
+    for (const [key, value] of Object.entries(payload)) {
+      this.target.setAttribute(key, value.toString());
+    }
+  };
+  setState = (payload) => {
+    for (const [key, value] of Object.entries(payload))
+      this.state[key] = value;
+  };
+  setStyle = (payload) => {
+    const { base, sm, md, lg, xl, ...rest } = payload;
+    const styleSheet = document.getElementById("pure-components__stylesheet").sheet;
+    const componentSelector = `.component--${this.id}`;
+    if (Object.entries(rest).length) {
+      let cssText = `${componentSelector} { `;
+      const ruleIndex = Array.from(styleSheet.cssRules).findIndex(
+        (rule) => rule.selectorText === componentSelector
+      );
+      if (ruleIndex !== -1 && styleSheet.cssRules.item) {
+        cssText = styleSheet.cssRules.item(ruleIndex).cssText.replace(" }", "");
+        styleSheet.deleteRule(ruleIndex);
+      }
+      for (const [key, value] of Object.entries(rest)) {
+        cssText += ` ${Utils.camelCaseToKebabCase(key)}: ${value};`;
+      }
+      styleSheet.insertRule(`${cssText} }`);
+    }
+    const responsiveObject = Object.entries({ xl, lg, md, sm, base }).filter(
+      ([breakpoint, cssDeclaration]) => breakpoint && cssDeclaration
+    );
+    for (const [breakpoint, cssDeclaration] of responsiveObject) {
+      for (const [key, value] of Object.entries(cssDeclaration)) {
+        const cssText = `@media screen and (min-width: ${Constants.breakpoints[breakpoint]}) { ${componentSelector} { ${Utils.camelCaseToKebabCase(key)}: ${value}; } }`;
+        if (!Array.from(styleSheet.cssRules).some(
+          (rule) => rule.cssText === cssText
+        )) {
+          styleSheet.insertRule(cssText);
+        }
+      }
+    }
+  };
+  show = () => {
+    this.setStyle({ display: "flex" });
+  };
+}
+
+const style$8 = '';
+
+class Avatar extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `avatar${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const image = new Component({
+        className: "avatar__image",
+        tagName: "img",
+        ...payload.image
       });
-    },
-  },
-  children: {
-    otherComponent: new Component({
-      innerHTML: 'Other Component',
-      style: {
-        backgroundColor: 'coral',
-        padding: '2rem',
-        borderRadius: '0.25rem',
-        marginTop: '2rem',
-      },
-      events: {
-        click: (instance, event) => {
-          event.stopPropagation();
-          instance.setStyle({ backgroundColor: 'rebeccapurple', color: 'white' });
-        },
-      },
-    }),
-  },
-})`});class W extends i{constructor(){super({children:{container:new g({children:{title:new S({innerHTML:"Component"}),description:new y({innerHTML:"A generic component that can be anything."}),componentExample:U,codeExample:q}})}})}}const X=new i({style:{display:"flex",gap:"1rem"},children:{tabs:new R({tabList:{children:{tab1:new x({innerHTML:"Tab 1"}),tab2:new x({innerHTML:"Tab 2"}),tab3:new x({innerHTML:"Tab 3"})}},tabPanels:{children:{panel1:new C({innerHTML:"TabPanel 1"}),panel2:new C({innerHTML:"TabPanel 2"}),panel3:new C({innerHTML:"TabPanel 3"})}}})}}),F=new L({innerHTML:`new Tabs({
-  tabList: {
-    children: {
-      tab1: new Tab({
-        innerHTML: 'Tab 1',
-      }),
-      tab2: new Tab({
-        innerHTML: 'Tab 2',
-      }),
-      tab3: new Tab({
-        innerHTML: 'Tab 3',
-      }),
-    },
-  },
-  tabPanels: {
-    children: {
-      panel1: new TabPanel({
-        innerHTML: 'TabPanel 1',
-      }),
-      panel2: new TabPanel({
-        innerHTML: 'TabPanel 2',
-      }),
-      panel3: new TabPanel({
-        innerHTML: 'TabPanel 3',
-      }),
-    },
-  },
-})`});class V extends i{constructor(){super({children:{container:new g({children:{title:new S({innerHTML:"Tabs"}),description:new y({innerHTML:"A simple tabs component."}),componentExample:X,codeExample:F}})}})}}class Z extends i{constructor(){super({children:{hero:new B({title:"Components",description:"Pure Components provide prebuild components to help you build your projects faster.<br>Here is a list with examples:"}),components:new i({style:{display:"flex",flexDirection:"column",gap:"4rem"},children:{componentSection:new W,buttonSection:new K,tabsSection:new V}})}})}}class G extends i{constructor(){const t={componentsScreenButton:new f({innerHTML:"Components",events:{click:()=>{v.navigate("components"),e.close()}}})},e=new I({body:{style:{display:"flex",flexDirection:"column",gap:"1rem"},children:{...t}}}),n=new j({rightContent:{children:{btOpenDrawer:new f({style:{padding:"0.25rem"},innerHTML:'<svg width="1.5rem" height="1.5rem" focusable="false" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>',events:{click:e.open}})}},leftContent:{innerHTML:"Pure Components",style:{base:{fontSize:"1rem"},md:{fontSize:"1.25rem"}}}});super({className:"layout",children:{header:n,drawer:e}})}}class J extends i{constructor(){super({className:"router",children:{layout:new G}});r(this,"initialRoute","components");r(this,"routes",{components:{component:new Z,name:"Components"}});r(this,"navigate",(e=this.initialRoute)=>{for(const[n,s]of Object.entries(this.children.layout.children))n!=="header"&&n!=="drawer"&&s.destroy();this.children.layout.appendChildren({[e]:this.routes[e].component})})}}const v=new J;const H=class extends i{constructor(){super({className:"demo",children:{router:v}}),this.appendTo(document.querySelector("#app")),v.navigate()}};let w=H;r(w,"init",()=>{new H});w.init();
+      const imageWrapper = new Component({
+        children: { image },
+        className: "avatar__image-wrapper",
+        ...payload.imageWrapper
+      });
+      const name = new Component({
+        className: "avatar__name",
+        ...payload.name
+      });
+      const description = new Component({
+        className: "avatar__description",
+        ...payload.description
+      });
+      const textWrapper = new Component({
+        children: { name, description },
+        className: "avatar__text-wrapper",
+        ...payload.textWrapper
+      });
+      this.appendChildren({ imageWrapper, textWrapper });
+      resolve(true);
+    });
+  };
+  init = (payload) => {
+    this.assemble(payload);
+  };
+}
+
+const style$7 = '';
+
+class Button extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `button${className?.length ? ` ${className}` : ""}`,
+      tagName: "button",
+      ...rest
+    });
+  }
+}
+
+const style$6 = '';
+
+class Container extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `container${className?.length ? ` ${className}` : ""}`,
+      ...rest
+    });
+  }
+}
+
+const style$5 = '';
+
+class Drawer extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `drawer${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const btClose = new Button({
+        className: "drawer__bt-close",
+        innerHTML: "x",
+        ...payload.btClose
+      });
+      const header = new Component({
+        children: { btClose },
+        className: "drawer__header",
+        ...payload.header
+      });
+      const body = new Component({
+        className: "drawer__body",
+        ...payload.body
+      });
+      const footer = new Component({
+        className: "drawer__footer",
+        ...payload.footer
+      });
+      const content = new Component({
+        children: { header, body, footer },
+        className: "drawer__content",
+        ...payload.content
+      });
+      const overlay = new Component({
+        className: "drawer__overlay",
+        ...payload.overlay
+      });
+      this.appendChildren({ overlay, content });
+      resolve(true);
+    });
+  };
+  close = async () => {
+    const { content, overlay } = this.children;
+    await Promise.allSettled([
+      content.fadeOut({ transform: "translateX(-100%)" }),
+      overlay.fadeOut({ opacity: "0" })
+    ]);
+    this.hide();
+  };
+  init = async (payload) => {
+    await this.assemble(payload);
+    const { content, overlay } = this.children;
+    for (const component of [content.children.header.children.btClose, overlay]) {
+      component.bindEvents({ click: this.close });
+    }
+  };
+  open = async () => {
+    this.show();
+    const { content, overlay } = this.children;
+    await Promise.allSettled([
+      content.fadeIn({ transform: "translateX(0)" }),
+      overlay.fadeIn({ opacity: "1" })
+    ]);
+  };
+}
+
+const style$4 = '';
+
+class Header extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `header${className?.length ? ` ${className}` : ""}`,
+      tagName: "header",
+      ...rest
+    });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const container = new Container({
+        className: "header__container",
+        ...payload.container
+      });
+      if (payload.leftContent) {
+        container.appendChildren({
+          leftContent: new Component({
+            className: "header__left-content",
+            ...payload.leftContent
+          })
+        });
+      }
+      if (payload.centerContent) {
+        container.appendChildren({
+          centerContent: new Component({
+            className: "header__center-content",
+            ...payload.centerContent
+          })
+        });
+      }
+      if (payload.rightContent) {
+        container.appendChildren({
+          rightContent: new Component({
+            className: "header__right-content",
+            ...payload.rightContent
+          })
+        });
+      }
+      this.appendChildren({ container });
+      resolve(true);
+    });
+  };
+  init = (payload) => {
+    this.assemble(payload);
+  };
+}
+
+const style$3 = '';
+
+class Modal extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `modal${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const btClose = new Button({
+        className: "modal__bt-close",
+        innerHTML: "x",
+        ...payload.btClose
+      });
+      const header = new Component({
+        children: { btClose },
+        className: "modal__header",
+        ...payload.header
+      });
+      const body = new Component({
+        className: "modal__body",
+        ...payload.body
+      });
+      const footer = new Component({
+        className: "modal__footer",
+        ...payload.footer
+      });
+      const content = new Component({
+        children: { header, body, footer },
+        className: "modal__content",
+        ...payload.content
+      });
+      const overlay = new Component({
+        className: "modal__overlay",
+        ...payload.overlay
+      });
+      this.appendChildren({ overlay, content });
+      resolve(true);
+    });
+  };
+  close = async () => {
+    const { content, overlay } = this.children;
+    await Promise.allSettled([
+      content.fadeOut({ opacity: "0" }),
+      overlay.fadeOut({ opacity: "0" })
+    ]);
+    this.hide();
+  };
+  init = async (payload) => {
+    await this.assemble(payload);
+    const { content, overlay } = this.children;
+    for (const component of [content.children.header.children.btClose, overlay]) {
+      component.bindEvents({ click: this.close });
+    }
+  };
+  open = async () => {
+    this.show();
+    const { content, overlay } = this.children;
+    await Promise.allSettled([
+      content.fadeIn({ opacity: "1" }),
+      overlay.fadeIn({ opacity: "1" })
+    ]);
+  };
+}
+
+const style$2 = '';
+
+class Tab extends Button {
+  isActive = false;
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `tab${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const activityIndicator = new Component({
+        className: "tab__activity-indicator",
+        ...payload.activityIndicator
+      });
+      this.appendChildren({ activityIndicator });
+      resolve(true);
+    });
+  };
+  init = async (payload) => {
+    await this.assemble(payload);
+  };
+  setActive = (isActive) => {
+    this.isActive = isActive;
+    this.children.activityIndicator.setStyle({ width: isActive ? "100%" : "0" });
+  };
+}
+
+const style$1 = '';
+
+class TabPanel extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `tab-panel${className?.length ? ` ${className}` : ""}`,
+      ...rest
+    });
+  }
+}
+
+const style = '';
+
+class Tabs extends Component {
+  activeTabIndex = 0;
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `tabs${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const tabList = new Component({
+        className: "tabs__tab-list",
+        ...payload.tabList
+      });
+      const tabPanels = new Component({
+        className: "tabs__tab-panels",
+        ...payload.tabPanels
+      });
+      this.appendChildren({ tabList, tabPanels });
+      resolve(true);
+    });
+  };
+  init = async (payload) => {
+    const { activeTabIndex, tabList } = payload;
+    await this.assemble(payload);
+    this.setActiveTabIndex(activeTabIndex || 0);
+    if (tabList?.children) {
+      Object.values(tabList.children).forEach((component, index) => {
+        component.bindEvents({ click: () => this.setActiveTabIndex(index) });
+      });
+    }
+  };
+  setActiveTabIndex = (activeTabIndex) => {
+    const { tabList, tabPanels } = this.children;
+    const tabs = Object.values(tabList.children);
+    const panels = Object.values(tabPanels.children);
+    for (const tab of tabs)
+      tab.setActive(false);
+    for (const panel of panels)
+      panel.hide();
+    const currentTab = tabs[activeTabIndex];
+    const currentPanel = panels[activeTabIndex];
+    if (currentTab)
+      currentTab.setActive(true);
+    if (currentPanel)
+      currentPanel.show();
+  };
+}
+
+export { Avatar, Button, Component, Container, Drawer, Header, Modal, Tab, TabPanel, Tabs };
+//# sourceMappingURL=index.js.map
