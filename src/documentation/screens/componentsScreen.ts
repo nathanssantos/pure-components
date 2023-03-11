@@ -3,6 +3,7 @@ import Hero from '../components/hero';
 import ButtonSection from '../sections/buttonSection';
 import ComponentSection from '../sections/componentSection';
 import TabsSection from '../sections/tabsSection';
+import ToastSection from '../sections/toastSection';
 
 class ComponentsScreen extends Component {
   constructor() {
@@ -23,6 +24,7 @@ class ComponentsScreen extends Component {
             componentSection: new ComponentSection(),
             buttonSection: new ButtonSection(),
             tabsSection: new TabsSection(),
+            toastSection: new ToastSection(),
           },
         }),
       },
