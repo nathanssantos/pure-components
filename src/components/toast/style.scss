@@ -1,0 +1,122 @@
+.toast {
+  position: fixed;
+  width: 300px;
+  z-index: 999;
+  left: 20px;
+  bottom: 20px;
+  transform: translate(0px, calc(100% + 200px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.25, 1.35);
+
+  &__title {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    position: relative;
+  }
+
+  &__default {
+    background-color: var(--pc-primary);
+    color: rgba(var(--pc-primary), 0.5)
+  }
+
+  &__success {
+    background-color: var(--pc-success);
+    color: rgba(var(--pc-success), 0.5)
+  }
+
+  &__error {
+    background-color: var(--pc-error);
+    color: rgba(var(--pc-error), 0.5)
+  }
+
+  &__warning {
+    background-color: var(--pc-warning);
+    color: rgba(var(--pc-warning), 0.5)
+  }
+
+  &__info {
+    background-color: var(--pc-info);
+    color: rgba(var(--pc-info), 0.5)
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__bt-close {
+    width: fit-content;
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    &:hover {
+      padding: 1px;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__open {
+    transform: translate(0, 0) !important;
+
+    &.toast__top-center {
+      transform: translate(-50%, 0) !important;
+    }
+
+    &.toast__bottom-center {
+      transform: translate(-50%, 0) !important;
+    }
+  }
+
+  &__top-left {
+    top: 20px;
+    left: 20px;
+    bottom: inherit;
+    transform: translate(calc(0% - 400px), 0);
+  }
+
+  &__top-center {
+    top: 20px;
+    left: 50%;
+    bottom: inherit;
+    transform: translate(-50%, calc(0% - 300px));
+  }
+
+  &__top-right {
+    top: 20px;
+    left: calc(100% - 320px);
+    bottom: inherit;
+    transform: translate(calc(100% + 300px), 0);
+  }
+
+  &__bottom-left {
+    bottom: 20px;
+    left: 20px;
+    transform: translate(calc(0% - 400px), 0);
+
+  }
+
+  &__bottom-center {
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, calc(100% + 300px));
+
+  }
+
+  &__bottom-right {
+    bottom: 20px;
+    left: calc(100% - 320px);
+    transform: translate(calc(100% + 300px), 0);
+  }
+}
