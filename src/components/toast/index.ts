@@ -20,7 +20,6 @@ class Toast extends Component {
   private init = async (payload: Partial<ToastConstructorProps>) => {
     const { duration = 30000 } = payload;
 
-    // Assemble unites
     await this.assemble(payload);
 
     this.show();
