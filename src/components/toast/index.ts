@@ -13,6 +13,10 @@ class Toast extends Component {
     this.init(props);
   }
 
+  public static trigger(payload: Partial<ToastConstructorProps>) {
+    return new Toast(payload);
+  }
+
   private init = async (payload: Partial<ToastConstructorProps>) => {
     const { duration = 30000 } = payload;
 
@@ -75,10 +79,4 @@ class Toast extends Component {
   };
 }
 
-const toast = (payload: Partial<ToastConstructorProps>) => {
-  return new Toast(payload);
-};
-
 export default Toast;
-
-export { toast };

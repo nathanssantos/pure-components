@@ -2,7 +2,7 @@ import { Button, Component, Container, Tab, TabPanel, Tabs } from '../..';
 import CodeExample from '../components/codeExample';
 import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
-import { toast } from '../../components/toast';
+import Toast from '../../components/toast';
 
 const componentExample = new Component({
   style: {
@@ -15,7 +15,7 @@ const componentExample = new Component({
       innerHTML: 'Toast top left',
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'top-left',
             title: {
               innerHTML: 'Toast',
@@ -30,7 +30,7 @@ const componentExample = new Component({
       innerHTML: 'Toast top center',
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'top-center',
             title: {
               innerHTML: 'Toast',
@@ -45,7 +45,7 @@ const componentExample = new Component({
       innerHTML: 'Toast top right',
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'top-right',
             title: {
               innerHTML: 'Toast',
@@ -60,7 +60,7 @@ const componentExample = new Component({
       innerHTML: 'Toast bottom left',
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-left',
             title: {
               innerHTML: 'Toast',
@@ -75,7 +75,7 @@ const componentExample = new Component({
       innerHTML: 'Toast bottom center',
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-center',
             title: {
               innerHTML: 'Toast',
@@ -90,7 +90,7 @@ const componentExample = new Component({
       innerHTML: 'Toast bottom right',
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-right',
             title: {
               innerHTML: 'Toast',
@@ -108,7 +108,7 @@ const componentExample = new Component({
       },
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-left',
             variant: 'success',
             title: {
@@ -127,7 +127,7 @@ const componentExample = new Component({
       },
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-left',
             variant: 'error',
             title: {
@@ -146,7 +146,7 @@ const componentExample = new Component({
       },
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-left',
             variant: 'warning',
             title: {
@@ -165,7 +165,7 @@ const componentExample = new Component({
       },
       events: {
         click: () =>
-          toast({
+          Toast.trigger({
             position: 'bottom-left',
             variant: 'info',
             title: {
@@ -181,14 +181,24 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Button } from '@nathanssantos/pure-components';
-
-new Button({
-  innerHTML: 'Click me',
-  events: {
-    click: () => alert('Button clicked!'),
-  },
-})`,
+  innerHTML: `
+    import { Button, Toast } from '@nathanssantos/pure-components';
+    
+    new Button({
+      innerHTML: 'Toast top right',
+      events: {
+        click: () =>
+          Toast.trigger({
+            position: 'top-right',
+            title: {
+              innerHTML: 'Toast',
+            },
+            description: {
+              innerHTML: 'Toast top right position and animation',
+            },
+          }),
+      },
+    })`,
 });
 
 class ToastSection extends Component {
