@@ -38,6 +38,7 @@ new Component({
     fontWeight: 'bold',
     borderRadius: '0.25rem',
     textAlign: 'center',
+    cursor: 'pointer',
   },
   events: {
     click: ({ setStyle, target }) => {
