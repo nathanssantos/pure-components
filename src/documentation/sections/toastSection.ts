@@ -1,8 +1,17 @@
 import { Button, Component, Container, Tab, TabPanel, Tabs } from '../..';
+import Toast from '../../components/toast';
 import CodeExample from '../components/codeExample';
 import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
-import Toast from '../../components/toast';
+
+const controlledToast = new Toast({
+  title: {
+    innerHTML: 'Toast',
+  },
+  description: {
+    innerHTML: 'Controlled toast',
+  },
+});
 
 const componentExample = new Component({
   style: {
@@ -11,194 +20,267 @@ const componentExample = new Component({
     gap: '1rem',
   },
   children: {
-    toastTopLeft: new Button({
-      innerHTML: 'Toast top left',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'top-left',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast top left position and animation',
-            },
-          }),
-      },
-    }),
-    toastTopCenter: new Button({
-      innerHTML: 'Toast top center',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'top-center',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast top center position and animation',
-            },
-          }),
-      },
-    }),
-    toastTopRight: new Button({
-      innerHTML: 'Toast top right',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'top-right',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast top right position and animation',
-            },
-          }),
-      },
-    }),
-    toastBottomLeft: new Button({
-      innerHTML: 'Toast bottom left',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-left',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast bottom left position and animation',
-            },
-          }),
-      },
-    }),
-    toastBottomCenter: new Button({
-      innerHTML: 'Toast bottom center',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-center',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast bottom center position and animation',
-            },
-          }),
-      },
-    }),
-    toastBottomRight: new Button({
-      innerHTML: 'Toast bottom right',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-right',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast bottom right position and animation',
-            },
-          }),
-      },
-    }),
-    toastVariantSuccess: new Button({
-      innerHTML: 'Toast Success',
+    positioning: new Component({
       style: {
-        backgroundColor: 'green',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 'calc(var(--pc-spacing) * 2)',
       },
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-left',
-            variant: 'success',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast Success',
-            },
-          }),
+      children: {
+        title: new Component({
+          innerHTML: 'Positioning',
+          style: { width: '100%' },
+        }),
+        toastTopLeft: new Button({
+          innerHTML: 'top-left',
+          events: {
+            click: () =>
+              Toast.trigger({
+                position: 'top-left',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Toast top left position and animation.',
+                },
+              }),
+          },
+        }),
+        toastTopCenter: new Button({
+          innerHTML: 'top-center',
+          events: {
+            click: () =>
+              Toast.trigger({
+                position: 'top-center',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Toast top center position and animation.',
+                },
+              }),
+          },
+        }),
+        toastTopRight: new Button({
+          innerHTML: 'top-right',
+          events: {
+            click: () =>
+              Toast.trigger({
+                position: 'top-right',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Toast top right position and animation.',
+                },
+              }),
+          },
+        }),
+        toastBottomLeft: new Button({
+          innerHTML: 'bottom-left',
+          events: {
+            click: () =>
+              Toast.trigger({
+                position: 'bottom-left',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Toast bottom left position and animation.',
+                },
+              }),
+          },
+        }),
+        toastBottomCenter: new Button({
+          innerHTML: 'bottom-center',
+          events: {
+            click: () =>
+              Toast.trigger({
+                position: 'bottom-center',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Toast bottom center position and animation.',
+                },
+              }),
+          },
+        }),
+        toastBottomRight: new Button({
+          innerHTML: 'bottom-right',
+          events: {
+            click: () =>
+              Toast.trigger({
+                position: 'bottom-right',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Toast bottom right position and animation.',
+                },
+              }),
+          },
+        }),
       },
     }),
-    toastVariantError: new Button({
-      innerHTML: 'Toast Error',
+    variants: new Component({
       style: {
-        backgroundColor: 'red',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 'calc(var(--pc-spacing) * 2)',
       },
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-left',
-            variant: 'error',
-            title: {
-              innerHTML: 'Toast',
+      children: {
+        title: new Component({
+          innerHTML: 'Variants',
+          style: { width: '100%' },
+        }),
+        toastVariantInfo: new Button({
+          innerHTML: 'Toast Info',
+          style: {
+            backgroundColor: 'var(--pc-info)',
+          },
+          events: {
+            click: () => {
+              Toast.trigger({
+                variant: 'info',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Info',
+                },
+              });
             },
-            description: {
-              innerHTML: 'Toast Error',
-            },
-          }),
+          },
+        }),
+        toastVariantSuccess: new Button({
+          innerHTML: 'Toast Success',
+          style: {
+            backgroundColor: 'var(--pc-success)',
+          },
+          events: {
+            click: () =>
+              Toast.trigger({
+                variant: 'success',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Success',
+                },
+              }),
+          },
+        }),
+        toastVariantWarning: new Button({
+          innerHTML: 'Toast Warning',
+          style: {
+            backgroundColor: 'var(--pc-warning)',
+          },
+          events: {
+            click: () =>
+              Toast.trigger({
+                variant: 'warning',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Warning',
+                },
+              }),
+          },
+        }),
+        toastVariantError: new Button({
+          innerHTML: 'Error',
+          style: {
+            backgroundColor: 'var(--pc-error)',
+          },
+          events: {
+            click: () =>
+              Toast.trigger({
+                variant: 'error',
+                title: {
+                  innerHTML: 'Toast',
+                },
+                description: {
+                  innerHTML: 'Error',
+                },
+              }),
+          },
+        }),
       },
     }),
-    toastVariantWarning: new Button({
-      innerHTML: 'Toast Warning',
+    controled: new Component({
       style: {
-        backgroundColor: 'yellow',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 'calc(var(--pc-spacing) * 2)',
       },
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-left',
-            variant: 'warning',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast Warning',
-            },
-          }),
-      },
-    }),
-    toastVariantInfo: new Button({
-      innerHTML: 'Toast Info',
-      style: {
-        backgroundColor: 'purple',
-      },
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'bottom-left',
-            variant: 'info',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast Info',
-            },
-          }),
+      children: {
+        title: new Component({
+          innerHTML: 'Controled',
+          style: { width: '100%' },
+        }),
+        controlletToastShow: new Button({
+          innerHTML: 'Show controlled toast',
+          events: {
+            click: controlledToast.show,
+          },
+        }),
+        controlletToastDismiss: new Button({
+          innerHTML: 'Dismiss controlled toast',
+          events: {
+            click: controlledToast.dismiss,
+          },
+        }),
       },
     }),
   },
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `
-    import { Button, Toast } from '@nathanssantos/pure-components';
-    
-    new Button({
-      innerHTML: 'Toast top right',
-      events: {
-        click: () =>
-          Toast.trigger({
-            position: 'top-right',
-            title: {
-              innerHTML: 'Toast',
-            },
-            description: {
-              innerHTML: 'Toast top right position and animation',
-            },
-          }),
-      },
-    })`,
+  innerHTML: `import { Button, Toast } from '@nathanssantos/pure-components';
+
+new Button({
+  innerHTML: 'Toast top right',
+  events: {
+    click: () => {
+      Toast.trigger({
+        position: 'top-right',
+        variant: 'success',
+        title: {
+          innerHTML: 'Toast',
+        },
+        description: {
+          innerHTML: 'Toast top right position and animation.',
+        },
+      }),
+    }
+  },
+})
+
+const controlledToast = new Toast({
+  title: {
+    innerHTML: 'Toast',
+  },
+  description: {
+    innerHTML: 'Toast top left position and controlled animation.',
+  },
+})
+
+new Button({
+  innerHTML: 'Show controlled toast',
+  events: {
+    click: controlledToast.show,
+  },
+})
+
+new Button({
+  innerHTML: 'Dismiss controlled toast',
+  events: {
+    click: controlledToast.dismiss,
+  },
+})
+`,
 });
 
 class ToastSection extends Component {
@@ -209,7 +291,7 @@ class ToastSection extends Component {
           children: {
             title: new SectionTitle({ innerHTML: 'Toast' }),
             description: new SectionDescription({
-              innerHTML: 'A super toast',
+              innerHTML: 'A super toast.',
             }),
             tabs: new Tabs({
               tabList: {

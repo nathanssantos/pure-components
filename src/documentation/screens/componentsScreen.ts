@@ -8,6 +8,9 @@ import ToastSection from '../sections/toastSection';
 class ComponentsScreen extends Component {
   constructor() {
     super({
+      style: {
+        paddingBottom: '6rem',
+      },
       children: {
         hero: new Hero({
           title: 'Components',

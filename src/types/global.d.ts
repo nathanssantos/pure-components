@@ -98,5 +98,5 @@ interface ToastConstructorProps extends ComponentConstructorProps {
     | 'bottom-right'
     | 'bottom-left'
     | 'bottom-center';
-  duration: numeric;
+  duration: number;
 }
