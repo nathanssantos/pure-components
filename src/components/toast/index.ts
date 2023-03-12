@@ -1,40 +1,30 @@
+import Button from '../button';
 import Component from '../component';
 import './style.scss';
-import Button from '../button';
 
 class Toast extends Component {
   constructor(props: Partial<ToastConstructorProps> = {}) {
-    const { className, position = 'bottom-left', ...rest } = props;
+    const { className, position = 'bottom-right', variant = 'default', ...rest } = props;
+
+    const getClassName = () => {
+      let newClassName = 'toast';
+
+      newClassName += ` toast--${position}`;
+      newClassName += ` toast--${variant}`;
+
+      if (className) newClassName += ` ${className}`;
+
+      return newClassName;
+    };
 
     super({
-      className: `toast__${position} toast${className?.length ? ` ${className} ` : ''}`,
+      className: getClassName(),
       ...rest,
     });
-    this.init(props);
+
+    this.assemble(rest);
   }
 
-  public static trigger(payload: Partial<ToastConstructorProps>) {
-    return new Toast(payload);
-  }
-
-  private init = async (payload: Partial<ToastConstructorProps>) => {
-    const { duration = 30000 } = payload;
-
-    await this.assemble(payload);
-
-    this.show();
-    await setTimeout(() => this.dismiss(), duration);
-  };
-
-  public show = () => {
-    const lastToast = document.querySelector('.toast');
-    if (lastToast) {
-      lastToast.remove();
-    }
-    this.appendTo(document.querySelector('body')!);
-
-    setTimeout(() => this.target.classList.add('toast__open'), 300);
-  };
   private assemble = (payload: Partial<ToastConstructorProps>) => {
     return new Promise((resolve) => {
       const title = new Component({
@@ -42,40 +32,72 @@ class Toast extends Component {
         tagName: 'span',
         ...payload.title,
       });
-
       const closeButton = new Button({
         className: 'toast__bt-close',
         innerHTML: 'x',
         events: {
-          click: () => this.dismiss(),
+          click: this.dismiss,
         },
       });
-
       const header = new Component({
         className: 'toast__header',
         children: { title, closeButton },
       });
-
       const description = new Component({
         className: 'toast__description',
-        tagName: 'p',
         ...payload.description,
       });
 
-      const toastContainer = new Component({
-        className: `toast__container toast__${payload.variant ?? 'default'}`,
-        children: { header, description },
-      });
+      this.appendChildren({ header, description });
 
-      this.appendChildren({ toastContainer });
       resolve(true);
     });
   };
 
-  private dismiss = () => {
-    this.target.classList.remove('toast__open');
-    setTimeout(() => this.destroy(), 300);
+  public dismiss = () => {
+    return new Promise((resolve) => {
+      this.target.classList.remove('toast--open');
+
+      setTimeout(() => {
+        this.target.remove();
+
+        resolve(true);
+      }, 500);
+    });
   };
+
+  public show = () => {
+    return new Promise((resolve) => {
+      const toasts = document.querySelectorAll('.toast');
+
+      if (toasts.length) for (const toast of toasts) toast.remove();
+
+      this.appendTo(document.querySelector('body')!);
+
+      setTimeout(() => {
+        this.target.classList.add('toast--open');
+      }, 0);
+
+      setTimeout(() => {
+        resolve(true);
+      }, 500);
+    });
+  };
+
+  static async trigger(payload: Partial<ToastConstructorProps>) {
+    const { duration = 3000 } = payload;
+
+    const toast = new Toast(payload);
+
+    await toast.show();
+
+    return await new Promise((resolve) => {
+      setTimeout(async () => {
+        await toast.dismiss();
+        resolve(true);
+      }, duration);
+    });
+  }
 }
 
 export default Toast;

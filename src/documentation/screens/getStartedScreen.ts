@@ -5,6 +5,9 @@ import InstallSection from '../sections/installSection';
 class GetStartedScreen extends Component {
   constructor() {
     super({
+      style: {
+        paddingBottom: '6rem',
+      },
       children: {
         hero: new Hero({ title: 'Get Started' }),
         installSection: new InstallSection(),
