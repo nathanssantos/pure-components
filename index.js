@@ -1,4 +1,46 @@
-const style$a = '';
+true&&(function polyfill() {
+    const relList = document.createElement('link').relList;
+    if (relList && relList.supports && relList.supports('modulepreload')) {
+        return;
+    }
+    for (const link of document.querySelectorAll('link[rel="modulepreload"]')) {
+        processPreload(link);
+    }
+    new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.type !== 'childList') {
+                continue;
+            }
+            for (const node of mutation.addedNodes) {
+                if (node.tagName === 'LINK' && node.rel === 'modulepreload')
+                    processPreload(node);
+            }
+        }
+    }).observe(document, { childList: true, subtree: true });
+    function getFetchOpts(link) {
+        const fetchOpts = {};
+        if (link.integrity)
+            fetchOpts.integrity = link.integrity;
+        if (link.referrerPolicy)
+            fetchOpts.referrerPolicy = link.referrerPolicy;
+        if (link.crossOrigin === 'use-credentials')
+            fetchOpts.credentials = 'include';
+        else if (link.crossOrigin === 'anonymous')
+            fetchOpts.credentials = 'omit';
+        else
+            fetchOpts.credentials = 'same-origin';
+        return fetchOpts;
+    }
+    function processPreload(link) {
+        if (link.ep)
+            // ep marker = processed
+            return;
+        link.ep = true;
+        // prepopulate the load record
+        const fetchOpts = getFetchOpts(link);
+        fetch(link.href, fetchOpts);
+    }
+}());
 
 class Constants {
   static breakpoints = {
@@ -155,49 +197,11 @@ class Component {
   };
 }
 
+const style$b = '';
+
+const style$a = '';
+
 const style$9 = '';
-
-class Avatar extends Component {
-  constructor(props = {}) {
-    const { className, ...rest } = props;
-    super({ className: `avatar${className?.length ? ` ${className}` : ""}`, ...rest });
-    this.init(props);
-  }
-  assemble = (payload) => {
-    return new Promise((resolve) => {
-      const image = new Component({
-        className: "avatar__image",
-        tagName: "img",
-        ...payload.image
-      });
-      const imageWrapper = new Component({
-        children: { image },
-        className: "avatar__image-wrapper",
-        ...payload.imageWrapper
-      });
-      const name = new Component({
-        className: "avatar__name",
-        ...payload.name
-      });
-      const description = new Component({
-        className: "avatar__description",
-        ...payload.description
-      });
-      const textWrapper = new Component({
-        children: { name, description },
-        className: "avatar__text-wrapper",
-        ...payload.textWrapper
-      });
-      this.appendChildren({ imageWrapper, textWrapper });
-      resolve(true);
-    });
-  };
-  init = (payload) => {
-    this.assemble(payload);
-  };
-}
-
-const style$8 = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -210,7 +214,7 @@ class Button extends Component {
   }
 }
 
-const style$7 = '';
+const style$8 = '';
 
 class Container extends Component {
   constructor(props = {}) {
@@ -222,7 +226,7 @@ class Container extends Component {
   }
 }
 
-const style$6 = '';
+const style$7 = '';
 
 class Drawer extends Component {
   constructor(props = {}) {
@@ -288,7 +292,7 @@ class Drawer extends Component {
   };
 }
 
-const style$5 = '';
+const style$6 = '';
 
 class Header extends Component {
   constructor(props = {}) {
@@ -339,73 +343,9 @@ class Header extends Component {
   };
 }
 
+const style$5 = '';
+
 const style$4 = '';
-
-class Modal extends Component {
-  constructor(props = {}) {
-    const { className, ...rest } = props;
-    super({ className: `modal${className?.length ? ` ${className}` : ""}`, ...rest });
-    this.init(props);
-  }
-  assemble = (payload) => {
-    return new Promise((resolve) => {
-      const btClose = new Button({
-        className: "modal__bt-close",
-        innerHTML: "x",
-        ...payload.btClose
-      });
-      const header = new Component({
-        children: { btClose },
-        className: "modal__header",
-        ...payload.header
-      });
-      const body = new Component({
-        className: "modal__body",
-        ...payload.body
-      });
-      const footer = new Component({
-        className: "modal__footer",
-        ...payload.footer
-      });
-      const content = new Component({
-        children: { header, body, footer },
-        className: "modal__content",
-        ...payload.content
-      });
-      const overlay = new Component({
-        className: "modal__overlay",
-        ...payload.overlay
-      });
-      this.appendChildren({ overlay, content });
-      resolve(true);
-    });
-  };
-  close = async () => {
-    const { content, overlay } = this.children;
-    await Promise.allSettled([
-      content.fadeOut({ opacity: "0" }),
-      overlay.fadeOut({ opacity: "0" })
-    ]);
-    this.hide();
-  };
-  init = async (payload) => {
-    await this.assemble(payload);
-    const { content, overlay } = this.children;
-    for (const component of [content.children.header.children.btClose, overlay]) {
-      component.bindEvents({ click: this.close });
-    }
-  };
-  open = async () => {
-    this.show();
-    const { content, overlay } = this.children;
-    await Promise.allSettled([
-      content.fadeIn({ opacity: "1" }),
-      overlay.fadeIn({ opacity: "1" })
-    ]);
-  };
-}
-
-const style$3 = '';
 
 class Tab extends Button {
   isActive = false;
@@ -433,7 +373,7 @@ class Tab extends Button {
   };
 }
 
-const style$2 = '';
+const style$3 = '';
 
 class TabPanel extends Component {
   constructor(props = {}) {
@@ -445,7 +385,7 @@ class TabPanel extends Component {
   }
 }
 
-const style$1 = '';
+const style$2 = '';
 
 class Tabs extends Component {
   activeTabIndex = 0;
@@ -495,7 +435,7 @@ class Tabs extends Component {
   };
 }
 
-const style = '';
+const style$1 = '';
 
 class Toast extends Component {
   constructor(props = {}) {
@@ -577,5 +517,901 @@ class Toast extends Component {
   }
 }
 
-export { Avatar, Button, Component, Container, Drawer, Header, Modal, Tab, TabPanel, Tabs, Toast };
+class SectionDescription extends Component {
+  constructor(props) {
+    super({
+      style: {
+        marginBottom: "1rem",
+        base: {
+          fontSize: "0.875rem"
+        },
+        md: {
+          fontSize: "1rem"
+        }
+      },
+      ...props
+    });
+  }
+}
+
+class Hero extends Component {
+  constructor(props) {
+    super({
+      children: {
+        container: new Container({
+          style: {
+            gap: "1rem",
+            paddingTop: "8rem",
+            paddingBottom: "8rem"
+          },
+          children: {
+            title: new Component({
+              innerHTML: props.title,
+              style: {
+                fontWeight: "bold",
+                base: {
+                  fontSize: "1.85rem"
+                },
+                md: {
+                  fontSize: "2.5rem"
+                }
+              }
+            }),
+            description: new SectionDescription({
+              innerHTML: props.description
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class CodeExample extends Component {
+  constructor(props = {}) {
+    super({
+      tagName: "pre",
+      ...props,
+      style: {
+        whiteSpace: "break-spaces",
+        backgroundColor: "#3f3f3f",
+        padding: "1rem",
+        borderRadius: "0.25rem",
+        margin: "0",
+        base: {
+          fontSize: "0.875rem"
+        },
+        md: {
+          fontSize: "1rem"
+        },
+        ...props.style
+      }
+    });
+  }
+}
+
+class SectionTitle extends Component {
+  constructor(props) {
+    super({
+      style: {
+        marginBottom: "1rem",
+        fontWeight: "bold",
+        base: {
+          fontSize: "1.5rem"
+        },
+        md: {
+          fontSize: "1.75rem"
+        }
+      },
+      ...props
+    });
+  }
+}
+
+const componentExample$3 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    button: new Button({
+      innerHTML: "Click me",
+      events: {
+        click: () => alert("Button clicked!")
+      }
+    })
+  }
+});
+const codeExample$3 = new CodeExample({
+  innerHTML: `import { Button } from '@nathanssantos/pure-components';
+
+new Button({
+  innerHTML: 'Click me',
+  events: {
+    click: () => alert('Button clicked!'),
+  },
+})`
+});
+class ButtonSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Button" }),
+            description: new SectionDescription({
+              innerHTML: "A simple button."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$3,
+                      codeExample: codeExample$3
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$2 = new Component({
+  innerHTML: "I'm a generic component.",
+  style: {
+    backgroundColor: "lightgreen",
+    padding: "1.5rem",
+    color: "#222",
+    fontWeight: "bold",
+    borderRadius: "0.25rem",
+    textAlign: "center"
+  },
+  events: {
+    click: ({ setStyle, target }) => {
+      target.innerHTML = "I can do anything.";
+      setStyle({ backgroundColor: "lightblue" });
+    },
+    mouseleave: ({ setStyle, target }) => {
+      target.innerHTML = "I'm a generic component.";
+      setStyle({ backgroundColor: "lightgreen" });
+    }
+  }
+});
+const codeExample$2 = new CodeExample({
+  innerHTML: `import { Component } from '@nathanssantos/pure-components';
+
+new Component({
+  innerHTML: "I'm a generic component.",
+  style: {
+    backgroundColor: 'lightgreen',
+    padding: '1.5rem',
+    color: '#222',
+    fontWeight: 'bold',
+    borderRadius: '0.25rem',
+    textAlign: 'center',
+  },
+  events: {
+    click: ({ setStyle, target }) => {
+      target.innerHTML = 'I can do anything.';
+      setStyle({ backgroundColor: 'lightblue' });
+    },
+    mouseleave: ({ setStyle, target }) => {
+      target.innerHTML = "I'm a generic component.";
+      setStyle({ backgroundColor: 'lightgreen' });
+    },
+  },
+});`
+});
+class ComponentSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Component" }),
+            description: new SectionDescription({
+              innerHTML: "A generic component that can be anything."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$2,
+                      codeExample: codeExample$2
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$1 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    tabs: new Tabs({
+      tabList: {
+        children: {
+          tab1: new Tab({
+            innerHTML: "Tab 1"
+          }),
+          tab2: new Tab({
+            innerHTML: "Tab 2"
+          }),
+          tab3: new Tab({
+            innerHTML: "Tab 3"
+          })
+        }
+      },
+      tabPanels: {
+        children: {
+          panel1: new TabPanel({
+            innerHTML: "TabPanel 1"
+          }),
+          panel2: new TabPanel({
+            innerHTML: "TabPanel 2"
+          }),
+          panel3: new TabPanel({
+            innerHTML: "TabPanel 3"
+          })
+        }
+      }
+    })
+  }
+});
+const codeExample$1 = new CodeExample({
+  innerHTML: `import { Tab, TabPanel, Tabs } from '@nathanssantos/pure-components';
+
+new Tabs({
+  tabList: {
+    children: {
+      tab1: new Tab({
+        innerHTML: 'Tab 1',
+      }),
+      tab2: new Tab({
+        innerHTML: 'Tab 2',
+      }),
+      tab3: new Tab({
+        innerHTML: 'Tab 3',
+      }),
+    },
+  },
+  tabPanels: {
+    children: {
+      panel1: new TabPanel({
+        innerHTML: 'TabPanel 1',
+      }),
+      panel2: new TabPanel({
+        innerHTML: 'TabPanel 2',
+      }),
+      panel3: new TabPanel({
+        innerHTML: 'TabPanel 3',
+      }),
+    },
+  },
+})`
+});
+class TabsSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Tabs" }),
+            description: new SectionDescription({
+              innerHTML: "A simple tabs component."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$1,
+                      codeExample: codeExample$1
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const controlledToast = new Toast({
+  title: {
+    innerHTML: "Toast"
+  },
+  description: {
+    innerHTML: "Controlled toast"
+  }
+});
+const componentExample = new Component({
+  style: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "1rem"
+  },
+  children: {
+    positioning: new Component({
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "calc(var(--pc-spacing) * 2)"
+      },
+      children: {
+        title: new Component({
+          innerHTML: "Positioning",
+          style: { width: "100%" }
+        }),
+        toastTopLeft: new Button({
+          innerHTML: "top-left",
+          events: {
+            click: () => Toast.trigger({
+              position: "top-left",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast top left position and animation."
+              }
+            })
+          }
+        }),
+        toastTopCenter: new Button({
+          innerHTML: "top-center",
+          events: {
+            click: () => Toast.trigger({
+              position: "top-center",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast top center position and animation."
+              }
+            })
+          }
+        }),
+        toastTopRight: new Button({
+          innerHTML: "top-right",
+          events: {
+            click: () => Toast.trigger({
+              position: "top-right",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast top right position and animation."
+              }
+            })
+          }
+        }),
+        toastBottomLeft: new Button({
+          innerHTML: "bottom-left",
+          events: {
+            click: () => Toast.trigger({
+              position: "bottom-left",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast bottom left position and animation."
+              }
+            })
+          }
+        }),
+        toastBottomCenter: new Button({
+          innerHTML: "bottom-center",
+          events: {
+            click: () => Toast.trigger({
+              position: "bottom-center",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast bottom center position and animation."
+              }
+            })
+          }
+        }),
+        toastBottomRight: new Button({
+          innerHTML: "bottom-right",
+          events: {
+            click: () => Toast.trigger({
+              position: "bottom-right",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast bottom right position and animation."
+              }
+            })
+          }
+        })
+      }
+    }),
+    variants: new Component({
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "calc(var(--pc-spacing) * 2)"
+      },
+      children: {
+        title: new Component({
+          innerHTML: "Variants",
+          style: { width: "100%" }
+        }),
+        toastVariantInfo: new Button({
+          innerHTML: "Toast Info",
+          style: {
+            backgroundColor: "var(--pc-info)"
+          },
+          events: {
+            click: () => {
+              Toast.trigger({
+                variant: "info",
+                title: {
+                  innerHTML: "Toast"
+                },
+                description: {
+                  innerHTML: "Info"
+                }
+              });
+            }
+          }
+        }),
+        toastVariantSuccess: new Button({
+          innerHTML: "Toast Success",
+          style: {
+            backgroundColor: "var(--pc-success)"
+          },
+          events: {
+            click: () => Toast.trigger({
+              variant: "success",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Success"
+              }
+            })
+          }
+        }),
+        toastVariantWarning: new Button({
+          innerHTML: "Toast Warning",
+          style: {
+            backgroundColor: "var(--pc-warning)"
+          },
+          events: {
+            click: () => Toast.trigger({
+              variant: "warning",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Warning"
+              }
+            })
+          }
+        }),
+        toastVariantError: new Button({
+          innerHTML: "Error",
+          style: {
+            backgroundColor: "var(--pc-error)"
+          },
+          events: {
+            click: () => Toast.trigger({
+              variant: "error",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Error"
+              }
+            })
+          }
+        })
+      }
+    }),
+    controled: new Component({
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "calc(var(--pc-spacing) * 2)"
+      },
+      children: {
+        title: new Component({
+          innerHTML: "Controled",
+          style: { width: "100%" }
+        }),
+        controlletToastShow: new Button({
+          innerHTML: "Show controlled toast",
+          events: {
+            click: controlledToast.show
+          }
+        }),
+        controlletToastDismiss: new Button({
+          innerHTML: "Dismiss controlled toast",
+          events: {
+            click: controlledToast.dismiss
+          }
+        })
+      }
+    })
+  }
+});
+const codeExample = new CodeExample({
+  innerHTML: `import { Button, Toast } from '@nathanssantos/pure-components';
+
+new Button({
+  innerHTML: 'Toast top right',
+  events: {
+    click: () => {
+      Toast.trigger({
+        position: 'top-right',
+        variant: 'success',
+        title: {
+          innerHTML: 'Toast',
+        },
+        description: {
+          innerHTML: 'Toast top right position and animation.',
+        },
+      }),
+    }
+  },
+})
+
+const controlledToast = new Toast({
+  title: {
+    innerHTML: 'Toast',
+  },
+  description: {
+    innerHTML: 'Toast top left position and controlled animation.',
+  },
+})
+
+new Button({
+  innerHTML: 'Show controlled toast',
+  events: {
+    click: controlledToast.show,
+  },
+})
+
+new Button({
+  innerHTML: 'Dismiss controlled toast',
+  events: {
+    click: controlledToast.dismiss,
+  },
+})
+`
+});
+class ToastSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Toast" }),
+            description: new SectionDescription({
+              innerHTML: "A super toast."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample,
+                      codeExample
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class ComponentsScreen extends Component {
+  constructor() {
+    super({
+      style: {
+        paddingBottom: "6rem"
+      },
+      children: {
+        hero: new Hero({
+          title: "Components",
+          description: "Pure Components provide prebuild components to help you build your projects faster.<br>Here is a list with examples:"
+        }),
+        components: new Component({
+          style: {
+            display: "flex",
+            flexDirection: "column",
+            gap: "4rem"
+          },
+          children: {
+            componentSection: new ComponentSection(),
+            buttonSection: new ButtonSection(),
+            tabsSection: new TabsSection(),
+            toastSection: new ToastSection()
+          }
+        })
+      }
+    });
+  }
+}
+
+class InstallSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Installation" }),
+            description: new SectionDescription({
+              innerHTML: "To use Pure Components in your project, run one of the following commands in your terminal:"
+            }),
+            codeExampleYarn: new CodeExample({
+              innerHTML: "yarn add @nathanssantos/pure-components",
+              style: {
+                marginBottom: "1rem"
+              }
+            }),
+            codeExampleNpm: new CodeExample({
+              innerHTML: "npm install @nathanssantos/pure-components",
+              style: {
+                marginBottom: "1rem"
+              }
+            }),
+            description2: new SectionDescription({
+              innerHTML: "Import the styles in you app entry point file:"
+            }),
+            styleImport: new CodeExample({
+              innerHTML: 'import "@nathanssantos/pure-components/style.css";',
+              style: {
+                marginBottom: "3rem"
+              }
+            }),
+            btComponents: new Button({
+              innerHTML: "Components",
+              style: {
+                alignSelf: "center"
+              },
+              events: {
+                click: () => {
+                  router.navigate("components");
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class GetStartedScreen extends Component {
+  constructor() {
+    super({
+      style: {
+        paddingBottom: "6rem"
+      },
+      children: {
+        hero: new Hero({ title: "Get Started" }),
+        installSection: new InstallSection()
+      }
+    });
+  }
+}
+
+class Layout extends Component {
+  constructor() {
+    const navigationButtons = {
+      getStartedScreenButton: new Button({
+        innerHTML: "Get Started",
+        events: {
+          click: () => {
+            router.navigate("getStarted");
+            drawer.close();
+          }
+        }
+      }),
+      componentsScreenButton: new Button({
+        innerHTML: "Components",
+        events: {
+          click: () => {
+            router.navigate("components");
+            drawer.close();
+          }
+        }
+      })
+    };
+    const drawer = new Drawer({
+      body: {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem"
+        },
+        children: {
+          ...navigationButtons
+        }
+      }
+    });
+    const header = new Header({
+      rightContent: {
+        children: {
+          btOpenDrawer: new Button({
+            style: {
+              padding: "0.375rem"
+            },
+            innerHTML: '<svg width="1.25rem" height="1.25rem" focusable="false" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>',
+            events: {
+              click: drawer.open
+            }
+          })
+        }
+      },
+      leftContent: {
+        children: {
+          logo: new Component({
+            innerHTML: "Pure Components",
+            style: {
+              cursor: "pointer",
+              fontSize: "1rem",
+              base: {
+                fontWeight: "bold"
+              },
+              md: {
+                fontSize: "1.25rem"
+              }
+            },
+            events: {
+              click: () => {
+                router.navigate("getStarted");
+              }
+            }
+          })
+        }
+      }
+    });
+    super({
+      className: "layout",
+      children: {
+        header,
+        drawer
+      }
+    });
+  }
+}
+
+class Router extends Component {
+  initialRoute = "getStarted";
+  routes = {
+    components: {
+      component: new ComponentsScreen(),
+      name: "Components"
+    },
+    getStarted: {
+      component: new GetStartedScreen(),
+      name: "Get Started"
+    }
+  };
+  constructor() {
+    super({
+      className: "router",
+      children: {
+        layout: new Layout()
+      }
+    });
+  }
+  navigate = (screenName = this.initialRoute) => {
+    for (const [name, child] of Object.entries(this.children.layout.children)) {
+      if (name !== "header" && name !== "drawer")
+        child.destroy();
+    }
+    this.children.layout.appendChildren({ [screenName]: this.routes[screenName].component });
+  };
+}
+const router = new Router();
+
+const style = '';
+
+class Documentation extends Component {
+  constructor() {
+    super({
+      className: "documentation",
+      children: {
+        router
+      }
+    });
+    this.appendTo(document.querySelector("#app"));
+    router.navigate();
+  }
+  static init = () => {
+    new Documentation();
+  };
+}
+Documentation.init();
 //# sourceMappingURL=index.js.map
