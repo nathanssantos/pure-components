@@ -70,7 +70,7 @@ new Tabs({
       }),
     },
   },
-})`,
+}).appendTo(document.body)`,
 });
 
 class TabsSection extends Component {

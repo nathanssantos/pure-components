@@ -48,7 +48,7 @@ new Component({
       setStyle({ backgroundColor: 'lightgreen' });
     },
   },
-});`,
+}).appendTo(document.body);`,
 });
 
 class ComponentSection extends Component {
