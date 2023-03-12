@@ -6,21 +6,22 @@ import SectionTitle from '../components/sectionTitle';
 const componentExample = new Component({
   innerHTML: "I'm a generic component.",
   style: {
-    backgroundColor: 'lightgreen',
+    backgroundColor: 'var(--pc-success)',
     padding: '1.5rem',
     color: '#222',
     fontWeight: 'bold',
     borderRadius: '0.25rem',
     textAlign: 'center',
+    cursor: 'pointer',
   },
   events: {
     click: ({ setStyle, target }) => {
       target.innerHTML = 'I can do anything.';
-      setStyle({ backgroundColor: 'lightblue' });
+      setStyle({ backgroundColor: 'var(--pc-info)' });
     },
     mouseleave: ({ setStyle, target }) => {
       target.innerHTML = "I'm a generic component.";
-      setStyle({ backgroundColor: 'lightgreen' });
+      setStyle({ backgroundColor: 'var(--pc-success)' });
     },
   },
 });
@@ -31,7 +32,7 @@ const codeExample = new CodeExample({
 new Component({
   innerHTML: "I'm a generic component.",
   style: {
-    backgroundColor: 'lightgreen',
+    backgroundColor: 'var(--pc-success)',
     padding: '1.5rem',
     color: '#222',
     fontWeight: 'bold',
@@ -41,11 +42,11 @@ new Component({
   events: {
     click: ({ setStyle, target }) => {
       target.innerHTML = 'I can do anything.';
-      setStyle({ backgroundColor: 'lightblue' });
+      setStyle({ backgroundColor: 'var(--pc-info)' });
     },
     mouseleave: ({ setStyle, target }) => {
       target.innerHTML = "I'm a generic component.";
-      setStyle({ backgroundColor: 'lightgreen' });
+      setStyle({ backgroundColor: 'var(--pc-success)' });
     },
   },
 }).appendTo(document.body);`,

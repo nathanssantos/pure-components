@@ -1,5 +1,5 @@
-import { Component, Container } from '../..';
 import SectionDescription from './sectionDescription';
+import { Component, Container } from '../..';
 
 type HeroProps = {
   title: string;
@@ -13,8 +13,8 @@ class Hero extends Component {
         container: new Container({
           style: {
             gap: '1rem',
-            paddingTop: '8rem',
-            paddingBottom: '8rem',
+            paddingTop: '5rem',
+            paddingBottom: '5rem',
           },
           children: {
             title: new Component({
