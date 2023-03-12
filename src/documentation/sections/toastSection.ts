@@ -28,7 +28,7 @@ const componentExample = new Component({
       },
       children: {
         title: new Component({
-          innerHTML: 'Positioning',
+          innerHTML: 'Positions',
           style: { width: '100%' },
         }),
         toastTopLeft: new Button({
@@ -135,7 +135,7 @@ const componentExample = new Component({
           style: { width: '100%' },
         }),
         toastVariantInfo: new Button({
-          innerHTML: 'Toast Info',
+          innerHTML: 'info',
           style: {
             backgroundColor: 'var(--pc-info)',
           },
@@ -154,7 +154,7 @@ const componentExample = new Component({
           },
         }),
         toastVariantSuccess: new Button({
-          innerHTML: 'Toast Success',
+          innerHTML: 'success',
           style: {
             backgroundColor: 'var(--pc-success)',
           },
@@ -172,7 +172,7 @@ const componentExample = new Component({
           },
         }),
         toastVariantWarning: new Button({
-          innerHTML: 'Toast Warning',
+          innerHTML: 'warning',
           style: {
             backgroundColor: 'var(--pc-warning)',
           },
@@ -190,7 +190,7 @@ const componentExample = new Component({
           },
         }),
         toastVariantError: new Button({
-          innerHTML: 'Error',
+          innerHTML: 'error',
           style: {
             backgroundColor: 'var(--pc-error)',
           },
@@ -240,7 +240,7 @@ const componentExample = new Component({
 const codeExample = new CodeExample({
   innerHTML: `import { Button, Toast } from '@nathanssantos/pure-components';
 
-new Button({
+const btTriggerToast = new Button({
   innerHTML: 'Toast top right',
   events: {
     click: () => {
@@ -256,7 +256,7 @@ new Button({
       }),
     }
   },
-})
+});
 
 const controlledToast = new Toast({
   title: {
@@ -265,22 +265,27 @@ const controlledToast = new Toast({
   description: {
     innerHTML: 'Toast top left position and controlled animation.',
   },
-})
+});
 
-new Button({
+const btShowControlledToast = new Button({
   innerHTML: 'Show controlled toast',
   events: {
     click: controlledToast.show,
   },
-})
+});
 
-new Button({
+const btDismissControlledToast = new Button({
   innerHTML: 'Dismiss controlled toast',
   events: {
     click: controlledToast.dismiss,
   },
-})
-`,
+});
+
+document.body.append(
+  btTriggerToast.target,
+  btShowControlledToast.target,
+  btDismissControlledToast.target
+);`,
 });
 
 class ToastSection extends Component {
