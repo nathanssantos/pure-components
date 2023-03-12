@@ -1,5 +1,5 @@
-import Modal from '.';
 import Component from '../component';
+import Modal from '.';
 
 describe('Components', () => {
   describe('Modal', () => {

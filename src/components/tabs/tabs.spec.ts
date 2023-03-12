@@ -1,6 +1,6 @@
-import Tabs from '.';
 import Tab from '../tab';
 import TabPanel from '../tabPanel';
+import Tabs from '.';
 
 describe('Components', () => {
   describe('Tabs', () => {

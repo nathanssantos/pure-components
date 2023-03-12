@@ -1,12 +1,15 @@
+import Component from '../component';
 import Toast from './index';
 
 describe('Components', () => {
   describe('Toast', () => {
     describe('instance and assemble', () => {
       it('Should create a new tab instance and assemble it.', () => {
-        const toastDuration = 3000;
-        const component = Toast.trigger({
-          duration: toastDuration,
+        const component = new Toast({
+          duration: 3000,
+          className: 'test',
+          variant: 'error',
+          position: 'top-center',
           title: {
             innerHTML: 'Toast',
           },
@@ -14,66 +17,89 @@ describe('Components', () => {
             innerHTML: 'Testing toast',
           },
         });
-        const component2 = new Toast({
-          duration: toastDuration,
-          title: {
-            innerHTML: 'Toast',
-          },
-          description: {
-            innerHTML: 'Testing toast',
-          },
-        });
+
+        const component2 = new Toast();
 
         expect(component.target.classList).toContain('toast');
+        expect(component.target.classList).toContain('test');
+        expect(component.target.classList).toContain('toast--error');
+        expect(component.target.classList).toContain('toast--top-center');
+        expect(component.children.header.children.title.target.innerHTML).toBe('Toast');
+        expect(component.children.description.target.innerHTML).toBe('Testing toast');
+        expect(component.children.header).toBeInstanceOf(Component);
+        expect(component.children.header.children.title).toBeInstanceOf(Component);
+        expect(component.children.header.children.closeButton).toBeInstanceOf(Component);
+        expect(component.children.description).toBeInstanceOf(Component);
         expect(component2.target.classList).toContain('toast');
-        setTimeout(() => {
-          expect(component.target).toBeNull();
-          expect(component2.target).toBeNull();
-        }, toastDuration);
-      }, 10000);
-    });
-    it('Test variants in toast', () => {
-      const component = Toast.trigger({
-        duration: 10000,
-        variant: 'success',
-        title: {
-          innerHTML: 'Toast',
-        },
-        description: {
-          innerHTML: 'Testing toast',
-        },
       });
-      expect(component.target.firstChild).not.toBeNull();
-      expect(component.target.querySelector('.toast__container')?.classList).toContain(
-        'toast__success',
-      );
     });
-    it('Test className in toast', () => {
-      const component = new Toast({
-        duration: 8000,
-        className: 'toast__test',
-        title: {
-          innerHTML: 'Toast',
-        },
-        description: {
-          innerHTML: 'Testing toast',
-        },
-      });
 
-      expect(component.target.classList).toContain('toast__test');
-    });
-    it('Test replace toast in screen', () => {
-      const component = new Toast({
-        duration: 8000,
-        title: {
-          innerHTML: 'Toast',
-        },
-        description: {
-          innerHTML: 'Testing toast',
-        },
+    describe('dismiss', () => {
+      it('should dismiss the toast', async () => {
+        const component = new Toast({
+          variant: 'success',
+          title: {
+            innerHTML: 'Toast',
+          },
+          description: {
+            innerHTML: 'Testing toast',
+          },
+        });
+
+        await component.show();
+
+        expect(component.target.classList).toContain('toast--open');
+
+        await component.dismiss();
+
+        expect(component.target.classList).not.toContain('toast--open');
       });
-      component.show();
-      expect(component.target.classList).toContain('toast');
+    });
+
+    describe('show', () => {
+      it('should show the toast on screen', async () => {
+        const component = new Toast({
+          variant: 'success',
+          title: {
+            innerHTML: 'Toast',
+          },
+          description: {
+            innerHTML: 'Testing toast',
+          },
+        });
+
+        await component.show();
+
+        expect(component.target.classList).toContain('toast--open');
+      });
+    });
+
+    describe('trigger', () => {
+      it('should show the toast on screen', async () => {
+        await Toast.trigger({
+          variant: 'success',
+          title: {
+            innerHTML: 'Toast',
+          },
+          description: {
+            innerHTML: 'Testing toast',
+          },
+        });
+
+        expect(document.querySelector('.toast')).toBeFalsy();
+
+        Toast.trigger({
+          variant: 'success',
+          title: {
+            innerHTML: 'Toast',
+          },
+          description: {
+            innerHTML: 'Testing toast',
+          },
+        });
+
+        expect(document.querySelector('.toast')).toBeTruthy();
+      });
     });
   });
 });
