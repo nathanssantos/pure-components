@@ -209,7 +209,7 @@ const componentExample = new Component({
         }),
       },
     }),
-    controled: new Component({
+    controlled: new Component({
       style: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -217,7 +217,7 @@ const componentExample = new Component({
       },
       children: {
         title: new Component({
-          innerHTML: 'Controled',
+          innerHTML: 'Controlled',
           style: { width: '100%' },
         }),
         controlletToastShow: new Button({
