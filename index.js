@@ -228,70 +228,6 @@ class Container extends Component {
 
 const style$7 = '';
 
-class Drawer extends Component {
-  constructor(props = {}) {
-    const { className, ...rest } = props;
-    super({ className: `drawer${className?.length ? ` ${className}` : ""}`, ...rest });
-    this.init(props);
-  }
-  assemble = (payload) => {
-    return new Promise((resolve) => {
-      const btClose = new Button({
-        className: "drawer__bt-close",
-        innerHTML: "x",
-        ...payload.btClose
-      });
-      const header = new Component({
-        children: { btClose },
-        className: "drawer__header",
-        ...payload.header
-      });
-      const body = new Component({
-        className: "drawer__body",
-        ...payload.body
-      });
-      const footer = new Component({
-        className: "drawer__footer",
-        ...payload.footer
-      });
-      const content = new Component({
-        children: { header, body, footer },
-        className: "drawer__content",
-        ...payload.content
-      });
-      const overlay = new Component({
-        className: "drawer__overlay",
-        ...payload.overlay
-      });
-      this.appendChildren({ overlay, content });
-      resolve(true);
-    });
-  };
-  close = async () => {
-    const { content, overlay } = this.children;
-    await Promise.allSettled([
-      content.fadeOut({ transform: "translateX(-100%)" }),
-      overlay.fadeOut({ opacity: "0" })
-    ]);
-    this.hide();
-  };
-  init = async (payload) => {
-    await this.assemble(payload);
-    const { content, overlay } = this.children;
-    for (const component of [content.children.header.children.btClose, overlay]) {
-      component.bindEvents({ click: this.close });
-    }
-  };
-  open = async () => {
-    this.show();
-    const { content, overlay } = this.children;
-    await Promise.allSettled([
-      content.fadeIn({ transform: "translateX(0)" }),
-      overlay.fadeIn({ opacity: "1" })
-    ]);
-  };
-}
-
 const style$6 = '';
 
 class Header extends Component {
@@ -519,70 +455,19 @@ class Toast extends Component {
 
 class Layout extends Component {
   constructor() {
-    const navigationButtons = {
-      getStartedScreenButton: new Button({
-        innerHTML: "Get Started",
-        events: {
-          click: () => {
-            router.navigate("getStarted");
-            drawer.close();
-          }
-        }
-      }),
-      componentsScreenButton: new Button({
-        innerHTML: "Components",
-        events: {
-          click: () => {
-            router.navigate("components");
-            drawer.close();
-          }
-        }
-      })
-    };
-    const drawer = new Drawer({
-      body: {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem"
-        },
-        children: {
-          ...navigationButtons
-        }
-      }
-    });
     const header = new Header({
       leftContent: {
         children: {
           logo: new Component({
             innerHTML: "Pure Components",
             style: {
-              cursor: "pointer",
-              fontSize: "1.25rem",
+              fontWeight: "bold",
               base: {
-                fontWeight: "bold"
+                fontSize: "1rem"
               },
               md: {
                 fontSize: "1.25rem"
               }
-            },
-            events: {
-              click: () => {
-                router.navigate("getStarted");
-              }
-            }
-          })
-        }
-      },
-      rightContent: {
-        children: {
-          btOpenDrawer: new Button({
-            style: {
-              padding: "0.375rem"
-            },
-            innerHTML: '<svg width="1.25rem" height="1.25rem" focusable="false" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>',
-            events: {
-              click: drawer.open
             }
           })
         }
@@ -592,8 +477,7 @@ class Layout extends Component {
       className: "layout",
       children: {
         header,
-        screens: new Component(),
-        drawer
+        screens: new Component()
       }
     });
   }
@@ -623,8 +507,8 @@ class Hero extends Component {
         container: new Container({
           style: {
             gap: "1rem",
-            paddingTop: "5rem",
-            paddingBottom: "5rem"
+            paddingTop: "8rem",
+            paddingBottom: "2rem"
           },
           children: {
             title: new Component({
@@ -843,6 +727,44 @@ class ComponentSection extends Component {
                     innerHTML: "Coming soon."
                   })
                 }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class InstallSection extends Component {
+  constructor() {
+    super({
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Installation" }),
+            description: new SectionDescription({
+              innerHTML: "To use Pure Components in your project, run one of the following commands in your terminal:"
+            }),
+            codeExampleYarn: new CodeExample({
+              innerHTML: "yarn add @nathanssantos/pure-components",
+              style: {
+                marginBottom: "1rem"
+              }
+            }),
+            codeExampleNpm: new CodeExample({
+              innerHTML: "npm install @nathanssantos/pure-components",
+              style: {
+                marginBottom: "1rem"
+              }
+            }),
+            description2: new SectionDescription({
+              innerHTML: "Import styles in your app's entry point:"
+            }),
+            styleImport: new CodeExample({
+              innerHTML: 'import "@nathanssantos/pure-components/style.css";',
+              style: {
+                marginBottom: "3rem"
               }
             })
           }
@@ -1282,14 +1204,16 @@ class ToastSection extends Component {
   }
 }
 
-class ComponentsScreen extends Component {
+class HomeScreen extends Component {
   constructor() {
     super({
       style: {
         paddingBottom: "6rem"
       },
       children: {
-        hero: new Hero({
+        heroGetStarted: new Hero({ title: "Get Started" }),
+        installSection: new InstallSection(),
+        heroComponents: new Hero({
           title: "Components",
           description: "Pure Components provide prebuild components to help you build your projects faster.<br>Here is a list with examples:"
         }),
@@ -1300,8 +1224,8 @@ class ComponentsScreen extends Component {
             gap: "4rem"
           },
           children: {
-            componentSection: new ComponentSection(),
             buttonSection: new ButtonSection(),
+            componentSection: new ComponentSection(),
             tabsSection: new TabsSection(),
             toastSection: new ToastSection()
           }
@@ -1311,79 +1235,12 @@ class ComponentsScreen extends Component {
   }
 }
 
-class InstallSection extends Component {
-  constructor() {
-    super({
-      children: {
-        container: new Container({
-          children: {
-            title: new SectionTitle({ innerHTML: "Installation" }),
-            description: new SectionDescription({
-              innerHTML: "To use Pure Components in your project, run one of the following commands in your terminal:"
-            }),
-            codeExampleYarn: new CodeExample({
-              innerHTML: "yarn add @nathanssantos/pure-components",
-              style: {
-                marginBottom: "1rem"
-              }
-            }),
-            codeExampleNpm: new CodeExample({
-              innerHTML: "npm install @nathanssantos/pure-components",
-              style: {
-                marginBottom: "1rem"
-              }
-            }),
-            description2: new SectionDescription({
-              innerHTML: "Import styles in your app's entry point:"
-            }),
-            styleImport: new CodeExample({
-              innerHTML: 'import "@nathanssantos/pure-components/style.css";',
-              style: {
-                marginBottom: "3rem"
-              }
-            }),
-            btComponents: new Button({
-              innerHTML: "Components",
-              style: {
-                alignSelf: "center"
-              },
-              events: {
-                click: () => {
-                  router.navigate("components");
-                }
-              }
-            })
-          }
-        })
-      }
-    });
-  }
-}
-
-class GetStartedScreen extends Component {
-  constructor() {
-    super({
-      style: {
-        paddingBottom: "6rem"
-      },
-      children: {
-        hero: new Hero({ title: "Get Started" }),
-        installSection: new InstallSection()
-      }
-    });
-  }
-}
-
 class Router extends Component {
-  initialRoute = "getStarted";
+  initialRoute = "mainScreen";
   routes = {
-    components: {
-      component: new ComponentsScreen(),
-      name: "Components"
-    },
-    getStarted: {
-      component: new GetStartedScreen(),
-      name: "Get Started"
+    mainScreen: {
+      component: new HomeScreen(),
+      name: "Home"
     }
   };
   constructor() {
