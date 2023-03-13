@@ -2,17 +2,20 @@ import { Component } from '../..';
 import Hero from '../components/hero';
 import ButtonSection from '../sections/buttonSection';
 import ComponentSection from '../sections/componentSection';
+import InstallSection from '../sections/installSection';
 import TabsSection from '../sections/tabsSection';
 import ToastSection from '../sections/toastSection';
 
-class ComponentsScreen extends Component {
+class HomeScreen extends Component {
   constructor() {
     super({
       style: {
         paddingBottom: '6rem',
       },
       children: {
-        hero: new Hero({
+        heroGetStarted: new Hero({ title: 'Get Started' }),
+        installSection: new InstallSection(),
+        heroComponents: new Hero({
           title: 'Components',
           description:
             'Pure Components provide prebuild components to help you build your projects faster.<br>Here is a list with examples:',
@@ -24,8 +27,8 @@ class ComponentsScreen extends Component {
             gap: '4rem',
           },
           children: {
-            componentSection: new ComponentSection(),
             buttonSection: new ButtonSection(),
+            componentSection: new ComponentSection(),
             tabsSection: new TabsSection(),
             toastSection: new ToastSection(),
           },
@@ -35,4 +38,4 @@ class ComponentsScreen extends Component {
   }
 }
 
-export default ComponentsScreen;
+export default HomeScreen;

@@ -13,8 +13,8 @@ class Hero extends Component {
         container: new Container({
           style: {
             gap: '1rem',
-            paddingTop: '5rem',
-            paddingBottom: '5rem',
+            paddingTop: '8rem',
+            paddingBottom: '2rem',
           },
           children: {
             title: new Component({
