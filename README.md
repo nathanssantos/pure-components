@@ -36,10 +36,10 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Autocomplete
 - [x] Avatar
 - [ ] Breadcrumbs
-- [x] Button
+- [x] [Button](https://nathanssantos.github.io/pure-components/#button)
 - [ ] Carousel
 - [ ] Checkbox
-- [x] Component
+- [x] [Component](https://nathanssantos.github.io/pure-components/#component)
 - [x] Container
 - [x] Drawer
 - [ ] Floating Action Button
@@ -50,8 +50,8 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Progress
 - [ ] Radio
 - [ ] Tag
-- [x] Tabs
-- [x] Toast
+- [x] [Tabs](https://nathanssantos.github.io/pure-components/#tabs)
+- [x] [Toast](https://nathanssantos.github.io/pure-components/#toast)
 - [ ] Tooltip
 
 **The complete documentation will be written as soon as possible.**
