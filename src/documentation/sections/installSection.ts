@@ -36,17 +36,6 @@ class InstallSection extends Component {
                 marginBottom: '3rem',
               },
             }),
-            btComponents: new Button({
-              innerHTML: 'Components',
-              style: {
-                alignSelf: 'center',
-              },
-              events: {
-                click: () => {
-                  router.navigate('components');
-                },
-              },
-            }),
           },
         }),
       },
