@@ -1,6 +1,5 @@
-import { Button, Component, Container } from '../..';
+import { Component, Container } from '../..';
 import CodeExample from '../components/codeExample';
-import router from '../components/router';
 import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
 
