@@ -6,6 +6,12 @@ import SectionTitle from '../components/sectionTitle';
 class InstallSection extends Component {
   constructor() {
     super({
+      attributes: {
+        id: 'install',
+      },
+      style: {
+        paddingTop: '4rem',
+      },
       children: {
         container: new Container({
           children: {
