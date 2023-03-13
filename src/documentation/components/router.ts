@@ -1,20 +1,15 @@
 import Layout from './layout';
 import Component from '../../components/component';
-import ComponentsScreen from '../screens/componentsScreen';
-import GetStartedScreen from '../screens/getStartedScreen';
+import HomeScreen from '../screens/homeScreen';
 
 class Router extends Component {
-  readonly initialRoute = 'getStarted';
+  readonly initialRoute = 'mainScreen';
   public routes: {
     [name: string]: Route;
   } = {
-    components: {
-      component: new ComponentsScreen(),
-      name: 'Components',
-    },
-    getStarted: {
-      component: new GetStartedScreen(),
-      name: 'Get Started',
+    mainScreen: {
+      component: new HomeScreen(),
+      name: 'Home',
     },
   };
 
