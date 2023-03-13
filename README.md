@@ -33,25 +33,25 @@ import "@nathanssantos/pure-components/style.css";
 
 ## Components
 
-- [x] Component
-- [x] Drawer
-- [x] Modal
+- [ ] Autocomplete
 - [x] Avatar
+- [ ] Breadcrumbs
 - [x] Button
+- [ ] Carousel
+- [ ] Checkbox
+- [x] Component
 - [x] Container
+- [x] Drawer
+- [ ] Floating Action Button
 - [x] Header
+- [x] Modal
+- [ ] Org Chart
+- [ ] Popover
+- [ ] Progress
+- [ ] Radio
+- [ ] Tag
 - [x] Tabs
 - [x] Toast
-- [ ] Tag
-- [ ] Breadcrumbs
-- [ ] Floating Action Button
-- [ ] Progress
-- [ ] Checkbox
-- [ ] Radio
-- [ ] Org Chart
-- [ ] Autocomplete
 - [ ] Tooltip
-- [ ] Popover
-- [ ] Carousel
 
 **The complete documentation will be written as soon as possible.**

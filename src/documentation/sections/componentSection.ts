@@ -56,6 +56,12 @@ new Component({
 class ComponentSection extends Component {
   constructor() {
     super({
+      attributes: {
+        id: 'component',
+      },
+      style: {
+        paddingTop: '4rem',
+      },
       children: {
         container: new Container({
           children: {
