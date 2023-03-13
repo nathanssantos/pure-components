@@ -9,5 +9,18 @@ import Modal from './components/modal';
 import Tab from './components/tab';
 import TabPanel from './components/tabPanel';
 import Tabs from './components/tabs';
+import Toast from './components/toast';
 
-export { Avatar, Button, Component, Container, Drawer, Header, Modal, Tab, TabPanel, Tabs };
+export {
+  Avatar,
+  Button,
+  Component,
+  Container,
+  Drawer,
+  Header,
+  Modal,
+  Tab,
+  TabPanel,
+  Tabs,
+  Toast,
+};

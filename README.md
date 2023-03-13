@@ -2,9 +2,9 @@
 
 Dependency-free ui components library.
 
-![Version 0.0.34](https://img.shields.io/badge/Version-%200.0.34-green)
-![Components: 8](https://img.shields.io/badge/Components-%208-green)
-![Test coverage: 99.51%](https://img.shields.io/badge/Test%20Coverage-99.51%25-green)
+![Version 0.0.36](https://img.shields.io/badge/Version-%200.0.36-green)
+![Components: 9](https://img.shields.io/badge/Components-%208-green)
+![Test coverage: 99.58%](https://img.shields.io/badge/Test%20Coverage-99.58%25-green)
 ![Dependency-free](https://img.shields.io/badge/Dependency-%20free-green)
 
 **Work in progress!**
@@ -35,6 +35,7 @@ npm install @nathanssantos/pure-components
 - [x] Container
 - [x] Header
 - [x] Tabs
+- [x] Toast
 - [ ] Tag
 - [ ] Breadcrumbs
 - [ ] Floating Action Button
@@ -43,7 +44,6 @@ npm install @nathanssantos/pure-components
 - [ ] Radio
 - [ ] Org Chart
 - [ ] Autocomplete
-- [ ] Toast
 - [ ] Tooltip
 - [ ] Popover
 - [ ] Carousel

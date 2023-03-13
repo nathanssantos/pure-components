@@ -1,6 +1,6 @@
 {
   "name": "@nathanssantos/pure-components",
-  "version": "0.0.34",
+  "version": "0.0.36",
   "author": {
     "name": "Nathan Silva Santos",
     "email": "nathansilvasantos@gmail.com"
@@ -38,6 +38,7 @@
     "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-prettier": "^4.2.1",
     "gh-pages": "^5.0.0",

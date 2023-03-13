@@ -26,7 +26,7 @@ new Button({
   events: {
     click: () => alert('Button clicked!'),
   },
-})`,
+}).appendTo(document.body);`,
 });
 
 class ButtonSection extends Component {

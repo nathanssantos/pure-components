@@ -1,8 +1,8 @@
 import { Button, Component, Container } from '../..';
 import CodeExample from '../components/codeExample';
+import router from '../components/router';
 import SectionDescription from '../components/sectionDescription';
 import SectionTitle from '../components/sectionTitle';
-import router from '../components/router';
 
 class InstallSection extends Component {
   constructor() {
@@ -28,7 +28,7 @@ class InstallSection extends Component {
               },
             }),
             description2: new SectionDescription({
-              innerHTML: 'Import the styles in you app entry point file:',
+              innerHTML: "Import styles in your app's entry point:",
             }),
             styleImport: new CodeExample({
               innerHTML: 'import "@nathanssantos/pure-components/style.css";',

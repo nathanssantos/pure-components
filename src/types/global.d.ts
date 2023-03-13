@@ -85,3 +85,18 @@ interface TabsConstructorProps extends ComponentConstructorProps {
   tabList: Partial<ComponentConstructorProps>;
   tabPanels: Partial<ComponentConstructorProps>;
 }
+
+interface ToastConstructorProps extends ComponentConstructorProps {
+  title: Partial<ComponentConstructorProps>;
+  description: Partial<ComponentConstructorProps>;
+  variant: 'success' | 'error' | 'warning' | 'info';
+
+  position:
+    | 'top-right'
+    | 'top-left'
+    | 'top-center'
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'bottom-center';
+  duration: number;
+}
