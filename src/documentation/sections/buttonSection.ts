@@ -32,6 +32,12 @@ new Button({
 class ButtonSection extends Component {
   constructor() {
     super({
+      attributes: {
+        id: 'button',
+      },
+      style: {
+        paddingTop: '4rem',
+      },
       children: {
         container: new Container({
           children: {

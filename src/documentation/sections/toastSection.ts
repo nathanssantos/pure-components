@@ -291,6 +291,12 @@ document.body.append(
 class ToastSection extends Component {
   constructor() {
     super({
+      attributes: {
+        id: 'toast',
+      },
+      style: {
+        paddingTop: '4rem',
+      },
       children: {
         container: new Container({
           children: {

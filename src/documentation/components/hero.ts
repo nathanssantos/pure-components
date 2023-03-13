@@ -14,7 +14,6 @@ class Hero extends Component {
           style: {
             gap: '1rem',
             paddingTop: '8rem',
-            paddingBottom: '2rem',
           },
           children: {
             title: new Component({

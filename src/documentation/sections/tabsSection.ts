@@ -76,6 +76,12 @@ new Tabs({
 class TabsSection extends Component {
   constructor() {
     super({
+      attributes: {
+        id: 'tabs',
+      },
+      style: {
+        paddingTop: '4rem',
+      },
       children: {
         container: new Container({
           children: {
