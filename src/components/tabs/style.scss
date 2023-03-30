@@ -1,13 +1,9 @@
 .tabs {
-  background-color: var(--pc-card-background);
-  border-radius: var(--pc-border-radius);
   overflow: hidden;
-  border: 0.063rem solid var(--pc-border-color);
 
   &__tab-list {
     display: flex;
     overflow-x: auto;
     border-bottom: 0.063rem solid var(--pc-border-color);
-    background-color: var(--pc-clickable-background);
   }
 }
