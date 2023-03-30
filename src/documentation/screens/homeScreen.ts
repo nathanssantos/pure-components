@@ -1,5 +1,6 @@
 import { Component } from '../..';
 import Hero from '../components/hero';
+import AvatarSection from '../sections/avatarSection';
 import ButtonSection from '../sections/buttonSection';
 import ComponentSection from '../sections/componentSection';
 import InstallSection from '../sections/installSection';
@@ -27,6 +28,7 @@ class HomeScreen extends Component {
             gap: '4rem',
           },
           children: {
+            avatarSection: new AvatarSection(),
             buttonSection: new ButtonSection(),
             componentSection: new ComponentSection(),
             tabsSection: new TabsSection(),
