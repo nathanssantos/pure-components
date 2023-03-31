@@ -18,7 +18,7 @@ const drawer = new Drawer({
   },
 });
 
-const button = new Button({ innerHTML: 'Open Drawer', events: { click: drawer.open } });
+const button = new Button({ innerHTML: 'Open drawer', events: { click: drawer.open } });
 
 const componentExample = new Component({
   style: {
@@ -51,7 +51,7 @@ const drawer = new Drawer({
 
 drawer.appendTo(document.body);
 
-new Button({ innerHTML: 'Open Drawer', events: { click: drawer.open } }).appendTo(document.body);`,
+new Button({ innerHTML: 'Open drawer', events: { click: drawer.open } }).appendTo(document.body);`,
 });
 
 class DrawerSection extends Component {

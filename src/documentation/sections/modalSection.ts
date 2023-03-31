@@ -18,7 +18,7 @@ const modal = new Modal({
   },
 });
 
-const button = new Button({ innerHTML: 'Open Modal', events: { click: modal.open } });
+const button = new Button({ innerHTML: 'Open modal', events: { click: modal.open } });
 
 const componentExample = new Component({
   style: {
@@ -51,7 +51,7 @@ const drawer = new Modal({
 
 drawer.appendTo(document.body);
 
-new Button({ innerHTML: 'Open Modal', events: { click: drawer.open } }).appendTo(document.body);`,
+new Button({ innerHTML: 'Open modal', events: { click: drawer.open } }).appendTo(document.body);`,
 });
 
 class ModalSection extends Component {
