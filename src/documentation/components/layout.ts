@@ -1,26 +1,26 @@
 import { Component, Header } from '../..';
 
+const header = new Header({
+  leftContent: {
+    children: {
+      logo: new Component({
+        innerHTML: 'Pure Components',
+        style: {
+          fontWeight: 'bold',
+          base: {
+            fontSize: '1rem',
+          },
+          md: {
+            fontSize: '1.25rem',
+          },
+        },
+      }),
+    },
+  },
+});
+
 class Layout extends Component {
   constructor() {
-    const header = new Header({
-      leftContent: {
-        children: {
-          logo: new Component({
-            innerHTML: 'Pure Components',
-            style: {
-              fontWeight: 'bold',
-              base: {
-                fontSize: '1rem',
-              },
-              md: {
-                fontSize: '1.25rem',
-              },
-            },
-          }),
-        },
-      },
-    });
-
     super({
       className: 'layout',
       children: {

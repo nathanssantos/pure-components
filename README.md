@@ -34,13 +34,13 @@ import "@nathanssantos/pure-components/style.css";
 ## Components
 
 - [ ] Autocomplete
-- [x] Avatar
+- [x] [Avatar](https://nathanssantos.github.io/pure-components/#avatar)
 - [ ] Breadcrumbs
 - [x] [Button](https://nathanssantos.github.io/pure-components/#button)
 - [ ] Carousel
 - [ ] Checkbox
 - [x] [Component](https://nathanssantos.github.io/pure-components/#component)
-- [x] Container
+- [x] [Container](https://nathanssantos.github.io/pure-components/#container)
 - [x] Drawer
 - [ ] Floating Action Button
 - [x] Header

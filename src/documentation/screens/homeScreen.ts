@@ -4,6 +4,7 @@ import AvatarSection from '../sections/avatarSection';
 import ButtonSection from '../sections/buttonSection';
 import ComponentSection from '../sections/componentSection';
 import ContainerSection from '../sections/containerSection';
+import DrawerSection from '../sections/drawerSection';
 import InstallSection from '../sections/installSection';
 import TabsSection from '../sections/tabsSection';
 import ToastSection from '../sections/toastSection';
@@ -33,6 +34,7 @@ class HomeScreen extends Component {
             buttonSection: new ButtonSection(),
             componentSection: new ComponentSection(),
             containerSection: new ContainerSection(),
+            drawerSection: new DrawerSection(),
             tabsSection: new TabsSection(),
             toastSection: new ToastSection(),
           },
