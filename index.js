@@ -741,7 +741,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$7 = new Component({
+const componentExample$8 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -762,7 +762,7 @@ const componentExample$7 = new Component({
     })
   }
 });
-const codeExample$7 = new CodeExample({
+const codeExample$8 = new CodeExample({
   innerHTML: `import { Avatar } from '@nathanssantos/pure-components';
 
 new Avatar({
@@ -813,8 +813,8 @@ class AvatarSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$7,
-                      codeExample: codeExample$7
+                      componentExample: componentExample$8,
+                      codeExample: codeExample$8
                     }
                   }),
                   panel2: new TabPanel({
@@ -830,7 +830,7 @@ class AvatarSection extends Component {
   }
 }
 
-const componentExample$6 = new Component({
+const componentExample$7 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -844,7 +844,7 @@ const componentExample$6 = new Component({
     })
   }
 });
-const codeExample$6 = new CodeExample({
+const codeExample$7 = new CodeExample({
   innerHTML: `import { Button } from '@nathanssantos/pure-components';
 
 new Button({
@@ -888,8 +888,8 @@ class ButtonSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$6,
-                      codeExample: codeExample$6
+                      componentExample: componentExample$7,
+                      codeExample: codeExample$7
                     }
                   }),
                   panel2: new TabPanel({
@@ -905,7 +905,7 @@ class ButtonSection extends Component {
   }
 }
 
-const componentExample$5 = new Component({
+const componentExample$6 = new Component({
   innerHTML: "I'm a generic component.",
   style: {
     backgroundColor: "var(--pc-success)",
@@ -927,7 +927,7 @@ const componentExample$5 = new Component({
     }
   }
 });
-const codeExample$5 = new CodeExample({
+const codeExample$6 = new CodeExample({
   innerHTML: `import { Component } from '@nathanssantos/pure-components';
 
 new Component({
@@ -987,8 +987,8 @@ class ComponentSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$5,
-                      codeExample: codeExample$5
+                      componentExample: componentExample$6,
+                      codeExample: codeExample$6
                     }
                   }),
                   panel2: new TabPanel({
@@ -1004,7 +1004,7 @@ class ComponentSection extends Component {
   }
 }
 
-const componentExample$4 = new Component({
+const componentExample$5 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1023,7 +1023,7 @@ const componentExample$4 = new Component({
     })
   }
 });
-const codeExample$4 = new CodeExample({
+const codeExample$5 = new CodeExample({
   innerHTML: `import { Container } from '@nathanssantos/pure-components';
 
 new Container({
@@ -1073,8 +1073,8 @@ class ContainerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$4,
-                      codeExample: codeExample$4
+                      componentExample: componentExample$5,
+                      codeExample: codeExample$5
                     }
                   }),
                   panel2: new TabPanel({
@@ -1105,7 +1105,7 @@ const drawer = new Drawer({
   }
 });
 const button$1 = new Button({ innerHTML: "Open drawer", events: { click: drawer.open } });
-const componentExample$3 = new Component({
+const componentExample$4 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1115,7 +1115,7 @@ const componentExample$3 = new Component({
     drawer
   }
 });
-const codeExample$3 = new CodeExample({
+const codeExample$4 = new CodeExample({
   innerHTML: `import { Button, Drawer } from '@nathanssantos/pure-components';
 
 const drawer = new Drawer({
@@ -1152,6 +1152,140 @@ class DrawerSection extends Component {
             title: new SectionTitle({ innerHTML: "Drawer" }),
             description: new SectionDescription({
               innerHTML: "A simple drawer."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$4,
+                      codeExample: codeExample$4
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$3 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    header: new Header({
+      style: {
+        position: "relative"
+      },
+      leftContent: {
+        children: {
+          button: new Button({
+            style: {
+              padding: "0.5rem"
+            },
+            innerHTML: '<svg viewBox="0 0 24 24" style="height: 1.25rem; width: 1.25rem;"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>'
+          })
+        }
+      },
+      centerContent: {
+        innerHTML: "Center Content"
+      },
+      rightContent: {
+        children: {
+          avatar: new Avatar({
+            image: {
+              attributes: {
+                src: "https://i.pravatar.cc/300"
+              }
+            },
+            name: {
+              innerHTML: "John Doe"
+            },
+            description: {
+              innerHTML: "john@doe.com"
+            }
+          })
+        }
+      }
+    })
+  }
+});
+const codeExample$3 = new CodeExample({
+  innerHTML: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
+
+new Header({
+  style: {
+    position: 'relative',
+  },
+  leftContent: {
+    children: {
+      button: new Button({
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML:
+          '<svg viewBox="0 0 24 24" style="height: 1.25rem; width: 1.25rem;"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>',
+      }),
+    },
+  },
+  centerContent: {
+    innerHTML: 'Center Content',
+  },
+  rightContent: {
+    children: {
+      avatar: new Avatar({
+        image: {
+          attributes: {
+            src: 'https://i.pravatar.cc/300',
+          },
+        },
+        name: {
+          innerHTML: 'John Doe',
+        },
+        description: {
+          innerHTML: 'john@doe.com',
+        },
+      }),
+    },
+  },
+}).appendTo(document.body);`
+});
+class HeaderSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "header"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Header" }),
+            description: new SectionDescription({
+              innerHTML: "A simple header."
             }),
             tabs: new Tabs({
               tabList: {
@@ -1260,7 +1394,7 @@ const componentExample$2 = new Component({
 const codeExample$2 = new CodeExample({
   innerHTML: `import { Button, Modal } from '@nathanssantos/pure-components';
 
-const drawer = new Modal({
+const modal = new Modal({
   header: {
     innerHTML: 'Modal Header',
     style: {
@@ -1275,15 +1409,15 @@ const drawer = new Modal({
   },
 });
 
-drawer.appendTo(document.body);
+modal.appendTo(document.body);
 
-new Button({ innerHTML: 'Open modal', events: { click: drawer.open } }).appendTo(document.body);`
+new Button({ innerHTML: 'Open modal', events: { click: modal.open } }).appendTo(document.body);`
 });
 class ModalSection extends Component {
   constructor() {
     super({
       attributes: {
-        id: "drawer"
+        id: "modal"
       },
       style: {
         paddingTop: "4rem"
@@ -1293,7 +1427,7 @@ class ModalSection extends Component {
           children: {
             title: new SectionTitle({ innerHTML: "Modal" }),
             description: new SectionDescription({
-              innerHTML: "A simple drawer."
+              innerHTML: "A simple modal."
             }),
             tabs: new Tabs({
               tabList: {
@@ -1797,6 +1931,7 @@ class HomeScreen extends Component {
             componentSection: new ComponentSection(),
             containerSection: new ContainerSection(),
             drawerSection: new DrawerSection(),
+            headerSection: new HeaderSection(),
             modalSection: new ModalSection(),
             tabsSection: new TabsSection(),
             toastSection: new ToastSection()
