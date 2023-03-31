@@ -622,6 +622,9 @@ class Toast extends Component {
 }
 
 const header = new Header({
+  style: {
+    zIndex: "20"
+  },
   leftContent: {
     children: {
       logo: new Component({
