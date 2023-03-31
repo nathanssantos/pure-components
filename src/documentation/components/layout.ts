@@ -1,6 +1,9 @@
 import { Component, Header } from '../..';
 
 const header = new Header({
+  style: {
+    zIndex: '20',
+  },
   leftContent: {
     children: {
       logo: new Component({
