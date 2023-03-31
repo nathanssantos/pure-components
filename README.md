@@ -41,10 +41,10 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Checkbox
 - [x] [Component](https://nathanssantos.github.io/pure-components/#component)
 - [x] [Container](https://nathanssantos.github.io/pure-components/#container)
-- [x] Drawer
+- [x] [Drawer](https://nathanssantos.github.io/pure-components/#drawer)
 - [ ] Floating Action Button
-- [x] Header
-- [x] Modal
+- [x] [Header](https://nathanssantos.github.io/pure-components/#header)
+- [x] [Modal](https://nathanssantos.github.io/pure-components/#modal)
 - [ ] Org Chart
 - [ ] Popover
 - [ ] Progress
