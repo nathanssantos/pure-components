@@ -34,7 +34,7 @@ const componentExample = new Component({
 const codeExample = new CodeExample({
   innerHTML: `import { Button, Modal } from '@nathanssantos/pure-components';
 
-const drawer = new Modal({
+const modal = new Modal({
   header: {
     innerHTML: 'Modal Header',
     style: {
@@ -49,16 +49,16 @@ const drawer = new Modal({
   },
 });
 
-drawer.appendTo(document.body);
+modal.appendTo(document.body);
 
-new Button({ innerHTML: 'Open modal', events: { click: drawer.open } }).appendTo(document.body);`,
+new Button({ innerHTML: 'Open modal', events: { click: modal.open } }).appendTo(document.body);`,
 });
 
 class ModalSection extends Component {
   constructor() {
     super({
       attributes: {
-        id: 'drawer',
+        id: 'modal',
       },
       style: {
         paddingTop: '4rem',
@@ -68,7 +68,7 @@ class ModalSection extends Component {
           children: {
             title: new SectionTitle({ innerHTML: 'Modal' }),
             description: new SectionDescription({
-              innerHTML: 'A simple drawer.',
+              innerHTML: 'A simple modal.',
             }),
             tabs: new Tabs({
               tabList: {
