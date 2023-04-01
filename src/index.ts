@@ -9,6 +9,7 @@ import Modal from './components/modal';
 import Tab from './components/tab';
 import TabPanel from './components/tabPanel';
 import Tabs from './components/tabs';
+import Tag from './components/tag';
 import Toast from './components/toast';
 
 export {
@@ -22,5 +23,6 @@ export {
   Tab,
   TabPanel,
   Tabs,
+  Tag,
   Toast,
 };
