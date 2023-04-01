@@ -8,6 +8,7 @@ import DrawerSection from '../sections/drawerSection';
 import HeaderSection from '../sections/headerSection';
 import InstallSection from '../sections/installSection';
 import ModalSection from '../sections/modalSection';
+import ProgressSection from '../sections/progressSection';
 import TabsSection from '../sections/tabsSection';
 import TagSection from '../sections/tagSection';
 import ToastSection from '../sections/toastSection';
@@ -40,6 +41,7 @@ class HomeScreen extends Component {
             drawerSection: new DrawerSection(),
             headerSection: new HeaderSection(),
             modalSection: new ModalSection(),
+            progressSection: new ProgressSection(),
             tabsSection: new TabsSection(),
             tagSection: new TagSection(),
             toastSection: new ToastSection(),
