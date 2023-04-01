@@ -9,6 +9,7 @@ import HeaderSection from '../sections/headerSection';
 import InstallSection from '../sections/installSection';
 import ModalSection from '../sections/modalSection';
 import TabsSection from '../sections/tabsSection';
+import TagSection from '../sections/tagSection';
 import ToastSection from '../sections/toastSection';
 
 class HomeScreen extends Component {
@@ -40,6 +41,7 @@ class HomeScreen extends Component {
             headerSection: new HeaderSection(),
             modalSection: new ModalSection(),
             tabsSection: new TabsSection(),
+            tagSection: new TagSection(),
             toastSection: new ToastSection(),
           },
         }),
