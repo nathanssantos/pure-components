@@ -3,7 +3,7 @@
 Dependency-free ui components library.
 
 ![Version 0.0.37](https://img.shields.io/badge/Version-%200.0.37-green)
-![Components: 10](https://img.shields.io/badge/Components-%209-green)
+![Components: 10](https://img.shields.io/badge/Components-%2010-green)
 ![Test coverage: 99.59%](https://img.shields.io/badge/Test%20Coverage-99.59%25-green)
 ![Dependency-free](https://img.shields.io/badge/Dependency-%20free-green)
 
