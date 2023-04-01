@@ -246,6 +246,29 @@
   border-top: 0.063rem solid var(--pc-border-color);
   padding: calc(var(--pc-spacing) * 4);
   min-height: calc(var(--pc-spacing) * 15 + 0.063rem);
+}.progress {
+  position: relative;
+  min-height: calc(var(--pc-spacing) * 6);
+  border: 0.063rem solid var(--pc-border-color);
+  border-radius: var(--pc-border-radius);
+  color: var(--pc-text-color);
+  width: 100%;
+  overflow: hidden;
+}
+.progress__fill {
+  width: 0;
+  height: 100%;
+  background-color: var(--pc-info);
+}
+.progress__value {
+  position: absolute;
+  left: calc(var(--pc-spacing) * 2);
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: var(--pc-font-size-sm);
+  line-height: 1;
 }.tab {
   position: relative;
   padding: calc(var(--pc-spacing) * 3) calc(var(--pc-spacing) * 8);

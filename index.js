@@ -42,7 +42,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$c = '';
+const style$d = '';
 
 class Constants {
   static breakpoints = {
@@ -199,7 +199,7 @@ class Component {
   };
 }
 
-const style$b = '';
+const style$c = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -241,7 +241,7 @@ class Avatar extends Component {
   };
 }
 
-const style$a = '';
+const style$b = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -254,7 +254,7 @@ class Button extends Component {
   }
 }
 
-const style$9 = '';
+const style$a = '';
 
 class Container extends Component {
   constructor(props = {}) {
@@ -266,7 +266,7 @@ class Container extends Component {
   }
 }
 
-const style$8 = '';
+const style$9 = '';
 
 class Drawer extends Component {
   constructor(props = {}) {
@@ -332,7 +332,7 @@ class Drawer extends Component {
   };
 }
 
-const style$7 = '';
+const style$8 = '';
 
 class Header extends Component {
   constructor(props = {}) {
@@ -383,7 +383,7 @@ class Header extends Component {
   };
 }
 
-const style$6 = '';
+const style$7 = '';
 
 class Modal extends Component {
   constructor(props = {}) {
@@ -446,6 +446,41 @@ class Modal extends Component {
       content.fadeIn({ opacity: "1" }),
       overlay.fadeIn({ opacity: "1" })
     ]);
+  };
+}
+
+const style$6 = '';
+
+class Progress extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `progress${className?.length ? ` ${className}` : ""}`,
+      ...rest
+    });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const fill = new Component({
+        className: "progress__fill",
+        ...payload.fill
+      });
+      const value = new Component({
+        className: "progress__value",
+        ...payload.value
+      });
+      this.appendChildren({ fill, value });
+      resolve(true);
+    });
+  };
+  init = (payload) => {
+    this.assemble(payload);
+    this.setValue(0);
+  };
+  setValue = (value) => {
+    this.children.fill.setStyle({ width: `${value}%` });
+    this.children.value.target.innerHTML = `${value}%`;
   };
 }
 
@@ -756,7 +791,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$9 = new Component({
+const componentExample$a = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -777,7 +812,7 @@ const componentExample$9 = new Component({
     })
   }
 });
-const codeExample$9 = new CodeExample({
+const codeExample$a = new CodeExample({
   innerHTML: `import { Avatar } from '@nathanssantos/pure-components';
 
 new Avatar({
@@ -828,8 +863,8 @@ class AvatarSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$9,
-                      codeExample: codeExample$9
+                      componentExample: componentExample$a,
+                      codeExample: codeExample$a
                     }
                   }),
                   panel2: new TabPanel({
@@ -845,7 +880,7 @@ class AvatarSection extends Component {
   }
 }
 
-const componentExample$8 = new Component({
+const componentExample$9 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -859,7 +894,7 @@ const componentExample$8 = new Component({
     })
   }
 });
-const codeExample$8 = new CodeExample({
+const codeExample$9 = new CodeExample({
   innerHTML: `import { Button } from '@nathanssantos/pure-components';
 
 new Button({
@@ -903,8 +938,8 @@ class ButtonSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$8,
-                      codeExample: codeExample$8
+                      componentExample: componentExample$9,
+                      codeExample: codeExample$9
                     }
                   }),
                   panel2: new TabPanel({
@@ -920,7 +955,7 @@ class ButtonSection extends Component {
   }
 }
 
-const componentExample$7 = new Component({
+const componentExample$8 = new Component({
   innerHTML: "I'm a generic component.",
   style: {
     backgroundColor: "var(--pc-success)",
@@ -942,7 +977,7 @@ const componentExample$7 = new Component({
     }
   }
 });
-const codeExample$7 = new CodeExample({
+const codeExample$8 = new CodeExample({
   innerHTML: `import { Component } from '@nathanssantos/pure-components';
 
 new Component({
@@ -1002,8 +1037,8 @@ class ComponentSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$7,
-                      codeExample: codeExample$7
+                      componentExample: componentExample$8,
+                      codeExample: codeExample$8
                     }
                   }),
                   panel2: new TabPanel({
@@ -1019,7 +1054,7 @@ class ComponentSection extends Component {
   }
 }
 
-const componentExample$6 = new Component({
+const componentExample$7 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1038,7 +1073,7 @@ const componentExample$6 = new Component({
     })
   }
 });
-const codeExample$6 = new CodeExample({
+const codeExample$7 = new CodeExample({
   innerHTML: `import { Container } from '@nathanssantos/pure-components';
 
 new Container({
@@ -1088,8 +1123,8 @@ class ContainerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$6,
-                      codeExample: codeExample$6
+                      componentExample: componentExample$7,
+                      codeExample: codeExample$7
                     }
                   }),
                   panel2: new TabPanel({
@@ -1120,7 +1155,7 @@ const drawer = new Drawer({
   }
 });
 const button$1 = new Button({ innerHTML: "Open drawer", events: { click: drawer.open } });
-const componentExample$5 = new Component({
+const componentExample$6 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1130,7 +1165,7 @@ const componentExample$5 = new Component({
     drawer
   }
 });
-const codeExample$5 = new CodeExample({
+const codeExample$6 = new CodeExample({
   innerHTML: `import { Button, Drawer } from '@nathanssantos/pure-components';
 
 const drawer = new Drawer({
@@ -1186,8 +1221,8 @@ class DrawerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$5,
-                      codeExample: codeExample$5
+                      componentExample: componentExample$6,
+                      codeExample: codeExample$6
                     }
                   }),
                   panel2: new TabPanel({
@@ -1203,7 +1238,7 @@ class DrawerSection extends Component {
   }
 }
 
-const componentExample$4 = new Component({
+const componentExample$5 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1246,7 +1281,7 @@ const componentExample$4 = new Component({
     })
   }
 });
-const codeExample$4 = new CodeExample({
+const codeExample$5 = new CodeExample({
   innerHTML: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
 
 new Header({
@@ -1320,8 +1355,8 @@ class HeaderSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$4,
-                      codeExample: codeExample$4
+                      componentExample: componentExample$5,
+                      codeExample: codeExample$5
                     }
                   }),
                   panel2: new TabPanel({
@@ -1396,7 +1431,7 @@ const modal = new Modal({
   }
 });
 const button = new Button({ innerHTML: "Open modal", events: { click: modal.open } });
-const componentExample$3 = new Component({
+const componentExample$4 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1406,7 +1441,7 @@ const componentExample$3 = new Component({
     modal
   }
 });
-const codeExample$3 = new CodeExample({
+const codeExample$4 = new CodeExample({
   innerHTML: `import { Button, Modal } from '@nathanssantos/pure-components';
 
 const modal = new Modal({
@@ -1443,6 +1478,77 @@ class ModalSection extends Component {
             title: new SectionTitle({ innerHTML: "Modal" }),
             description: new SectionDescription({
               innerHTML: "A simple modal."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$4,
+                      codeExample: codeExample$4
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const progress = new Progress();
+progress.setValue(42);
+const componentExample$3 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    progress
+  }
+});
+const codeExample$3 = new CodeExample({
+  innerHTML: `import { Progress } from '@nathanssantos/pure-components';
+
+const progress = new Progress();
+
+progress.setValue(42);
+
+progress.appendTo(document.body);`
+});
+class ProgressSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "progress"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Progress" }),
+            description: new SectionDescription({
+              innerHTML: "A simple progress bar."
             }),
             tabs: new Tabs({
               tabList: {
@@ -2023,6 +2129,7 @@ class HomeScreen extends Component {
             drawerSection: new DrawerSection(),
             headerSection: new HeaderSection(),
             modalSection: new ModalSection(),
+            progressSection: new ProgressSection(),
             tabsSection: new TabsSection(),
             tagSection: new TagSection(),
             toastSection: new ToastSection()
