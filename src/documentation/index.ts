@@ -1,5 +1,5 @@
-import Component from '../components/component';
 import router from './components/router';
+import Component from '../components/component';
 import '../style.scss';
 import './style.scss';
 
