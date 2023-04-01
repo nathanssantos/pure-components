@@ -6,6 +6,7 @@ import Container from './components/container';
 import Drawer from './components/drawer';
 import Header from './components/header';
 import Modal from './components/modal';
+import Progress from './components/progress';
 import Tab from './components/tab';
 import TabPanel from './components/tabPanel';
 import Tabs from './components/tabs';
@@ -20,6 +21,7 @@ export {
   Drawer,
   Header,
   Modal,
+  Progress,
   Tab,
   TabPanel,
   Tabs,

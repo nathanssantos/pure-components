@@ -56,6 +56,11 @@ interface ModalConstructorProps extends ComponentConstructorProps {
   overlay: Partial<ComponentConstructorProps>;
 }
 
+interface ProgressConstructorProps extends ComponentConstructorProps {
+  fill: Partial<ComponentConstructorProps>;
+  value: Partial<ComponentConstructorProps>;
+}
+
 interface ResponsiveObject<T> {
   base: T;
   md: T;
