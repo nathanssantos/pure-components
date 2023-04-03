@@ -1,10 +1,10 @@
-import Drawer from '.';
 import Component from '../component';
+import Drawer from '.';
 
 describe('Components', () => {
   describe('Drawer', () => {
     describe('instance and assemble', () => {
-      it('Should create a new drawer instance and assemble it.', () => {
+      it('Should create a new drawer instance.', () => {
         const component = new Drawer({ className: 'test my-drawer' });
 
         expect(component.target.classList).toContain('drawer');

@@ -4,7 +4,7 @@ import Toast from './index';
 describe('Components', () => {
   describe('Toast', () => {
     describe('instance and assemble', () => {
-      it('Should create a new tab instance and assemble it.', () => {
+      it('Should create a new tab instance.', () => {
         const component = new Toast({
           duration: 3000,
           className: 'test',

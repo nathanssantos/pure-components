@@ -2,7 +2,7 @@ import Constants from '../../constants';
 import Utils from '../../utils';
 
 class Component {
-  public children: ComponentConstructorProps['children'] = {};
+  public children: { [name: string]: Component } = {};
   public id: string;
   public state: ComponentConstructorProps['state'] = {};
   public target: HTMLElement;
@@ -36,8 +36,14 @@ class Component {
 
   public appendChildren = (payload: ComponentConstructorProps['children']) => {
     for (const [name, component] of Object.entries(payload)) {
-      this.children[name] = component;
-      this.target.append(component.target);
+      if (component instanceof Component) {
+        this.children[name] = component;
+        this.target.append(component.target);
+      } else {
+        const newChild = new Component({ innerHTML: component });
+        this.children[name] = newChild;
+        this.target.append(newChild.target);
+      }
     }
   };
 
@@ -85,8 +91,14 @@ class Component {
 
   public prependChildren = (payload: ComponentConstructorProps['children']) => {
     for (const [name, component] of Object.entries(payload)) {
-      this.children[name] = component;
-      this.target.prepend(component.target);
+      if (component instanceof Component) {
+        this.children[name] = component;
+        this.target.prepend(component.target);
+      } else {
+        const newChild = new Component({ innerHTML: component });
+        this.children[name] = newChild;
+        this.target.prepend(newChild.target);
+      }
     }
   };
 
