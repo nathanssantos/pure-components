@@ -42,7 +42,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$d = '';
+const style$e = '';
 
 class Constants {
   static breakpoints = {
@@ -105,8 +105,14 @@ class Component {
   }
   appendChildren = (payload) => {
     for (const [name, component] of Object.entries(payload)) {
-      this.children[name] = component;
-      this.target.append(component.target);
+      if (component instanceof Component) {
+        this.children[name] = component;
+        this.target.append(component.target);
+      } else {
+        const newChild = new Component({ innerHTML: component });
+        this.children[name] = newChild;
+        this.target.append(newChild.target);
+      }
     }
   };
   appendTo = (target) => {
@@ -146,8 +152,14 @@ class Component {
   };
   prependChildren = (payload) => {
     for (const [name, component] of Object.entries(payload)) {
-      this.children[name] = component;
-      this.target.prepend(component.target);
+      if (component instanceof Component) {
+        this.children[name] = component;
+        this.target.prepend(component.target);
+      } else {
+        const newChild = new Component({ innerHTML: component });
+        this.children[name] = newChild;
+        this.target.prepend(newChild.target);
+      }
     }
   };
   prependTo = (target) => {
@@ -199,13 +211,13 @@ class Component {
   };
 }
 
-const style$c = '';
+const style$d = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
     const { className, ...rest } = props;
     super({ className: `avatar${className?.length ? ` ${className}` : ""}`, ...rest });
-    this.init(props);
+    this.assemble(props);
   }
   assemble = (payload) => {
     return new Promise((resolve) => {
@@ -236,9 +248,18 @@ class Avatar extends Component {
       resolve(true);
     });
   };
-  init = (payload) => {
-    this.assemble(payload);
-  };
+}
+
+const style$c = '';
+
+class Breadcrumbs extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `breadcrumbs${className?.length ? ` ${className}` : ""}`,
+      ...rest
+    });
+  }
 }
 
 const style$b = '';
@@ -342,7 +363,7 @@ class Header extends Component {
       tagName: "header",
       ...rest
     });
-    this.init(props);
+    this.assemble(props);
   }
   assemble = (payload) => {
     return new Promise((resolve) => {
@@ -377,9 +398,6 @@ class Header extends Component {
       this.appendChildren({ container });
       resolve(true);
     });
-  };
-  init = (payload) => {
-    this.assemble(payload);
   };
 }
 
@@ -491,7 +509,7 @@ class Tab extends Button {
   constructor(props = {}) {
     const { className, ...rest } = props;
     super({ className: `tab${className?.length ? ` ${className}` : ""}`, ...rest });
-    this.init(props);
+    this.assemble(props);
   }
   assemble = (payload) => {
     return new Promise((resolve) => {
@@ -502,9 +520,6 @@ class Tab extends Button {
       this.appendChildren({ activityIndicator });
       resolve(true);
     });
-  };
-  init = async (payload) => {
-    await this.assemble(payload);
   };
   setActive = (isActive) => {
     this.isActive = isActive;
@@ -791,7 +806,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$a = new Component({
+const componentExample$b = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -812,7 +827,7 @@ const componentExample$a = new Component({
     })
   }
 });
-const codeExample$a = new CodeExample({
+const codeExample$b = new CodeExample({
   innerHTML: `import { Avatar } from '@nathanssantos/pure-components';
 
 new Avatar({
@@ -844,6 +859,85 @@ class AvatarSection extends Component {
             title: new SectionTitle({ innerHTML: "Avatar" }),
             description: new SectionDescription({
               innerHTML: "A simple avatar wich contains image, name and description."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$b,
+                      codeExample: codeExample$b
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$a = new Breadcrumbs({
+  children: {
+    item1: new Component({
+      innerHTML: "Home",
+      style: {
+        fontWeight: "700"
+      }
+    }),
+    item2: "Route A",
+    item3: "Route B"
+  }
+});
+const codeExample$a = new CodeExample({
+  innerHTML: `import { Breadcrumbs } from '@nathanssantos/pure-components';
+
+new Breadcrumbs({
+  children: {
+    item1: new Component({
+      innerHTML: 'Home',
+      style: {
+        fontWeight: '700',
+      },
+    }),
+    item2: 'Route A',
+    item3: 'Route B',
+  },
+}).appendTo(document.body);`
+});
+class BreadcrumbsSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "breadcrumbs"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Breadcrumbs" }),
+            description: new SectionDescription({
+              innerHTML: "A simple breadcrumbs component."
             }),
             tabs: new Tabs({
               tabList: {
@@ -2123,6 +2217,7 @@ class HomeScreen extends Component {
           },
           children: {
             avatarSection: new AvatarSection(),
+            breadcrumbsSection: new BreadcrumbsSection(),
             buttonSection: new ButtonSection(),
             componentSection: new ComponentSection(),
             containerSection: new ContainerSection(),
