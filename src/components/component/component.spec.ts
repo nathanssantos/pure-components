@@ -40,14 +40,17 @@ describe('Components', () => {
         const component = new Component();
         const child1 = new Component();
         const child2 = new Component();
+        const child3 = 'child3';
 
         component.appendChildren({
           child1,
           child2,
+          child3,
         });
 
         expect(component.target.querySelector(`[data-testid="${child1.id}"]`)).toBeTruthy();
         expect(component.target.querySelector(`[data-testid="${child2.id}"]`)).toBeTruthy();
+        expect(component.target.children.length).toBe(3);
       });
     });
 
@@ -119,14 +122,17 @@ describe('Components', () => {
         const component = new Component();
         const child1 = new Component();
         const child2 = new Component();
+        const child3 = 'child3';
 
         component.prependChildren({
           child1,
           child2,
+          child3,
         });
 
         expect(component.target.querySelector(`[data-testid="${child1.id}"]`)).toBeTruthy();
         expect(component.target.querySelector(`[data-testid="${child2.id}"]`)).toBeTruthy();
+        expect(component.target.children.length).toBe(3);
       });
     });
 
@@ -163,14 +169,20 @@ describe('Components', () => {
           md: { height: '100px' },
         });
 
-        expect(getComputedStyle(component.target).backgroundColor).toBe('red');
-        expect(getComputedStyle(component.target).fontFamily).toBe('Arial');
-        expect(
-          (document.querySelector('[id="pure-components__stylesheet"]') as HTMLStyleElement)
-            .sheet?.cssRules[0].cssText,
-        ).toBe(
-          `@media screen and (min-width: 48em) {.component--${component.id} {height: 100px;}}`,
-        );
+        component.setStyle({
+          backgroundColor: 'blue',
+        });
+
+        setTimeout(() => {
+          expect(getComputedStyle(component.target).backgroundColor).toBe('red');
+          expect(getComputedStyle(component.target).fontFamily).toBe('Arial');
+          expect(
+            (document.querySelector('[id="pure-components__stylesheet"]') as HTMLStyleElement)
+              .sheet?.cssRules[0].cssText,
+          ).toBe(
+            `@media screen and (min-width: 48em) {.component--${component.id} {height: 100px;}}`,
+          );
+        }, 0);
       });
     });
 

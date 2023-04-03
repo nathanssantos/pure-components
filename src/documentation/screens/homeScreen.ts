@@ -1,6 +1,7 @@
 import { Component } from '../..';
 import Hero from '../components/hero';
 import AvatarSection from '../sections/avatarSection';
+import BreadcrumbsSection from '../sections/breadcrumbsSection';
 import ButtonSection from '../sections/buttonSection';
 import ComponentSection from '../sections/componentSection';
 import ContainerSection from '../sections/containerSection';
@@ -35,6 +36,7 @@ class HomeScreen extends Component {
           },
           children: {
             avatarSection: new AvatarSection(),
+            breadcrumbsSection: new BreadcrumbsSection(),
             buttonSection: new ButtonSection(),
             componentSection: new ComponentSection(),
             containerSection: new ContainerSection(),

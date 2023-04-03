@@ -3,7 +3,7 @@ import Progress from '.';
 describe('Components', () => {
   describe('Progress', () => {
     describe('instance and assemble', () => {
-      it('Should create a new progress instance and assemble it.', () => {
+      it('Should create a new progress instance.', () => {
         const component1 = new Progress({ className: 'test my-progress' });
         const component2 = new Progress();
 

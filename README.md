@@ -2,9 +2,9 @@
 
 Dependency-free ui components library.
 
-![Version 0.0.38](https://img.shields.io/badge/Version-%200.0.38-green)
-![Components: 11](https://img.shields.io/badge/Components-%2011-green)
-![Test coverage: 99.61%](https://img.shields.io/badge/Test%20Coverage-99.61%25-green)
+![Version 0.0.39](https://img.shields.io/badge/Version-%200.0.39-green)
+![Components: 12](https://img.shields.io/badge/Components-%2012-green)
+![Test coverage: 99.62%](https://img.shields.io/badge/Test%20Coverage-99.62%25-green)
 ![Dependency-free](https://img.shields.io/badge/Dependency-%20free-green)
 
 **Work in progress!**
@@ -35,7 +35,7 @@ import "@nathanssantos/pure-components/style.css";
 
 - [ ] Autocomplete
 - [x] [Avatar](https://nathanssantos.github.io/pure-components/#avatar)
-- [ ] Breadcrumbs
+- [x] [Breadcrumbs](https://nathanssantos.github.io/pure-components/#breadcrumbs)
 - [x] [Button](https://nathanssantos.github.io/pure-components/#button)
 - [ ] Carousel
 - [ ] Checkbox

@@ -9,12 +9,12 @@ interface AvatarConstructorProps extends ComponentConstructorProps {
 
 interface ComponentConstructorProps {
   attributes: { [name: string]: string | boolean };
-  children: { [name: string]: Component };
+  children: { [name: string]: Component | number | string };
   className: string;
   events: {
     [name: string]: (instance: Component, event: Event) => unknown;
   };
-  innerHTML: string;
+  innerHTML: string | number;
   parent: Component;
   state: { [key: string]: any };
   style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
@@ -46,6 +46,11 @@ interface ModalConstructorProps extends ComponentConstructorProps {
   overlay: Partial<ComponentConstructorProps>;
 }
 
+interface ProgressConstructorProps extends ComponentConstructorProps {
+  fill: Partial<ComponentConstructorProps>;
+  value: Partial<ComponentConstructorProps>;
+}
+
 interface ResponsiveObject<T> {
   base: T;
   md: T;
@@ -62,6 +67,21 @@ interface TabsConstructorProps extends ComponentConstructorProps {
   activeTabIndex: number;
   tabList: Partial<ComponentConstructorProps>;
   tabPanels: Partial<ComponentConstructorProps>;
+}
+
+interface ToastConstructorProps extends ComponentConstructorProps {
+  title: Partial<ComponentConstructorProps>;
+  description: Partial<ComponentConstructorProps>;
+  variant: 'success' | 'error' | 'warning' | 'info';
+
+  position:
+    | 'top-right'
+    | 'top-left'
+    | 'top-center'
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'bottom-center';
+  duration: number;
 }
 
 declare class Component {
@@ -122,6 +142,13 @@ declare class Modal extends Component {
   open: () => Promise<void>;
 }
 
+declare class Progress extends Component {
+  constructor(props?: Partial<ProgressConstructorProps>);
+  private assemble;
+  private init;
+  setValue: (value: number) => void;
+}
+
 declare class Tab extends Button {
   isActive: boolean;
   constructor(props?: Partial<TabConstructorProps>);
@@ -142,4 +169,30 @@ declare class Tabs extends Component {
   setActiveTabIndex: (activeTabIndex: TabsConstructorProps['activeTabIndex']) => void;
 }
 
-export { Avatar, Button, Component, Container, Drawer, Header, Modal, Tab, TabPanel, Tabs };
+declare class Tag extends Component {
+  constructor(props?: Partial<ComponentConstructorProps>);
+}
+
+declare class Toast extends Component {
+  constructor(props?: Partial<ToastConstructorProps>);
+  private assemble;
+  dismiss: () => void;
+  show: () => void;
+  static trigger: (props: Partial<ToastConstructorProps>) => void;
+}
+
+export {
+  Avatar,
+  Button,
+  Component,
+  Container,
+  Drawer,
+  Header,
+  Modal,
+  Progress,
+  Tab,
+  TabPanel,
+  Tabs,
+  Tag,
+  Toast,
+};

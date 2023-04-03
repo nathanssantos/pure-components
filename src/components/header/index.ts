@@ -12,7 +12,7 @@ class Header extends Component {
       ...rest,
     });
 
-    this.init(props);
+    this.assemble(props);
   }
 
   private assemble = (payload: Partial<HeaderConstructorProps>) => {
@@ -53,10 +53,6 @@ class Header extends Component {
 
       resolve(true);
     });
-  };
-
-  private init = (payload: Partial<HeaderConstructorProps>) => {
-    this.assemble(payload);
   };
 }
 

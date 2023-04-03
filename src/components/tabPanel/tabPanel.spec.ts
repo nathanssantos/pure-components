@@ -3,7 +3,7 @@ import TabPanel from '.';
 describe('Components', () => {
   describe('TabPanel', () => {
     describe('instance and assemble', () => {
-      it('Should create a new tab instance and assemble it.', () => {
+      it('Should create a new tab instance.', () => {
         const component = new TabPanel({ className: 'test my-tab-panel' });
         const component2 = new TabPanel();
 

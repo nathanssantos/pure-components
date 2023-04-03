@@ -1,10 +1,10 @@
-import Tab from '.';
 import Component from '../component';
+import Tab from '.';
 
 describe('Components', () => {
   describe('Tab', () => {
     describe('instance and assemble', () => {
-      it('Should create a new tab instance and assemble it.', () => {
+      it('Should create a new tab instance.', () => {
         const component = new Tab({ className: 'test my-tab' });
 
         expect(component.target.classList).toContain('tab');

@@ -1,5 +1,6 @@
 import './style.scss';
 import Avatar from './components/avatar';
+import Breadcrumbs from './components/breadcrumbs';
 import Button from './components/button';
 import Component from './components/component';
 import Container from './components/container';
@@ -15,6 +16,7 @@ import Toast from './components/toast';
 
 export {
   Avatar,
+  Breadcrumbs,
   Button,
   Component,
   Container,
