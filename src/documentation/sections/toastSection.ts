@@ -238,7 +238,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Button, Toast } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Button, Toast } from '@nathanssantos/pure-components';
 
 const btTriggerToast = new Button({
   innerHTML: 'Toast top right',

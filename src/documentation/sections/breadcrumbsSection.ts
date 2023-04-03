@@ -17,7 +17,8 @@ const componentExample = new Breadcrumbs({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Breadcrumbs } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Breadcrumbs } from '@nathanssantos/pure-components';
 
 new Breadcrumbs({
   children: {

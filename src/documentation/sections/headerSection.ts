@@ -49,7 +49,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
 
 new Header({
   style: {

@@ -18,7 +18,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Progress } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Progress } from '@nathanssantos/pure-components';
 
 const progress = new Progress();
 

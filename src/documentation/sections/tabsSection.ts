@@ -41,7 +41,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Tab, TabPanel, Tabs } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Tab, TabPanel, Tabs } from '@nathanssantos/pure-components';
 
 new Tabs({
   tabList: {
