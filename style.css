@@ -408,20 +408,4 @@
 .toast__description {
   margin: 0;
   padding: 0 calc(var(--pc-spacing) * 3) calc(var(--pc-spacing) * 4) calc(var(--pc-spacing) * 3);
-}* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-width: 20rem;
-  min-height: 100vh;
-}
-
-.documentation {
-  min-height: 100vh;
-  background-color: var(--pc-background);
-  color: var(--pc-text-color);
 }
