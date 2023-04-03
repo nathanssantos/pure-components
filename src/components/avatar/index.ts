@@ -7,7 +7,7 @@ class Avatar extends Component {
 
     super({ className: `avatar${className?.length ? ` ${className}` : ''}`, ...rest });
 
-    this.init(props);
+    this.assemble(props);
   }
 
   private assemble = (payload: Partial<AvatarConstructorProps>) => {
@@ -40,10 +40,6 @@ class Avatar extends Component {
 
       resolve(true);
     });
-  };
-
-  private init = (payload: Partial<AvatarConstructorProps>) => {
-    this.assemble(payload);
   };
 }
 

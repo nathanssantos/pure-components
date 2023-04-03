@@ -39,7 +39,7 @@ class Tabs extends Component {
 
     if (tabList?.children) {
       Object.values(tabList.children).forEach((component, index) => {
-        component.bindEvents({ click: () => this.setActiveTabIndex(index) });
+        (component as Component).bindEvents({ click: () => this.setActiveTabIndex(index) });
       });
     }
   };

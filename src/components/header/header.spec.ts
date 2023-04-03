@@ -1,10 +1,10 @@
-import Header from '.';
 import Component from '../component';
+import Header from '.';
 
 describe('Components', () => {
   describe('Header', () => {
     describe('instance and assemble', () => {
-      it('Should create a new header instance and assemble it.', () => {
+      it('Should create a new header instance.', () => {
         const component = new Header({ className: 'test my-header' });
         const component2 = new Header({
           leftContent: {

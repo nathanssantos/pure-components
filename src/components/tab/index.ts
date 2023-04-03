@@ -1,5 +1,5 @@
-import Component from '../component';
 import Button from '../button';
+import Component from '../component';
 import './style.scss';
 
 class Tab extends Button {
@@ -10,7 +10,7 @@ class Tab extends Button {
 
     super({ className: `tab${className?.length ? ` ${className}` : ''}`, ...rest });
 
-    this.init(props);
+    this.assemble(props);
   }
 
   private assemble = (payload: Partial<TabConstructorProps>) => {
@@ -24,10 +24,6 @@ class Tab extends Button {
 
       resolve(true);
     });
-  };
-
-  private init = async (payload: Partial<TabConstructorProps>) => {
-    await this.assemble(payload);
   };
 
   public setActive = (isActive: boolean) => {

@@ -5,7 +5,7 @@ import Tabs from '.';
 describe('Components', () => {
   describe('Tabs', () => {
     describe('instance and assemble', () => {
-      it('Should create a new tab instance and assemble it.', () => {
+      it('Should create a new tab instance.', () => {
         const component = new Tabs({
           className: 'test my-tabs',
           tabList: {

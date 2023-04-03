@@ -9,7 +9,7 @@ interface AvatarConstructorProps extends ComponentConstructorProps {
 
 interface ComponentConstructorProps {
   attributes: { [name: string]: string | boolean };
-  children: { [name: string]: import('../components/component').default };
+  children: { [name: string]: import('../components/component').default | number | string };
   className: string;
   events: {
     [name: string]: (
@@ -17,7 +17,7 @@ interface ComponentConstructorProps {
       event: Event,
     ) => unknown;
   };
-  innerHTML: string;
+  innerHTML: string | number;
   parent: import('../components/component').default;
   state: { [key: string]: any };
   style: Partial<CSSStyleDeclaration> | ResponsiveObject<Partial<CSSStyleDeclaration>>;
@@ -31,13 +31,6 @@ interface DrawerConstructorProps extends ComponentConstructorProps {
   footer: Partial<ComponentConstructorProps>;
   header: Partial<ComponentConstructorProps>;
   overlay: Partial<ComponentConstructorProps>;
-}
-
-interface LayoutConstructorProps extends ComponentConstructorProps {
-  leftContent: Partial<ComponentConstructorProps>;
-  centerContent: Partial<ComponentConstructorProps>;
-  rightContent: Partial<ComponentConstructorProps>;
-  container: Partial<ComponentConstructorProps>;
 }
 
 interface HeaderConstructorProps extends ComponentConstructorProps {

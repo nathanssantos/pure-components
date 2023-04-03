@@ -4,7 +4,7 @@ import Modal from '.';
 describe('Components', () => {
   describe('Modal', () => {
     describe('instance and assemble', () => {
-      it('Should create a new modal instance and assemble it.', () => {
+      it('Should create a new modal instance.', () => {
         const component = new Modal({ className: 'test my-modal' });
 
         expect(component.target.classList).toContain('modal');

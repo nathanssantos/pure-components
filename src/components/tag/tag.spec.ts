@@ -3,7 +3,7 @@ import Tag from '.';
 describe('Components', () => {
   describe('Tag', () => {
     describe('instance and assemble', () => {
-      it('Should create a new tag instance and assemble it.', () => {
+      it('Should create a new tag instance.', () => {
         const component1 = new Tag({ className: 'test my-tag' });
         const component2 = new Tag();
 
