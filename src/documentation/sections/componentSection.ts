@@ -27,7 +27,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Component } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Component } from '@nathanssantos/pure-components';
 
 new Component({
   innerHTML: "I'm a generic component.",

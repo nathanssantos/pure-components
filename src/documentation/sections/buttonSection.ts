@@ -19,7 +19,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Button } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Button } from '@nathanssantos/pure-components';
 
 new Button({
   innerHTML: 'Click me',
