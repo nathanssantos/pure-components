@@ -32,7 +32,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Button, Modal } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Button, Modal } from '@nathanssantos/pure-components';
 
 const modal = new Modal({
   header: {

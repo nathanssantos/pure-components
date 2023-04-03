@@ -19,7 +19,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Tag } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Tag } from '@nathanssantos/pure-components';
 
 new new Tag({
   innerHTML: "I'm a tag",

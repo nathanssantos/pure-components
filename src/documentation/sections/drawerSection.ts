@@ -32,7 +32,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Button, Drawer } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Button, Drawer } from '@nathanssantos/pure-components';
 
 const drawer = new Drawer({
   header: {

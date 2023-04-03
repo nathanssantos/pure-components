@@ -26,7 +26,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Avatar } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Avatar } from '@nathanssantos/pure-components';
 
 new Avatar({
   image: {

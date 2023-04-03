@@ -21,13 +21,15 @@ class InstallSection extends Component {
                 'To use Pure Components in your project, run one of the following commands in your terminal:',
             }),
             codeExampleYarn: new CodeExample({
-              innerHTML: 'yarn add @nathanssantos/pure-components',
+              content: '$ yarn add @nathanssantos/pure-components',
+              language: 'bash',
               style: {
                 marginBottom: '1rem',
               },
             }),
             codeExampleNpm: new CodeExample({
-              innerHTML: 'npm install @nathanssantos/pure-components',
+              content: '$ npm install @nathanssantos/pure-components',
+              language: 'bash',
               style: {
                 marginBottom: '1rem',
               },
@@ -36,7 +38,7 @@ class InstallSection extends Component {
               innerHTML: "Import styles in your app's entry point:",
             }),
             styleImport: new CodeExample({
-              innerHTML: 'import "@nathanssantos/pure-components/style.css";',
+              content: 'import "@nathanssantos/pure-components/style.css";',
               style: {
                 marginBottom: '3rem',
               },

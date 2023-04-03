@@ -25,7 +25,8 @@ const componentExample = new Component({
 });
 
 const codeExample = new CodeExample({
-  innerHTML: `import { Container } from '@nathanssantos/pure-components';
+  language: 'typescript',
+  content: `import { Container } from '@nathanssantos/pure-components';
 
 new Container({
   style: {
