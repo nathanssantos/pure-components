@@ -45,10 +45,12 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Floating Action Button
 - [x] [Header](https://nathanssantos.github.io/pure-components/#header)
 - [x] [Modal](https://nathanssantos.github.io/pure-components/#modal)
+- [ ] Input
 - [ ] Org Chart
 - [ ] Popover
 - [x] [Progress](https://nathanssantos.github.io/pure-components/#progress)
 - [ ] Radio
+- [ ] Select
 - [x] [Tag](https://nathanssantos.github.io/pure-components/#tag)
 - [x] [Tabs](https://nathanssantos.github.io/pure-components/#tabs)
 - [x] [Toast](https://nathanssantos.github.io/pure-components/#toast)
