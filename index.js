@@ -751,25 +751,140 @@ class Toast extends Component {
   }
 }
 
+const name = "@nathanssantos/pure-components";
+const version = "0.0.40";
+const author = {
+	name: "Nathan Silva Santos",
+	email: "nathansilvasantos@gmail.com"
+};
+const license = "MIT";
+const publishConfig = {
+	access: "public"
+};
+const type = "module";
+const main = "./dist/index.js";
+const module = "./dist/index.js";
+const types = "./src/types/global.d.ts";
+const exports = {
+	".": "./dist/index.js",
+	"./style.css": "./dist/style.css",
+	"./package.json": "./package.json"
+};
+const files = [
+	"dist",
+	"index.d.ts"
+];
+const scripts = {
+	dev: "vite",
+	build: "tsc && vite build --base=./",
+	preview: "vite preview",
+	test: "jest",
+	predeploy: "yarn build",
+	deploy: "gh-pages -d dist",
+	check: "tsc --noEmit",
+	prepublishOnly: "npm run test && npm run check && npm run build"
+};
+const devDependencies = {
+	"@types/jest": "^29.4.0",
+	"@typescript-eslint/eslint-plugin": "^5.51.0",
+	"@typescript-eslint/parser": "^5.51.0",
+	eslint: "^8.34.0",
+	"eslint-config-prettier": "^8.6.0",
+	"eslint-plugin-import": "^2.27.5",
+	"eslint-plugin-jest": "^27.2.1",
+	"eslint-plugin-prettier": "^4.2.1",
+	"gh-pages": "^5.0.0",
+	husky: "^8.0.3",
+	"identity-obj-proxy": "^3.0.0",
+	jest: "^29.4.2",
+	"jest-environment-jsdom": "^29.4.2",
+	"lint-staged": "^13.1.1",
+	prettier: "^2.8.4",
+	sass: "^1.58.0",
+	"ts-jest": "^29.0.5",
+	"ts-node": "^10.9.1",
+	typescript: "^4.9.3",
+	vite: "^4.1.0"
+};
+const repository = {
+	type: "git",
+	url: "git+https://github.com/nathanssantos/pure-components.git"
+};
+const bugs = {
+	url: "https://github.com/nathanssantos/pure-components/issues"
+};
+const homepage = "https://nathanssantos.github.io/pure-components";
+const keywords = [
+	"customizable",
+	"dependency-free",
+	"dependency free",
+	"components",
+	"ui library",
+	"javascript",
+	"js",
+	"typescript",
+	"ts",
+	"responsive",
+	"component",
+	"drawer",
+	"modal",
+	"avatar",
+	"button",
+	"container",
+	"header",
+	"tabs",
+	"tag",
+	"breadcrumbs",
+	"floating action button",
+	"fab",
+	"progress",
+	"checkbox",
+	"radio",
+	"org chart",
+	"autocomplete",
+	"toast",
+	"tooltip",
+	"popover",
+	"carousel"
+];
+const packageJSON = {
+	name: name,
+	version: version,
+	author: author,
+	license: license,
+	publishConfig: publishConfig,
+	type: type,
+	main: main,
+	module: module,
+	types: types,
+	exports: exports,
+	files: files,
+	scripts: scripts,
+	devDependencies: devDependencies,
+	repository: repository,
+	bugs: bugs,
+	homepage: homepage,
+	keywords: keywords
+};
+
 const header = new Header({
   style: {
     zIndex: "20"
   },
   leftContent: {
-    children: {
-      logo: new Component({
-        innerHTML: "Pure Components",
-        style: {
-          fontWeight: "bold",
-          base: {
-            fontSize: "1rem"
-          },
-          md: {
-            fontSize: "1.25rem"
-          }
-        }
-      })
+    innerHTML: "Pure Components",
+    style: {
+      fontWeight: "bold",
+      base: {
+        fontSize: "1rem"
+      },
+      md: {
+        fontSize: "1.25rem"
+      }
     }
+  },
+  rightContent: {
+    innerHTML: `v${packageJSON.version}`
   }
 });
 class Layout extends Component {
