@@ -6,6 +6,7 @@ import Component from './components/component';
 import Container from './components/container';
 import Drawer from './components/drawer';
 import Header from './components/header';
+import Input from './components/input';
 import Modal from './components/modal';
 import Progress from './components/progress';
 import Tab from './components/tab';
@@ -22,6 +23,7 @@ export {
   Container,
   Drawer,
   Header,
+  Input,
   Modal,
   Progress,
   Tab,

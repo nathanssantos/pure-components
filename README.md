@@ -2,9 +2,9 @@
 
 Dependency-free ui components library.
 
-![Version 0.0.39](https://img.shields.io/badge/Version-%200.0.39-green)
-![Components: 12](https://img.shields.io/badge/Components-%2012-green)
-![Test coverage: 99.62%](https://img.shields.io/badge/Test%20Coverage-99.62%25-green)
+![Version 0.0.40](https://img.shields.io/badge/Version-%200.0.40-green)
+![Components: 13](https://img.shields.io/badge/Components-%2013-green)
+![Test coverage: 99.65%](https://img.shields.io/badge/Test%20Coverage-99.65%25-green)
 ![Dependency-free](https://img.shields.io/badge/Dependency-%20free-green)
 
 **Work in progress!**
@@ -45,7 +45,7 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Floating Action Button
 - [x] [Header](https://nathanssantos.github.io/pure-components/#header)
 - [x] [Modal](https://nathanssantos.github.io/pure-components/#modal)
-- [ ] Input
+- [x] [Input](https://nathanssantos.github.io/pure-components/#input)
 - [ ] Org Chart
 - [ ] Popover
 - [x] [Progress](https://nathanssantos.github.io/pure-components/#progress)
