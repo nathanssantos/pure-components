@@ -1,24 +1,24 @@
 import { Component, Header } from '../..';
+import packageJSON from '../../../package.json';
 
 const header = new Header({
   style: {
     zIndex: '20',
   },
   leftContent: {
-    children: {
-      logo: new Component({
-        innerHTML: 'Pure Components',
-        style: {
-          fontWeight: 'bold',
-          base: {
-            fontSize: '1rem',
-          },
-          md: {
-            fontSize: '1.25rem',
-          },
-        },
-      }),
+    innerHTML: 'Pure Components',
+    style: {
+      fontWeight: 'bold',
+      base: {
+        fontSize: '1rem',
+      },
+      md: {
+        fontSize: '1.25rem',
+      },
     },
+  },
+  rightContent: {
+    innerHTML: `v${packageJSON.version}`,
   },
 });
 
