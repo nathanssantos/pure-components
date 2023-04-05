@@ -1,4 +1,50 @@
-const style$e = '';
+import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/highlight.min.js';
+
+true&&(function polyfill() {
+    const relList = document.createElement('link').relList;
+    if (relList && relList.supports && relList.supports('modulepreload')) {
+        return;
+    }
+    for (const link of document.querySelectorAll('link[rel="modulepreload"]')) {
+        processPreload(link);
+    }
+    new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.type !== 'childList') {
+                continue;
+            }
+            for (const node of mutation.addedNodes) {
+                if (node.tagName === 'LINK' && node.rel === 'modulepreload')
+                    processPreload(node);
+            }
+        }
+    }).observe(document, { childList: true, subtree: true });
+    function getFetchOpts(link) {
+        const fetchOpts = {};
+        if (link.integrity)
+            fetchOpts.integrity = link.integrity;
+        if (link.referrerPolicy)
+            fetchOpts.referrerPolicy = link.referrerPolicy;
+        if (link.crossOrigin === 'use-credentials')
+            fetchOpts.credentials = 'include';
+        else if (link.crossOrigin === 'anonymous')
+            fetchOpts.credentials = 'omit';
+        else
+            fetchOpts.credentials = 'same-origin';
+        return fetchOpts;
+    }
+    function processPreload(link) {
+        if (link.ep)
+            // ep marker = processed
+            return;
+        link.ep = true;
+        // prepopulate the load record
+        const fetchOpts = getFetchOpts(link);
+        fetch(link.href, fetchOpts);
+    }
+}());
+
+const style$f = '';
 
 class Constants {
   static breakpoints = {
@@ -167,7 +213,7 @@ class Component {
   };
 }
 
-const style$d = '';
+const style$e = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -206,7 +252,7 @@ class Avatar extends Component {
   };
 }
 
-const style$c = '';
+const style$d = '';
 
 class Breadcrumbs extends Component {
   constructor(props = {}) {
@@ -218,7 +264,7 @@ class Breadcrumbs extends Component {
   }
 }
 
-const style$b = '';
+const style$c = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -231,7 +277,7 @@ class Button extends Component {
   }
 }
 
-const style$a = '';
+const style$b = '';
 
 class Container extends Component {
   constructor(props = {}) {
@@ -243,7 +289,7 @@ class Container extends Component {
   }
 }
 
-const style$9 = '';
+const style$a = '';
 
 class Drawer extends Component {
   constructor(props = {}) {
@@ -309,7 +355,7 @@ class Drawer extends Component {
   };
 }
 
-const style$8 = '';
+const style$9 = '';
 
 class Header extends Component {
   constructor(props = {}) {
@@ -357,7 +403,7 @@ class Header extends Component {
   };
 }
 
-const style$7 = '';
+const style$8 = '';
 
 class Input extends Component {
   activeTabIndex = 0;
@@ -423,7 +469,7 @@ class Input extends Component {
   };
 }
 
-const style$6 = '';
+const style$7 = '';
 
 class Modal extends Component {
   constructor(props = {}) {
@@ -489,7 +535,7 @@ class Modal extends Component {
   };
 }
 
-const style$5 = '';
+const style$6 = '';
 
 class Progress extends Component {
   constructor(props = {}) {
@@ -524,7 +570,7 @@ class Progress extends Component {
   };
 }
 
-const style$4 = '';
+const style$5 = '';
 
 class Tab extends Button {
   isActive = false;
@@ -549,7 +595,7 @@ class Tab extends Button {
   };
 }
 
-const style$3 = '';
+const style$4 = '';
 
 class TabPanel extends Component {
   constructor(props = {}) {
@@ -561,7 +607,7 @@ class TabPanel extends Component {
   }
 }
 
-const style$2 = '';
+const style$3 = '';
 
 class Tabs extends Component {
   activeTabIndex = 0;
@@ -611,7 +657,7 @@ class Tabs extends Component {
   };
 }
 
-const style$1 = '';
+const style$2 = '';
 
 class Tag extends Component {
   constructor(props = {}) {
@@ -623,7 +669,7 @@ class Tag extends Component {
   }
 }
 
-const style = '';
+const style$1 = '';
 
 class Toast extends Component {
   constructor(props = {}) {
@@ -705,5 +751,1921 @@ class Toast extends Component {
   }
 }
 
-export { Avatar, Breadcrumbs, Button, Component, Container, Drawer, Header, Input, Modal, Progress, Tab, TabPanel, Tabs, Tag, Toast };
+const name = "@nathanssantos/pure-components";
+const version = "0.0.40";
+const author = {
+	name: "Nathan Silva Santos",
+	email: "nathansilvasantos@gmail.com"
+};
+const license = "MIT";
+const publishConfig = {
+	access: "public"
+};
+const type = "module";
+const main = "./dist/index.js";
+const module = "./dist/index.js";
+const types = "./src/types/global.d.ts";
+const exports = {
+	".": "./dist/index.js",
+	"./style.css": "./dist/style.css",
+	"./package.json": "./package.json"
+};
+const files = [
+	"dist",
+	"index.d.ts"
+];
+const scripts = {
+	dev: "vite",
+	build: "tsc && vite build --base=./",
+	preview: "vite preview",
+	test: "jest",
+	predeploy: "yarn build",
+	deploy: "gh-pages -d dist",
+	check: "tsc --noEmit",
+	prepublishOnly: "npm run test && npm run check && npm run build"
+};
+const devDependencies = {
+	"@types/jest": "^29.4.0",
+	"@typescript-eslint/eslint-plugin": "^5.51.0",
+	"@typescript-eslint/parser": "^5.51.0",
+	eslint: "^8.34.0",
+	"eslint-config-prettier": "^8.6.0",
+	"eslint-plugin-import": "^2.27.5",
+	"eslint-plugin-jest": "^27.2.1",
+	"eslint-plugin-prettier": "^4.2.1",
+	"gh-pages": "^5.0.0",
+	husky: "^8.0.3",
+	"identity-obj-proxy": "^3.0.0",
+	jest: "^29.4.2",
+	"jest-environment-jsdom": "^29.4.2",
+	"lint-staged": "^13.1.1",
+	prettier: "^2.8.4",
+	sass: "^1.58.0",
+	"ts-jest": "^29.0.5",
+	"ts-node": "^10.9.1",
+	typescript: "^4.9.3",
+	vite: "^4.1.0"
+};
+const repository = {
+	type: "git",
+	url: "git+https://github.com/nathanssantos/pure-components.git"
+};
+const bugs = {
+	url: "https://github.com/nathanssantos/pure-components/issues"
+};
+const homepage = "https://nathanssantos.github.io/pure-components";
+const keywords = [
+	"customizable",
+	"dependency-free",
+	"dependency free",
+	"components",
+	"ui library",
+	"javascript",
+	"js",
+	"typescript",
+	"ts",
+	"responsive",
+	"component",
+	"drawer",
+	"modal",
+	"avatar",
+	"button",
+	"container",
+	"header",
+	"tabs",
+	"tag",
+	"breadcrumbs",
+	"floating action button",
+	"fab",
+	"progress",
+	"checkbox",
+	"radio",
+	"org chart",
+	"autocomplete",
+	"toast",
+	"tooltip",
+	"popover",
+	"carousel"
+];
+const packageJSON = {
+	name: name,
+	version: version,
+	author: author,
+	license: license,
+	publishConfig: publishConfig,
+	type: type,
+	main: main,
+	module: module,
+	types: types,
+	exports: exports,
+	files: files,
+	scripts: scripts,
+	devDependencies: devDependencies,
+	repository: repository,
+	bugs: bugs,
+	homepage: homepage,
+	keywords: keywords
+};
+
+const header = new Header({
+  style: {
+    zIndex: "20"
+  },
+  leftContent: {
+    innerHTML: "Pure Components",
+    style: {
+      fontWeight: "bold",
+      base: {
+        fontSize: "1rem"
+      },
+      md: {
+        fontSize: "1.25rem"
+      }
+    }
+  },
+  rightContent: {
+    innerHTML: `v${packageJSON.version}`
+  }
+});
+class Layout extends Component {
+  constructor() {
+    super({
+      className: "layout",
+      children: {
+        header,
+        screens: new Component()
+      }
+    });
+  }
+}
+
+class SectionDescription extends Component {
+  constructor(props) {
+    super({
+      style: {
+        marginBottom: "1rem",
+        base: {
+          fontSize: "0.875rem"
+        },
+        md: {
+          fontSize: "1rem"
+        }
+      },
+      ...props
+    });
+  }
+}
+
+class Hero extends Component {
+  constructor(props) {
+    super({
+      children: {
+        container: new Container({
+          style: {
+            gap: "1rem",
+            paddingTop: "8rem"
+          },
+          children: {
+            title: new Component({
+              innerHTML: props.title,
+              style: {
+                fontWeight: "bold",
+                base: {
+                  fontSize: "1.85rem"
+                },
+                md: {
+                  fontSize: "2.5rem"
+                }
+              }
+            }),
+            description: new SectionDescription({
+              innerHTML: props.description
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class CodeExample extends Component {
+  constructor(props = {}) {
+    super({
+      tagName: "pre",
+      ...props,
+      style: {
+        borderRadius: "0.25rem",
+        overflow: "hidden",
+        base: {
+          fontSize: "0.875rem"
+        },
+        md: {
+          fontSize: "1rem"
+        },
+        ...props.style
+      },
+      children: {
+        code: new Component({
+          tagName: "code",
+          innerHTML: props.content,
+          className: props.language ? `language-${props.language}` : ""
+        })
+      }
+    });
+  }
+}
+
+class SectionTitle extends Component {
+  constructor(props) {
+    super({
+      style: {
+        marginBottom: "1rem",
+        fontWeight: "bold",
+        base: {
+          fontSize: "1.5rem"
+        },
+        md: {
+          fontSize: "1.75rem"
+        }
+      },
+      ...props
+    });
+  }
+}
+
+const componentExample$c = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    avatar: new Avatar({
+      image: {
+        attributes: {
+          src: "https://i.pravatar.cc/300"
+        }
+      },
+      name: {
+        innerHTML: "John Doe"
+      },
+      description: {
+        innerHTML: "john@doe.com"
+      }
+    })
+  }
+});
+const codeExample$c = new CodeExample({
+  language: "typescript",
+  content: `import { Avatar } from '@nathanssantos/pure-components';
+
+new Avatar({
+  image: {
+    attributes: {
+      src: 'https://i.pravatar.cc/300',
+    },
+  },
+  name: {
+    innerHTML: 'John Doe',
+  },
+  description: {
+    innerHTML: 'john@doe.com',
+  },
+}).appendTo(document.body);`
+});
+class AvatarSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "avatar"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Avatar" }),
+            description: new SectionDescription({
+              innerHTML: "A simple avatar wich contains image, name and description."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$c,
+                      codeExample: codeExample$c
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$b = new Breadcrumbs({
+  children: {
+    item1: new Component({
+      innerHTML: "Home",
+      style: {
+        fontWeight: "700"
+      }
+    }),
+    item2: "Route A",
+    item3: "Route B"
+  }
+});
+const codeExample$b = new CodeExample({
+  language: "typescript",
+  content: `import { Breadcrumbs } from '@nathanssantos/pure-components';
+
+new Breadcrumbs({
+  children: {
+    item1: new Component({
+      innerHTML: 'Home',
+      style: {
+        fontWeight: '700',
+      },
+    }),
+    item2: 'Route A',
+    item3: 'Route B',
+  },
+}).appendTo(document.body);`
+});
+class BreadcrumbsSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "breadcrumbs"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Breadcrumbs" }),
+            description: new SectionDescription({
+              innerHTML: "A simple breadcrumbs component."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$b,
+                      codeExample: codeExample$b
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$a = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    button: new Button({
+      innerHTML: "Click me",
+      events: {
+        click: () => alert("Button clicked!")
+      }
+    })
+  }
+});
+const codeExample$a = new CodeExample({
+  language: "typescript",
+  content: `import { Button } from '@nathanssantos/pure-components';
+
+new Button({
+  innerHTML: 'Click me',
+  events: {
+    click: () => alert('Button clicked!'),
+  },
+}).appendTo(document.body);`
+});
+class ButtonSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "button"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Button" }),
+            description: new SectionDescription({
+              innerHTML: "A simple button."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$a,
+                      codeExample: codeExample$a
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$9 = new Component({
+  innerHTML: "I'm a generic component.",
+  style: {
+    backgroundColor: "var(--pc-success)",
+    padding: "1.5rem",
+    color: "#222",
+    fontWeight: "bold",
+    borderRadius: "0.25rem",
+    textAlign: "center",
+    cursor: "pointer"
+  },
+  events: {
+    click: ({ setStyle, target }) => {
+      target.innerHTML = "I can do anything.";
+      setStyle({ backgroundColor: "var(--pc-info)" });
+    },
+    mouseleave: ({ setStyle, target }) => {
+      target.innerHTML = "I'm a generic component.";
+      setStyle({ backgroundColor: "var(--pc-success)" });
+    }
+  }
+});
+const codeExample$9 = new CodeExample({
+  language: "typescript",
+  content: `import { Component } from '@nathanssantos/pure-components';
+
+new Component({
+  innerHTML: "I'm a generic component.",
+  style: {
+    backgroundColor: 'var(--pc-success)',
+    padding: '1.5rem',
+    color: '#222',
+    fontWeight: 'bold',
+    borderRadius: '0.25rem',
+    textAlign: 'center',
+    cursor: 'pointer',
+  },
+  events: {
+    click: ({ setStyle, target }) => {
+      target.innerHTML = 'I can do anything.';
+      setStyle({ backgroundColor: 'var(--pc-info)' });
+    },
+    mouseleave: ({ setStyle, target }) => {
+      target.innerHTML = "I'm a generic component.";
+      setStyle({ backgroundColor: 'var(--pc-success)' });
+    },
+  },
+}).appendTo(document.body);`
+});
+class ComponentSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "component"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Component" }),
+            description: new SectionDescription({
+              innerHTML: "A generic component that can be anything."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$9,
+                      codeExample: codeExample$9
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$8 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    container: new Container({
+      style: {
+        base: {
+          maxWidth: "17.5rem"
+        },
+        md: {
+          maxWidth: "37.5rem"
+        }
+      },
+      innerHTML: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum? Accusantium culpa incidunt maxime quae natus at placeat itaque error tenetur ab, optio saepe illum soluta porro temporibus. Voluptatum vitae officiis delectus molestiae error fuga eos debitis."
+    })
+  }
+});
+const codeExample$8 = new CodeExample({
+  language: "typescript",
+  content: `import { Container } from '@nathanssantos/pure-components';
+
+new Container({
+  style: {
+    base: {
+      maxWidth: '17.5rem',
+    },
+    md: {
+      maxWidth: '37.5rem',
+    },
+  },
+  innerHTML:
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum? Accusantium culpa incidunt maxime quae natus at placeat itaque error tenetur ab, optio saepe illum soluta porro temporibus. Voluptatum vitae officiis delectus molestiae error fuga eos debitis.',
+}).appendTo(document.body);`
+});
+class ContainerSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "container"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Container" }),
+            description: new SectionDescription({
+              innerHTML: "A simple container."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$8,
+                      codeExample: codeExample$8
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const drawer = new Drawer({
+  header: {
+    innerHTML: "Drawer Header",
+    style: {
+      justifyContent: "space-between"
+    }
+  },
+  body: {
+    innerHTML: "Drawer Body"
+  },
+  footer: {
+    innerHTML: "Drawer Footer"
+  }
+});
+const button$1 = new Button({ innerHTML: "Open drawer", events: { click: drawer.open } });
+const componentExample$7 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    button: button$1,
+    drawer
+  }
+});
+const codeExample$7 = new CodeExample({
+  language: "typescript",
+  content: `import { Button, Drawer } from '@nathanssantos/pure-components';
+
+const drawer = new Drawer({
+  header: {
+    innerHTML: 'Drawer Header',
+    style: {
+      justifyContent: 'space-between',
+    },
+  },
+  body: {
+    innerHTML: 'Drawer Body',
+  },
+  footer: {
+    innerHTML: 'Drawer Footer',
+  },
+});
+
+drawer.appendTo(document.body);
+
+new Button({ innerHTML: 'Open drawer', events: { click: drawer.open } }).appendTo(document.body);`
+});
+class DrawerSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "drawer"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Drawer" }),
+            description: new SectionDescription({
+              innerHTML: "A simple drawer."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$7,
+                      codeExample: codeExample$7
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$6 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    header: new Header({
+      style: {
+        position: "relative"
+      },
+      leftContent: {
+        children: {
+          button: new Button({
+            style: {
+              padding: "0.5rem"
+            },
+            innerHTML: '<svg viewBox="0 0 24 24" style="height: 1.25rem; width: 1.25rem;"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>'
+          })
+        }
+      },
+      centerContent: {
+        innerHTML: "Center Content"
+      },
+      rightContent: {
+        children: {
+          avatar: new Avatar({
+            image: {
+              attributes: {
+                src: "https://i.pravatar.cc/300"
+              }
+            },
+            name: {
+              innerHTML: "John Doe"
+            },
+            description: {
+              innerHTML: "john@doe.com"
+            }
+          })
+        }
+      }
+    })
+  }
+});
+const codeExample$6 = new CodeExample({
+  language: "typescript",
+  content: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
+
+new Header({
+  style: {
+    position: 'relative',
+  },
+  leftContent: {
+    children: {
+      button: new Button({
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML: '<svg viewBox="0 0 24 24" style="height: 1.25rem; width: 1.25rem;"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>',
+      }),
+    },
+  },
+  centerContent: {
+    innerHTML: 'Center Content',
+  },
+  rightContent: {
+    children: {
+      avatar: new Avatar({
+        image: {
+          attributes: {
+            src: 'https://i.pravatar.cc/300',
+          },
+        },
+        name: {
+          innerHTML: 'John Doe',
+        },
+        description: {
+          innerHTML: 'john@doe.com',
+        },
+      }),
+    },
+  },
+}).appendTo(document.body);`
+});
+class HeaderSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "header"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Header" }),
+            description: new SectionDescription({
+              innerHTML: "A simple header."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$6,
+                      codeExample: codeExample$6
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const simpleInput = new Input({
+  field: {
+    attributes: {
+      value: "Simple Input"
+    }
+  }
+});
+const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>';
+const visibilityOnIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>';
+const visibilityOffIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none"  width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>';
+const btToggleInputType = new Component({
+  innerHTML: visibilityOffIcon,
+  style: {
+    display: "flex",
+    padding: "0.5rem",
+    cursor: "pointer"
+  }
+});
+const passwordInput = new Input({
+  field: {
+    attributes: {
+      type: "password",
+      value: "password_here"
+    },
+    events: {
+      input: (_, event) => {
+        console.log(event.target.value);
+      }
+    }
+  },
+  label: {
+    innerHTML: "Password"
+  },
+  leftSlot: {
+    innerHTML: lockIcon
+  },
+  rightSlot: {
+    children: {
+      btToggleInputType
+    }
+  }
+});
+const handleToggleInputType = (button) => {
+  const inputField = passwordInput.children.fieldWrapper.children.field;
+  const currentInputType = inputField.target.getAttribute("type");
+  inputField.setAttributes({ type: currentInputType === "password" ? "text" : "password" });
+  button.target.innerHTML = currentInputType === "password" ? visibilityOnIcon : visibilityOffIcon;
+};
+btToggleInputType.bindEvents({
+  click: handleToggleInputType
+});
+const componentExample$5 = new Component({
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: "1rem"
+  },
+  children: {
+    simpleInput,
+    passwordInput
+  }
+});
+const codeExample$5 = new CodeExample({
+  language: "typescript",
+  content: `import { Input, Component } from '@nathanssantos/pure-components';
+
+const simpleInput = new Input({
+  field: {
+    attributes: {
+      value: 'Simple Input',
+    },
+  },
+});
+
+const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>';
+
+const visibilityOnIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>';
+
+const visibilityOffIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none"  width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>';
+
+const btToggleInputType = new Component({
+  innerHTML: visibilityOffIcon,
+  style: {
+    display: 'flex',
+    padding: '0.5rem',
+    cursor: 'pointer',
+  },
+});
+
+const passwordInput = new Input({
+  field: {
+    attributes: {
+      type: 'password',
+      value: 'password_here',
+    },
+    events: {
+      input: (_, event: Event) => {
+        console.log((event.target as HTMLInputElement).value);
+      },
+    },
+  },
+  label: {
+    innerHTML: 'Password',
+  },
+  leftSlot: {
+    innerHTML: lockIcon,
+  },
+  rightSlot: {
+    children: {
+      btToggleInputType,
+    },
+  },
+});
+
+const handleToggleInputType = (button: Component) => {
+  const inputField = passwordInput.children.fieldWrapper.children.field;
+  const currentInputType = inputField.target.getAttribute('type');
+
+  inputField.setAttributes({ type: currentInputType === 'password' ? 'text' : 'password' });
+
+  button.target.innerHTML =
+    currentInputType === 'password' ? visibilityOnIcon : visibilityOffIcon;
+};
+
+btToggleInputType.bindEvents({
+  click: handleToggleInputType,
+});
+
+document.body.append(
+  simpleInput.target,
+  passwordInput.target,
+);`
+});
+class InputSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "input"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Input" }),
+            description: new SectionDescription({
+              innerHTML: "Input with label and slots on both sides."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$5,
+                      codeExample: codeExample$5
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class InstallSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "install"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Installation" }),
+            description: new SectionDescription({
+              innerHTML: "To use Pure Components in your project, run one of the following commands in your terminal:"
+            }),
+            codeExampleYarn: new CodeExample({
+              content: "$ yarn add @nathanssantos/pure-components",
+              language: "bash",
+              style: {
+                marginBottom: "1rem"
+              }
+            }),
+            codeExampleNpm: new CodeExample({
+              content: "$ npm install @nathanssantos/pure-components",
+              language: "bash",
+              style: {
+                marginBottom: "1rem"
+              }
+            }),
+            description2: new SectionDescription({
+              innerHTML: "Import styles in your app's entry point:"
+            }),
+            styleImport: new CodeExample({
+              content: 'import "@nathanssantos/pure-components/style.css";',
+              style: {
+                marginBottom: "3rem"
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const modal = new Modal({
+  header: {
+    innerHTML: "Modal Header",
+    style: {
+      justifyContent: "space-between"
+    }
+  },
+  body: {
+    innerHTML: "Modal Body"
+  },
+  footer: {
+    innerHTML: "Modal Footer"
+  }
+});
+const button = new Button({ innerHTML: "Open modal", events: { click: modal.open } });
+const componentExample$4 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    button,
+    modal
+  }
+});
+const codeExample$4 = new CodeExample({
+  language: "typescript",
+  content: `import { Button, Modal } from '@nathanssantos/pure-components';
+
+const modal = new Modal({
+  header: {
+    innerHTML: 'Modal Header',
+    style: {
+      justifyContent: 'space-between',
+    },
+  },
+  body: {
+    innerHTML: 'Modal Body',
+  },
+  footer: {
+    innerHTML: 'Modal Footer',
+  },
+});
+
+modal.appendTo(document.body);
+
+new Button({ innerHTML: 'Open modal', events: { click: modal.open } }).appendTo(document.body);`
+});
+class ModalSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "modal"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Modal" }),
+            description: new SectionDescription({
+              innerHTML: "A simple modal."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$4,
+                      codeExample: codeExample$4
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const progress = new Progress();
+progress.setValue(42);
+const componentExample$3 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    progress
+  }
+});
+const codeExample$3 = new CodeExample({
+  language: "typescript",
+  content: `import { Progress } from '@nathanssantos/pure-components';
+
+const progress = new Progress();
+
+progress.setValue(42);
+
+progress.appendTo(document.body);`
+});
+class ProgressSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "progress"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Progress" }),
+            description: new SectionDescription({
+              innerHTML: "A simple progress bar."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$3,
+                      codeExample: codeExample$3
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$2 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    tabs: new Tabs({
+      tabList: {
+        children: {
+          tab1: new Tab({
+            innerHTML: "Tab 1"
+          }),
+          tab2: new Tab({
+            innerHTML: "Tab 2"
+          }),
+          tab3: new Tab({
+            innerHTML: "Tab 3"
+          })
+        }
+      },
+      tabPanels: {
+        children: {
+          panel1: new TabPanel({
+            innerHTML: "TabPanel 1"
+          }),
+          panel2: new TabPanel({
+            innerHTML: "TabPanel 2"
+          }),
+          panel3: new TabPanel({
+            innerHTML: "TabPanel 3"
+          })
+        }
+      }
+    })
+  }
+});
+const codeExample$2 = new CodeExample({
+  language: "typescript",
+  content: `import { Tab, TabPanel, Tabs } from '@nathanssantos/pure-components';
+
+new Tabs({
+  tabList: {
+    children: {
+      tab1: new Tab({
+        innerHTML: 'Tab 1',
+      }),
+      tab2: new Tab({
+        innerHTML: 'Tab 2',
+      }),
+      tab3: new Tab({
+        innerHTML: 'Tab 3',
+      }),
+    },
+  },
+  tabPanels: {
+    children: {
+      panel1: new TabPanel({
+        innerHTML: 'TabPanel 1',
+      }),
+      panel2: new TabPanel({
+        innerHTML: 'TabPanel 2',
+      }),
+      panel3: new TabPanel({
+        innerHTML: 'TabPanel 3',
+      }),
+    },
+  },
+}).appendTo(document.body);`
+});
+class TabsSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "tabs"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Tabs" }),
+            description: new SectionDescription({
+              innerHTML: "A simple tabs component."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$2,
+                      codeExample: codeExample$2
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$1 = new Component({
+  style: {
+    display: "flex",
+    gap: "1rem"
+  },
+  children: {
+    tag: new Tag({
+      innerHTML: "I'm a tag",
+      style: {
+        backgroundColor: "var(--pc-error)"
+      }
+    })
+  }
+});
+const codeExample$1 = new CodeExample({
+  language: "typescript",
+  content: `import { Tag } from '@nathanssantos/pure-components';
+
+new new Tag({
+  innerHTML: "I'm a tag",
+  style: {
+    backgroundColor: 'var(--pc-error)'
+  }
+}).appendTo(document.body);`
+});
+class TagSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "tag"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Tag" }),
+            description: new SectionDescription({
+              innerHTML: "A simple tag."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$1,
+                      codeExample: codeExample$1
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const controlledToast = new Toast({
+  title: {
+    innerHTML: "Toast"
+  },
+  description: {
+    innerHTML: "Controlled toast"
+  }
+});
+const componentExample = new Component({
+  style: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "1rem"
+  },
+  children: {
+    positioning: new Component({
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "calc(var(--pc-spacing) * 2)"
+      },
+      children: {
+        title: new Component({
+          innerHTML: "Positions",
+          style: { width: "100%" }
+        }),
+        toastTopLeft: new Button({
+          innerHTML: "top-left",
+          events: {
+            click: () => Toast.trigger({
+              position: "top-left",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast top left position and animation."
+              }
+            })
+          }
+        }),
+        toastTopCenter: new Button({
+          innerHTML: "top-center",
+          events: {
+            click: () => Toast.trigger({
+              position: "top-center",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast top center position and animation."
+              }
+            })
+          }
+        }),
+        toastTopRight: new Button({
+          innerHTML: "top-right",
+          events: {
+            click: () => Toast.trigger({
+              position: "top-right",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast top right position and animation."
+              }
+            })
+          }
+        }),
+        toastBottomLeft: new Button({
+          innerHTML: "bottom-left",
+          events: {
+            click: () => Toast.trigger({
+              position: "bottom-left",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast bottom left position and animation."
+              }
+            })
+          }
+        }),
+        toastBottomCenter: new Button({
+          innerHTML: "bottom-center",
+          events: {
+            click: () => Toast.trigger({
+              position: "bottom-center",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast bottom center position and animation."
+              }
+            })
+          }
+        }),
+        toastBottomRight: new Button({
+          innerHTML: "bottom-right",
+          events: {
+            click: () => Toast.trigger({
+              position: "bottom-right",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Toast bottom right position and animation."
+              }
+            })
+          }
+        })
+      }
+    }),
+    variants: new Component({
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "calc(var(--pc-spacing) * 2)"
+      },
+      children: {
+        title: new Component({
+          innerHTML: "Variants",
+          style: { width: "100%" }
+        }),
+        toastVariantInfo: new Button({
+          innerHTML: "info",
+          style: {
+            backgroundColor: "var(--pc-info)"
+          },
+          events: {
+            click: () => {
+              Toast.trigger({
+                variant: "info",
+                title: {
+                  innerHTML: "Toast"
+                },
+                description: {
+                  innerHTML: "Info"
+                }
+              });
+            }
+          }
+        }),
+        toastVariantSuccess: new Button({
+          innerHTML: "success",
+          style: {
+            backgroundColor: "var(--pc-success)"
+          },
+          events: {
+            click: () => Toast.trigger({
+              variant: "success",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Success"
+              }
+            })
+          }
+        }),
+        toastVariantWarning: new Button({
+          innerHTML: "warning",
+          style: {
+            backgroundColor: "var(--pc-warning)"
+          },
+          events: {
+            click: () => Toast.trigger({
+              variant: "warning",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Warning"
+              }
+            })
+          }
+        }),
+        toastVariantError: new Button({
+          innerHTML: "error",
+          style: {
+            backgroundColor: "var(--pc-error)"
+          },
+          events: {
+            click: () => Toast.trigger({
+              variant: "error",
+              title: {
+                innerHTML: "Toast"
+              },
+              description: {
+                innerHTML: "Error"
+              }
+            })
+          }
+        })
+      }
+    }),
+    controlled: new Component({
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "calc(var(--pc-spacing) * 2)"
+      },
+      children: {
+        title: new Component({
+          innerHTML: "Controlled",
+          style: { width: "100%" }
+        }),
+        controlletToastShow: new Button({
+          innerHTML: "Show controlled toast",
+          events: {
+            click: controlledToast.show
+          }
+        }),
+        controlletToastDismiss: new Button({
+          innerHTML: "Dismiss controlled toast",
+          events: {
+            click: controlledToast.dismiss
+          }
+        })
+      }
+    })
+  }
+});
+const codeExample = new CodeExample({
+  language: "typescript",
+  content: `import { Button, Toast } from '@nathanssantos/pure-components';
+
+const btTriggerToast = new Button({
+  innerHTML: 'Toast top right',
+  events: {
+    click: () => {
+      Toast.trigger({
+        position: 'top-right',
+        variant: 'success',
+        title: {
+          innerHTML: 'Toast',
+        },
+        description: {
+          innerHTML: 'Toast top right position and animation.',
+        },
+      }),
+    }
+  },
+});
+
+const controlledToast = new Toast({
+  title: {
+    innerHTML: 'Toast',
+  },
+  description: {
+    innerHTML: 'Toast top left position and controlled animation.',
+  },
+});
+
+const btShowControlledToast = new Button({
+  innerHTML: 'Show controlled toast',
+  events: {
+    click: controlledToast.show,
+  },
+});
+
+const btDismissControlledToast = new Button({
+  innerHTML: 'Dismiss controlled toast',
+  events: {
+    click: controlledToast.dismiss,
+  },
+});
+
+document.body.append(
+  btTriggerToast.target,
+  btShowControlledToast.target,
+  btDismissControlledToast.target
+);`
+});
+class ToastSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "toast"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Toast" }),
+            description: new SectionDescription({
+              innerHTML: "A super toast."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample,
+                      codeExample
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+class HomeScreen extends Component {
+  constructor() {
+    super({
+      style: {
+        paddingBottom: "6rem"
+      },
+      children: {
+        heroGetStarted: new Hero({ title: "Get Started" }),
+        installSection: new InstallSection(),
+        heroComponents: new Hero({
+          title: "Components",
+          description: "Pure Components provide prebuild components to help you build your projects faster.<br>Here is a list with examples:"
+        }),
+        components: new Component({
+          style: {
+            display: "flex",
+            flexDirection: "column",
+            gap: "4rem"
+          },
+          children: {
+            avatarSection: new AvatarSection(),
+            breadcrumbsSection: new BreadcrumbsSection(),
+            buttonSection: new ButtonSection(),
+            componentSection: new ComponentSection(),
+            containerSection: new ContainerSection(),
+            drawerSection: new DrawerSection(),
+            headerSection: new HeaderSection(),
+            inputSection: new InputSection(),
+            modalSection: new ModalSection(),
+            progressSection: new ProgressSection(),
+            tabsSection: new TabsSection(),
+            tagSection: new TagSection(),
+            toastSection: new ToastSection()
+          }
+        })
+      }
+    });
+  }
+}
+
+class Router extends Component {
+  initialRoute = "mainScreen";
+  routes = {
+    mainScreen: {
+      component: new HomeScreen(),
+      name: "Home"
+    }
+  };
+  constructor() {
+    super({
+      className: "router",
+      children: {
+        layout: new Layout()
+      }
+    });
+  }
+  navigate = (screenName = this.initialRoute) => {
+    for (const screen of Object.values(this.children.layout.children.screens.children)) {
+      screen.target.remove();
+    }
+    this.children.layout.children.screens.appendChildren({
+      [screenName]: this.routes[screenName].component
+    });
+  };
+}
+const router = new Router();
+
+const style = '';
+
+class Documentation extends Component {
+  constructor() {
+    super({
+      className: "documentation",
+      children: {
+        router
+      }
+    });
+    this.appendTo(document.querySelector("#app"));
+    router.navigate();
+  }
+  static init = () => {
+    new Documentation();
+  };
+}
+Documentation.init();
+
+hljs.highlightAll();
 //# sourceMappingURL=index.js.map
