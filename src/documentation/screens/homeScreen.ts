@@ -7,6 +7,7 @@ import ComponentSection from '../sections/componentSection';
 import ContainerSection from '../sections/containerSection';
 import DrawerSection from '../sections/drawerSection';
 import HeaderSection from '../sections/headerSection';
+import InputSection from '../sections/inputSection';
 import InstallSection from '../sections/installSection';
 import ModalSection from '../sections/modalSection';
 import ProgressSection from '../sections/progressSection';
@@ -42,6 +43,7 @@ class HomeScreen extends Component {
             containerSection: new ContainerSection(),
             drawerSection: new DrawerSection(),
             headerSection: new HeaderSection(),
+            inputSection: new InputSection(),
             modalSection: new ModalSection(),
             progressSection: new ProgressSection(),
             tabsSection: new TabsSection(),

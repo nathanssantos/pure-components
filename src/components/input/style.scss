@@ -1,0 +1,47 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pc-spacing);
+  min-width: 10rem;
+
+  &__field-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--pc-input-background);
+    border-radius: var(--pc-border-radius);
+    width: 100%;
+  }
+
+  &__field {
+    padding: calc(var(--pc-spacing) * 2) calc(var(--pc-spacing) * 3);
+    background: none;
+    border: none;
+    color: var(--pc-text-color);
+    font-size: 0.875rem;
+    flex: 1;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__slot {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+  }
+
+  &--has-left-slot {
+    .input__field {
+      padding-left: 0;
+    }
+  }
+
+  &--has-right-slot {
+    .input__field {
+      padding-right: 0;
+    }
+  }
+}

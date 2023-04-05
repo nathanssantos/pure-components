@@ -40,6 +40,14 @@ interface HeaderConstructorProps extends ComponentConstructorProps {
   container: Partial<ComponentConstructorProps>;
 }
 
+interface InputConstructorProps extends ComponentConstructorProps {
+  fieldWrapper: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  label: Partial<ComponentConstructorProps>;
+  leftSlot: Partial<ComponentConstructorProps>;
+  rightSlot: Partial<ComponentConstructorProps>;
+}
+
 interface ModalConstructorProps extends ComponentConstructorProps {
   body: Partial<ComponentConstructorProps>;
   btClose: Partial<ComponentConstructorProps>;
