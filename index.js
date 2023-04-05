@@ -44,7 +44,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$e = '';
+const style$f = '';
 
 class Constants {
   static breakpoints = {
@@ -213,7 +213,7 @@ class Component {
   };
 }
 
-const style$d = '';
+const style$e = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -252,7 +252,7 @@ class Avatar extends Component {
   };
 }
 
-const style$c = '';
+const style$d = '';
 
 class Breadcrumbs extends Component {
   constructor(props = {}) {
@@ -264,7 +264,7 @@ class Breadcrumbs extends Component {
   }
 }
 
-const style$b = '';
+const style$c = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -277,7 +277,7 @@ class Button extends Component {
   }
 }
 
-const style$a = '';
+const style$b = '';
 
 class Container extends Component {
   constructor(props = {}) {
@@ -289,7 +289,7 @@ class Container extends Component {
   }
 }
 
-const style$9 = '';
+const style$a = '';
 
 class Drawer extends Component {
   constructor(props = {}) {
@@ -355,7 +355,7 @@ class Drawer extends Component {
   };
 }
 
-const style$8 = '';
+const style$9 = '';
 
 class Header extends Component {
   constructor(props = {}) {
@@ -398,6 +398,72 @@ class Header extends Component {
         });
       }
       this.appendChildren({ container });
+      resolve(true);
+    });
+  };
+}
+
+const style$8 = '';
+
+class Input extends Component {
+  activeTabIndex = 0;
+  constructor(props = {}) {
+    const { className, leftSlot, rightSlot, ...rest } = props;
+    const getClassName = () => {
+      let newClassName = "input";
+      if (className)
+        newClassName += ` ${className}`;
+      if (leftSlot)
+        newClassName += " input--has-left-slot";
+      if (rightSlot)
+        newClassName += " input--has-right-slot";
+      return newClassName;
+    };
+    super({ className: getClassName(), ...rest });
+    this.assemble(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const field = new Component({
+        tagName: "input",
+        className: "input__field",
+        ...payload.field,
+        attributes: {
+          type: "text",
+          size: "1",
+          ...payload.field?.attributes
+        }
+      });
+      const fieldWrapper = new Component({
+        className: "input__field-wrapper",
+        ...payload.fieldWrapper,
+        children: {
+          field,
+          ...payload.fieldWrapper?.children
+        }
+      });
+      if (payload.leftSlot) {
+        const leftSlot = new Component({
+          className: "input__slot input__slot--left",
+          ...payload.leftSlot
+        });
+        fieldWrapper.prependChildren({ leftSlot });
+      }
+      if (payload.rightSlot) {
+        const rightSlot = new Component({
+          className: "input__slot input__slot--right",
+          ...payload.rightSlot
+        });
+        fieldWrapper.appendChildren({ rightSlot });
+      }
+      if (payload.label) {
+        const label = new Component({
+          className: "input__label",
+          ...payload.label
+        });
+        this.appendChildren({ label });
+      }
+      this.appendChildren({ fieldWrapper });
       resolve(true);
     });
   };
@@ -812,7 +878,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$b = new Component({
+const componentExample$c = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -833,7 +899,7 @@ const componentExample$b = new Component({
     })
   }
 });
-const codeExample$b = new CodeExample({
+const codeExample$c = new CodeExample({
   language: "typescript",
   content: `import { Avatar } from '@nathanssantos/pure-components';
 
@@ -885,8 +951,8 @@ class AvatarSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$b,
-                      codeExample: codeExample$b
+                      componentExample: componentExample$c,
+                      codeExample: codeExample$c
                     }
                   }),
                   panel2: new TabPanel({
@@ -902,7 +968,7 @@ class AvatarSection extends Component {
   }
 }
 
-const componentExample$a = new Breadcrumbs({
+const componentExample$b = new Breadcrumbs({
   children: {
     item1: new Component({
       innerHTML: "Home",
@@ -914,7 +980,7 @@ const componentExample$a = new Breadcrumbs({
     item3: "Route B"
   }
 });
-const codeExample$a = new CodeExample({
+const codeExample$b = new CodeExample({
   language: "typescript",
   content: `import { Breadcrumbs } from '@nathanssantos/pure-components';
 
@@ -965,8 +1031,8 @@ class BreadcrumbsSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$a,
-                      codeExample: codeExample$a
+                      componentExample: componentExample$b,
+                      codeExample: codeExample$b
                     }
                   }),
                   panel2: new TabPanel({
@@ -982,7 +1048,7 @@ class BreadcrumbsSection extends Component {
   }
 }
 
-const componentExample$9 = new Component({
+const componentExample$a = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -996,7 +1062,7 @@ const componentExample$9 = new Component({
     })
   }
 });
-const codeExample$9 = new CodeExample({
+const codeExample$a = new CodeExample({
   language: "typescript",
   content: `import { Button } from '@nathanssantos/pure-components';
 
@@ -1041,8 +1107,8 @@ class ButtonSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$9,
-                      codeExample: codeExample$9
+                      componentExample: componentExample$a,
+                      codeExample: codeExample$a
                     }
                   }),
                   panel2: new TabPanel({
@@ -1058,7 +1124,7 @@ class ButtonSection extends Component {
   }
 }
 
-const componentExample$8 = new Component({
+const componentExample$9 = new Component({
   innerHTML: "I'm a generic component.",
   style: {
     backgroundColor: "var(--pc-success)",
@@ -1080,7 +1146,7 @@ const componentExample$8 = new Component({
     }
   }
 });
-const codeExample$8 = new CodeExample({
+const codeExample$9 = new CodeExample({
   language: "typescript",
   content: `import { Component } from '@nathanssantos/pure-components';
 
@@ -1141,8 +1207,8 @@ class ComponentSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$8,
-                      codeExample: codeExample$8
+                      componentExample: componentExample$9,
+                      codeExample: codeExample$9
                     }
                   }),
                   panel2: new TabPanel({
@@ -1158,7 +1224,7 @@ class ComponentSection extends Component {
   }
 }
 
-const componentExample$7 = new Component({
+const componentExample$8 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1177,7 +1243,7 @@ const componentExample$7 = new Component({
     })
   }
 });
-const codeExample$7 = new CodeExample({
+const codeExample$8 = new CodeExample({
   language: "typescript",
   content: `import { Container } from '@nathanssantos/pure-components';
 
@@ -1228,8 +1294,8 @@ class ContainerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$7,
-                      codeExample: codeExample$7
+                      componentExample: componentExample$8,
+                      codeExample: codeExample$8
                     }
                   }),
                   panel2: new TabPanel({
@@ -1260,7 +1326,7 @@ const drawer = new Drawer({
   }
 });
 const button$1 = new Button({ innerHTML: "Open drawer", events: { click: drawer.open } });
-const componentExample$6 = new Component({
+const componentExample$7 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1270,7 +1336,7 @@ const componentExample$6 = new Component({
     drawer
   }
 });
-const codeExample$6 = new CodeExample({
+const codeExample$7 = new CodeExample({
   language: "typescript",
   content: `import { Button, Drawer } from '@nathanssantos/pure-components';
 
@@ -1327,8 +1393,8 @@ class DrawerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$6,
-                      codeExample: codeExample$6
+                      componentExample: componentExample$7,
+                      codeExample: codeExample$7
                     }
                   }),
                   panel2: new TabPanel({
@@ -1344,7 +1410,7 @@ class DrawerSection extends Component {
   }
 }
 
-const componentExample$5 = new Component({
+const componentExample$6 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1387,7 +1453,7 @@ const componentExample$5 = new Component({
     })
   }
 });
-const codeExample$5 = new CodeExample({
+const codeExample$6 = new CodeExample({
   language: "typescript",
   content: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
 
@@ -1443,6 +1509,193 @@ class HeaderSection extends Component {
             title: new SectionTitle({ innerHTML: "Header" }),
             description: new SectionDescription({
               innerHTML: "A simple header."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$6,
+                      codeExample: codeExample$6
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const simpleInput = new Input({
+  field: {
+    attributes: {
+      value: "Simple Input"
+    }
+  }
+});
+const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>';
+const visibilityOnIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>';
+const visibilityOffIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none"  width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>';
+const inputTypeToggle = new Component({
+  innerHTML: visibilityOffIcon,
+  style: {
+    display: "flex",
+    background: "transparent",
+    padding: "0.5rem",
+    cursor: "pointer"
+  }
+});
+const passwordInput = new Input({
+  field: {
+    attributes: {
+      type: "password",
+      value: "password_here"
+    },
+    events: {
+      input: (_, event) => {
+        console.log(event.target.value);
+      }
+    }
+  },
+  label: {
+    innerHTML: "Password"
+  },
+  leftSlot: {
+    innerHTML: lockIcon
+  },
+  rightSlot: {
+    children: {
+      inputTypeToggle
+    }
+  }
+});
+const handleToggleInputType = (button) => {
+  const inputField = passwordInput.children.fieldWrapper.children.field;
+  const currentInputType = inputField.target.getAttribute("type");
+  inputField.setAttributes({ type: currentInputType === "password" ? "text" : "password" });
+  button.target.innerHTML = currentInputType === "password" ? visibilityOnIcon : visibilityOffIcon;
+};
+inputTypeToggle.bindEvents({
+  click: handleToggleInputType
+});
+const componentExample$5 = new Component({
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: "1rem"
+  },
+  children: {
+    simpleInput,
+    passwordInput
+  }
+});
+const codeExample$5 = new CodeExample({
+  language: "typescript",
+  content: `import { Input, Component } from '@nathanssantos/pure-components';
+
+const simpleInput = new Input({
+  field: {
+    attributes: {
+      value: 'Simple Input',
+    },
+  },
+});
+
+const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>';
+
+const visibilityOnIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>';
+
+const visibilityOffIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none"  width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>';
+
+const inputTypeToggle = new Component({
+  innerHTML: visibilityOffIcon,
+  style: {
+    display: 'flex',
+    background: 'transparent',
+    padding: '0.5rem',
+    cursor: 'pointer',
+  },
+});
+
+const passwordInput = new Input({
+  field: {
+    attributes: {
+      type: 'password',
+      value: 'password_here',
+    },
+    events: {
+      input: (_, event: Event) => {
+        console.log((event.target as HTMLInputElement).value);
+      },
+    },
+  },
+  label: {
+    innerHTML: 'Password',
+  },
+  leftSlot: {
+    innerHTML: lockIcon,
+  },
+  rightSlot: {
+    children: {
+      inputTypeToggle,
+    },
+  },
+});
+
+const handleToggleInputType = (button: Component) => {
+  const inputField = passwordInput.children.fieldWrapper.children.field;
+  const currentInputType = inputField.target.getAttribute('type');
+
+  inputField.setAttributes({ type: currentInputType === 'password' ? 'text' : 'password' });
+
+  button.target.innerHTML =
+    currentInputType === 'password' ? visibilityOnIcon : visibilityOffIcon;
+};
+
+inputTypeToggle.bindEvents({
+  click: handleToggleInputType,
+});
+
+document.body.append(
+  simpleInput.target,
+  passwordInput.target,
+);`
+});
+class InputSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "input"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Input" }),
+            description: new SectionDescription({
+              innerHTML: "Input with label and slots on both sides."
             }),
             tabs: new Tabs({
               tabList: {
@@ -2243,6 +2496,7 @@ class HomeScreen extends Component {
             containerSection: new ContainerSection(),
             drawerSection: new DrawerSection(),
             headerSection: new HeaderSection(),
+            inputSection: new InputSection(),
             modalSection: new ModalSection(),
             progressSection: new ProgressSection(),
             tabsSection: new TabsSection(),

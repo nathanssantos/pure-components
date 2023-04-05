@@ -13,6 +13,7 @@
   --pc-background: #262626;
   --pc-surface-background: #222;
   --pc-card-background: #3a3a3a;
+  --pc-input-background: #555;
   --pc-overlay-background: rgba(34, 34, 34, 0.5);
   --pc-clickable-background: #333;
   --pc-clickable-hover: #444;
@@ -196,6 +197,42 @@
 }
 .header__right-content {
   justify-content: flex-end;
+}.input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pc-spacing);
+  min-width: 10rem;
+}
+.input__field-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--pc-input-background);
+  border-radius: var(--pc-border-radius);
+  width: 100%;
+}
+.input__field {
+  padding: calc(var(--pc-spacing) * 2) calc(var(--pc-spacing) * 3);
+  background: none;
+  border: none;
+  color: var(--pc-text-color);
+  font-size: 0.875rem;
+  flex: 1;
+}
+.input__field:focus {
+  outline: none;
+}
+.input__slot {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+}
+.input--has-left-slot .input__field {
+  padding-left: 0;
+}
+.input--has-right-slot .input__field {
+  padding-right: 0;
 }.modal {
   position: fixed;
   left: 0;
