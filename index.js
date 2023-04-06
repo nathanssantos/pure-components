@@ -44,7 +44,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$f = '';
+const style$g = '';
 
 class Constants {
   static breakpoints = {
@@ -213,7 +213,7 @@ class Component {
   };
 }
 
-const style$e = '';
+const style$f = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -252,7 +252,7 @@ class Avatar extends Component {
   };
 }
 
-const style$d = '';
+const style$e = '';
 
 class Breadcrumbs extends Component {
   constructor(props = {}) {
@@ -264,7 +264,7 @@ class Breadcrumbs extends Component {
   }
 }
 
-const style$c = '';
+const style$d = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -277,7 +277,7 @@ class Button extends Component {
   }
 }
 
-const style$b = '';
+const style$c = '';
 
 class Container extends Component {
   constructor(props = {}) {
@@ -289,7 +289,7 @@ class Container extends Component {
   }
 }
 
-const style$a = '';
+const style$b = '';
 
 class Drawer extends Component {
   constructor(props = {}) {
@@ -355,7 +355,7 @@ class Drawer extends Component {
   };
 }
 
-const style$9 = '';
+const style$a = '';
 
 class Header extends Component {
   constructor(props = {}) {
@@ -403,7 +403,7 @@ class Header extends Component {
   };
 }
 
-const style$8 = '';
+const style$9 = '';
 
 class Input extends Component {
   activeTabIndex = 0;
@@ -469,7 +469,7 @@ class Input extends Component {
   };
 }
 
-const style$7 = '';
+const style$8 = '';
 
 class Modal extends Component {
   constructor(props = {}) {
@@ -535,7 +535,7 @@ class Modal extends Component {
   };
 }
 
-const style$6 = '';
+const style$7 = '';
 
 class Progress extends Component {
   constructor(props = {}) {
@@ -567,6 +567,69 @@ class Progress extends Component {
   setValue = (value) => {
     this.children.fill.setStyle({ width: `${value}%` });
     this.children.value.target.innerHTML = `${value}%`;
+  };
+}
+
+const style$6 = '';
+
+class Select extends Component {
+  activeTabIndex = 0;
+  constructor(props = {}) {
+    const { className, leftSlot, rightSlot, ...rest } = props;
+    const getClassName = () => {
+      let newClassName = "select select--has-right-slot";
+      if (className)
+        newClassName += ` ${className}`;
+      if (leftSlot)
+        newClassName += " select--has-left-slot";
+      return newClassName;
+    };
+    super({ className: getClassName(), ...rest });
+    this.assemble(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const field = new Component({
+        tagName: "select",
+        className: "select__field",
+        ...payload.field,
+        attributes: {
+          size: "1",
+          ...payload.field?.attributes
+        }
+      });
+      const chevronDownIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>';
+      const rightSlot = new Component({
+        className: "select__slot select__slot--right",
+        innerHTML: chevronDownIcon,
+        ...payload.rightSlot
+      });
+      const fieldWrapper = new Component({
+        className: "select__field-wrapper",
+        ...payload.fieldWrapper,
+        children: {
+          field,
+          rightSlot,
+          ...payload.fieldWrapper?.children
+        }
+      });
+      if (payload.leftSlot) {
+        const leftSlot = new Component({
+          className: "select__slot select__slot--left",
+          ...payload.leftSlot
+        });
+        fieldWrapper.prependChildren({ leftSlot });
+      }
+      if (payload.label) {
+        const label = new Component({
+          className: "select__label",
+          ...payload.label
+        });
+        this.appendChildren({ label });
+      }
+      this.appendChildren({ fieldWrapper });
+      resolve(true);
+    });
   };
 }
 
@@ -752,7 +815,7 @@ class Toast extends Component {
 }
 
 const name = "@nathanssantos/pure-components";
-const version = "0.0.41";
+const version = "0.0.42";
 const author = {
 	name: "Nathan Silva Santos",
 	email: "nathansilvasantos@gmail.com"
@@ -876,15 +939,23 @@ const header = new Header({
     style: {
       fontWeight: "bold",
       base: {
-        fontSize: "1rem"
+        fontSize: "var(--pc-font-size-md)"
       },
       md: {
-        fontSize: "1.25rem"
+        fontSize: "var(--pc-font-size-lg)"
       }
     }
   },
   rightContent: {
-    innerHTML: `v${packageJSON.version}`
+    innerHTML: `v${packageJSON.version}`,
+    style: {
+      base: {
+        fontSize: "var(--pc-font-size-xs)"
+      },
+      md: {
+        fontSize: "var(--pc-font-size-sm)"
+      }
+    }
   }
 });
 class Layout extends Component {
@@ -905,10 +976,10 @@ class SectionDescription extends Component {
       style: {
         marginBottom: "1rem",
         base: {
-          fontSize: "0.875rem"
+          fontSize: "var(--pc-font-size-sm)"
         },
         md: {
-          fontSize: "1rem"
+          fontSize: "var(--pc-font-size-md)"
         }
       },
       ...props
@@ -957,10 +1028,10 @@ class CodeExample extends Component {
         borderRadius: "0.25rem",
         overflow: "hidden",
         base: {
-          fontSize: "0.875rem"
+          fontSize: "var(--pc-font-size-sm)"
         },
         md: {
-          fontSize: "1rem"
+          fontSize: "var(--pc-font-size-md)"
         },
         ...props.style
       },
@@ -993,7 +1064,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$c = new Component({
+const componentExample$d = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1014,7 +1085,7 @@ const componentExample$c = new Component({
     })
   }
 });
-const codeExample$c = new CodeExample({
+const codeExample$d = new CodeExample({
   language: "typescript",
   content: `import { Avatar } from '@nathanssantos/pure-components';
 
@@ -1066,8 +1137,8 @@ class AvatarSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$c,
-                      codeExample: codeExample$c
+                      componentExample: componentExample$d,
+                      codeExample: codeExample$d
                     }
                   }),
                   panel2: new TabPanel({
@@ -1083,7 +1154,7 @@ class AvatarSection extends Component {
   }
 }
 
-const componentExample$b = new Breadcrumbs({
+const componentExample$c = new Breadcrumbs({
   children: {
     item1: new Component({
       innerHTML: "Home",
@@ -1095,7 +1166,7 @@ const componentExample$b = new Breadcrumbs({
     item3: "Route B"
   }
 });
-const codeExample$b = new CodeExample({
+const codeExample$c = new CodeExample({
   language: "typescript",
   content: `import { Breadcrumbs } from '@nathanssantos/pure-components';
 
@@ -1146,8 +1217,8 @@ class BreadcrumbsSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$b,
-                      codeExample: codeExample$b
+                      componentExample: componentExample$c,
+                      codeExample: codeExample$c
                     }
                   }),
                   panel2: new TabPanel({
@@ -1163,7 +1234,7 @@ class BreadcrumbsSection extends Component {
   }
 }
 
-const componentExample$a = new Component({
+const componentExample$b = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1177,7 +1248,7 @@ const componentExample$a = new Component({
     })
   }
 });
-const codeExample$a = new CodeExample({
+const codeExample$b = new CodeExample({
   language: "typescript",
   content: `import { Button } from '@nathanssantos/pure-components';
 
@@ -1222,8 +1293,8 @@ class ButtonSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$a,
-                      codeExample: codeExample$a
+                      componentExample: componentExample$b,
+                      codeExample: codeExample$b
                     }
                   }),
                   panel2: new TabPanel({
@@ -1239,7 +1310,7 @@ class ButtonSection extends Component {
   }
 }
 
-const componentExample$9 = new Component({
+const componentExample$a = new Component({
   innerHTML: "I'm a generic component.",
   style: {
     backgroundColor: "var(--pc-success)",
@@ -1261,7 +1332,7 @@ const componentExample$9 = new Component({
     }
   }
 });
-const codeExample$9 = new CodeExample({
+const codeExample$a = new CodeExample({
   language: "typescript",
   content: `import { Component } from '@nathanssantos/pure-components';
 
@@ -1322,8 +1393,8 @@ class ComponentSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$9,
-                      codeExample: codeExample$9
+                      componentExample: componentExample$a,
+                      codeExample: codeExample$a
                     }
                   }),
                   panel2: new TabPanel({
@@ -1339,7 +1410,7 @@ class ComponentSection extends Component {
   }
 }
 
-const componentExample$8 = new Component({
+const componentExample$9 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1358,7 +1429,7 @@ const componentExample$8 = new Component({
     })
   }
 });
-const codeExample$8 = new CodeExample({
+const codeExample$9 = new CodeExample({
   language: "typescript",
   content: `import { Container } from '@nathanssantos/pure-components';
 
@@ -1409,8 +1480,8 @@ class ContainerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$8,
-                      codeExample: codeExample$8
+                      componentExample: componentExample$9,
+                      codeExample: codeExample$9
                     }
                   }),
                   panel2: new TabPanel({
@@ -1441,7 +1512,7 @@ const drawer = new Drawer({
   }
 });
 const button$1 = new Button({ innerHTML: "Open drawer", events: { click: drawer.open } });
-const componentExample$7 = new Component({
+const componentExample$8 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1451,7 +1522,7 @@ const componentExample$7 = new Component({
     drawer
   }
 });
-const codeExample$7 = new CodeExample({
+const codeExample$8 = new CodeExample({
   language: "typescript",
   content: `import { Button, Drawer } from '@nathanssantos/pure-components';
 
@@ -1508,8 +1579,8 @@ class DrawerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$7,
-                      codeExample: codeExample$7
+                      componentExample: componentExample$8,
+                      codeExample: codeExample$8
                     }
                   }),
                   panel2: new TabPanel({
@@ -1525,7 +1596,7 @@ class DrawerSection extends Component {
   }
 }
 
-const componentExample$6 = new Component({
+const componentExample$7 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1568,7 +1639,7 @@ const componentExample$6 = new Component({
     })
   }
 });
-const codeExample$6 = new CodeExample({
+const codeExample$7 = new CodeExample({
   language: "typescript",
   content: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
 
@@ -1642,8 +1713,8 @@ class HeaderSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$6,
-                      codeExample: codeExample$6
+                      componentExample: componentExample$7,
+                      codeExample: codeExample$7
                     }
                   }),
                   panel2: new TabPanel({
@@ -1664,6 +1735,9 @@ const simpleInput = new Input({
     attributes: {
       value: "Simple Input"
     }
+  },
+  style: {
+    minWidth: "10rem"
   }
 });
 const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>';
@@ -1699,6 +1773,9 @@ const passwordInput = new Input({
     children: {
       btToggleInputType
     }
+  },
+  style: {
+    minWidth: "10rem"
   }
 });
 const handleToggleInputType = (button) => {
@@ -1710,7 +1787,7 @@ const handleToggleInputType = (button) => {
 btToggleInputType.bindEvents({
   click: handleToggleInputType
 });
-const componentExample$5 = new Component({
+const componentExample$6 = new Component({
   style: {
     display: "flex",
     flexDirection: "column",
@@ -1722,7 +1799,7 @@ const componentExample$5 = new Component({
     passwordInput
   }
 });
-const codeExample$5 = new CodeExample({
+const codeExample$6 = new CodeExample({
   language: "typescript",
   content: `import { Input, Component } from '@nathanssantos/pure-components';
 
@@ -1827,8 +1904,8 @@ class InputSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$5,
-                      codeExample: codeExample$5
+                      componentExample: componentExample$6,
+                      codeExample: codeExample$6
                     }
                   }),
                   panel2: new TabPanel({
@@ -1905,7 +1982,7 @@ const modal = new Modal({
   }
 });
 const button = new Button({ innerHTML: "Open modal", events: { click: modal.open } });
-const componentExample$4 = new Component({
+const componentExample$5 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1915,7 +1992,7 @@ const componentExample$4 = new Component({
     modal
   }
 });
-const codeExample$4 = new CodeExample({
+const codeExample$5 = new CodeExample({
   language: "typescript",
   content: `import { Button, Modal } from '@nathanssantos/pure-components';
 
@@ -1972,8 +2049,8 @@ class ModalSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$4,
-                      codeExample: codeExample$4
+                      componentExample: componentExample$5,
+                      codeExample: codeExample$5
                     }
                   }),
                   panel2: new TabPanel({
@@ -1991,7 +2068,7 @@ class ModalSection extends Component {
 
 const progress = new Progress();
 progress.setValue(42);
-const componentExample$3 = new Component({
+const componentExample$4 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -2000,7 +2077,7 @@ const componentExample$3 = new Component({
     progress
   }
 });
-const codeExample$3 = new CodeExample({
+const codeExample$4 = new CodeExample({
   language: "typescript",
   content: `import { Progress } from '@nathanssantos/pure-components';
 
@@ -2025,6 +2102,232 @@ class ProgressSection extends Component {
             title: new SectionTitle({ innerHTML: "Progress" }),
             description: new SectionDescription({
               innerHTML: "A simple progress bar."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$4,
+                      codeExample: codeExample$4
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const simpleSelect = new Select({
+  field: {
+    children: {
+      placeholder: new Component({
+        tagName: "option",
+        innerHTML: "Select",
+        attributes: { value: "" }
+      }),
+      option1: new Component({
+        tagName: "option",
+        innerHTML: "Option 1",
+        attributes: { value: "1" }
+      }),
+      option2: new Component({
+        tagName: "option",
+        innerHTML: "Option 2",
+        attributes: { value: "2" }
+      }),
+      option3: new Component({
+        tagName: "option",
+        innerHTML: "Option 3",
+        attributes: { value: "3" }
+      }),
+      option4: new Component({
+        tagName: "option",
+        innerHTML: "Option 4",
+        attributes: { value: "4" }
+      })
+    }
+  },
+  style: {
+    minWidth: "10rem"
+  }
+});
+const i18nIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none"  width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" /></svg>';
+const selectWithSlots = new Select({
+  field: {
+    children: {
+      option1: new Component({
+        tagName: "option",
+        innerHTML: "Option 1",
+        attributes: { value: "1" }
+      }),
+      option2: new Component({
+        tagName: "option",
+        innerHTML: "Option 2",
+        attributes: { value: "2" }
+      }),
+      option3: new Component({
+        tagName: "option",
+        innerHTML: "Option 3",
+        attributes: { value: "3" }
+      }),
+      option4: new Component({
+        tagName: "option",
+        innerHTML: "Option 4",
+        attributes: { value: "4" }
+      })
+    },
+    events: {
+      change: (_, event) => {
+        console.log(event.target.value);
+      }
+    }
+  },
+  label: {
+    innerHTML: "Language"
+  },
+  leftSlot: {
+    innerHTML: i18nIcon
+  },
+  style: {
+    minWidth: "10rem"
+  }
+});
+const componentExample$3 = new Component({
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: "1rem"
+  },
+  children: {
+    simpleSelect,
+    selectWithSlots
+  }
+});
+const codeExample$3 = new CodeExample({
+  language: "typescript",
+  content: `import { Select, Component } from '@nathanssantos/pure-components';
+
+const simpleSelect = new Select({
+  field: {
+    children: {
+      placeholder: new Component({
+        tagName: 'option',
+        innerHTML: 'Select',
+        attributes: { value: '' },
+      }),
+      option1: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 1',
+        attributes: { value: '1' },
+      }),
+      option2: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 2',
+        attributes: { value: '2' },
+      }),
+      option3: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 3',
+        attributes: { value: '3' },
+      }),
+      option4: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 4',
+        attributes: { value: '4' },
+      }),
+    },
+  },
+  style: {
+    minWidth: '10rem',
+  },
+});
+
+const i18nIcon =
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="none"  width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" /></svg>';
+
+const selectWithSlots = new Select({
+  field: {
+    children: {
+      option1: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 1',
+        attributes: { value: '1' },
+      }),
+      option2: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 2',
+        attributes: { value: '2' },
+      }),
+      option3: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 3',
+        attributes: { value: '3' },
+      }),
+      option4: new Component({
+        tagName: 'option',
+        innerHTML: 'Option 4',
+        attributes: { value: '4' },
+      }),
+    },
+    events: {
+      change: (_, event: Event) => {
+        console.log((event.target as HTMLSelectElement).value);
+      },
+    },
+  },
+  label: {
+    innerHTML: 'Language',
+  },
+  leftSlot: {
+    innerHTML: i18nIcon,
+  },
+  style: {
+    minWidth: '10rem',
+  },
+});
+
+document.body.append(
+  simpleSelect.target,
+  selectWithSlots.target,
+);`
+});
+class SelectSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "select"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Select" }),
+            description: new SectionDescription({
+              innerHTML: "Select with label and slots on both sides."
             }),
             tabs: new Tabs({
               tabList: {
@@ -2611,6 +2914,7 @@ class HomeScreen extends Component {
             inputSection: new InputSection(),
             modalSection: new ModalSection(),
             progressSection: new ProgressSection(),
+            selectSection: new SelectSection(),
             tabsSection: new TabsSection(),
             tagSection: new TagSection(),
             toastSection: new ToastSection()
