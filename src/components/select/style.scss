@@ -19,6 +19,10 @@
     }
   }
 
+  &__label {
+    font-size: var(--pc-font-size-sm);
+  }
+
   &__field {
     padding: calc(var(--pc-spacing) * 2.5) calc(var(--pc-spacing) * 3);
     background: none;
