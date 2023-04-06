@@ -26,11 +26,11 @@
   }
 
   &__name {
-    font-size: 0.875rem;
+    font-size: var(--pc-font-size-sm);
     font-weight: bold;
   }
 
   &__description {
-    font-size: 0.75rem;
+    font-size: var(--pc-font-size-xs);
   }
 }

@@ -90,12 +90,12 @@
 
   &__title {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: var(--pc-font-size-md);
   }
 
   &__bt-close {
     padding: 0;
-    font-size: 1rem;
+    font-size: var(--pc-font-size-md);
     font-weight: 700;
     background-color: transparent;
 
