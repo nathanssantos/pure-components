@@ -12,6 +12,7 @@
     border: 0.063rem solid var(--pc-border-color);
     width: 100%;
     transition: var(--pc-transition);
+    position: relative;
 
     &:hover {
       background-color: var(--pc-input-hover);
@@ -32,22 +33,31 @@
   }
 
   &__slot {
+    position: absolute;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 2rem;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
   }
 
   &--has-left-slot {
     .input__field {
-      padding-left: 0;
+      padding-left: calc(var(--pc-spacing) * 8);
     }
   }
 
   &--has-right-slot {
     .input__field {
-      padding-right: 0;
+      padding-right: calc(var(--pc-spacing) * 8);
     }
   }
 }
