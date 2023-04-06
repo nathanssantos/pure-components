@@ -82,6 +82,14 @@ interface RouterConstructorProps extends ComponentConstructorProps {
   container: Partial<ComponentConstructorProps>;
 }
 
+interface SelectConstructorProps extends ComponentConstructorProps {
+  label: Partial<ComponentConstructorProps>;
+  fieldWrapper: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  leftSlot: Partial<ComponentConstructorProps>;
+  rightSlot: Partial<ComponentConstructorProps>;
+}
+
 interface TabConstructorProps extends ComponentConstructorProps {
   activityIndicator: Partial<ComponentConstructorProps>;
 }

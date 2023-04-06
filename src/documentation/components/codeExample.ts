@@ -11,10 +11,10 @@ class CodeExample extends Component {
         borderRadius: '0.25rem',
         overflow: 'hidden',
         base: {
-          fontSize: '0.875rem',
+          fontSize: 'var(--pc-font-size-sm)',
         },
         md: {
-          fontSize: '1rem',
+          fontSize: 'var(--pc-font-size-md)',
         },
         ...props.style,
       },

@@ -9,6 +9,7 @@ import Header from './components/header';
 import Input from './components/input';
 import Modal from './components/modal';
 import Progress from './components/progress';
+import Select from './components/select';
 import Tab from './components/tab';
 import TabPanel from './components/tabPanel';
 import Tabs from './components/tabs';
@@ -26,6 +27,7 @@ export {
   Input,
   Modal,
   Progress,
+  Select,
   Tab,
   TabPanel,
   Tabs,

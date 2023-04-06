@@ -2,9 +2,9 @@
 
 Dependency-free ui components library.
 
-![Version 0.0.41](https://img.shields.io/badge/Version-%200.0.41-green)
-![Components: 13](https://img.shields.io/badge/Components-%2013-green)
-![Test coverage: 99.65%](https://img.shields.io/badge/Test%20Coverage-99.65%25-green)
+![Version 0.0.42](https://img.shields.io/badge/Version-%200.0.42-green)
+![Components: 14](https://img.shields.io/badge/Components-%2014-green)
+![Test coverage: 99.68%](https://img.shields.io/badge/Test%20Coverage-99.68%25-green)
 ![Dependency-free](https://img.shields.io/badge/Dependency-%20free-green)
 
 **Work in progress!**
@@ -50,7 +50,7 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Popover
 - [x] [Progress](https://nathanssantos.github.io/pure-components/#progress)
 - [ ] Radio
-- [ ] Select
+- [x] [Select](https://nathanssantos.github.io/pure-components/#progress)
 - [x] [Tag](https://nathanssantos.github.io/pure-components/#tag)
 - [x] [Tabs](https://nathanssantos.github.io/pure-components/#tabs)
 - [x] [Toast](https://nathanssantos.github.io/pure-components/#toast)
