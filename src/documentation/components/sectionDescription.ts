@@ -6,10 +6,10 @@ class SectionDescription extends Component {
       style: {
         marginBottom: '1rem',
         base: {
-          fontSize: '0.875rem',
+          fontSize: 'var(--pc-font-size-sm)',
         },
         md: {
-          fontSize: '1rem',
+          fontSize: 'var(--pc-font-size-md)',
         },
       },
       ...props,

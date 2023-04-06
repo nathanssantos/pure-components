@@ -37,6 +37,14 @@ interface HeaderConstructorProps extends ComponentConstructorProps {
   container: Partial<ComponentConstructorProps>;
 }
 
+interface InputConstructorProps extends ComponentConstructorProps {
+  fieldWrapper: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  label: Partial<ComponentConstructorProps>;
+  leftSlot: Partial<ComponentConstructorProps>;
+  rightSlot: Partial<ComponentConstructorProps>;
+}
+
 interface ModalConstructorProps extends ComponentConstructorProps {
   body: Partial<ComponentConstructorProps>;
   btClose: Partial<ComponentConstructorProps>;
@@ -57,6 +65,14 @@ interface ResponsiveObject<T> {
   sm: T;
   lg: T;
   xl: T;
+}
+
+interface SelectConstructorProps extends ComponentConstructorProps {
+  label: Partial<ComponentConstructorProps>;
+  fieldWrapper: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  leftSlot: Partial<ComponentConstructorProps>;
+  rightSlot: Partial<ComponentConstructorProps>;
 }
 
 interface TabConstructorProps extends ComponentConstructorProps {
@@ -134,6 +150,12 @@ declare class Header extends Component {
   private init;
 }
 
+declare class Input extends Component {
+  constructor(props?: Partial<InputConstructorProps>);
+  private assemble;
+  private init;
+}
+
 declare class Modal extends Component {
   constructor(props?: Partial<ModalConstructorProps>);
   private assemble;
@@ -147,6 +169,12 @@ declare class Progress extends Component {
   private assemble;
   private init;
   setValue: (value: number) => void;
+}
+
+declare class Select extends Component {
+  constructor(props?: Partial<SelectConstructorProps>);
+  private assemble;
+  private init;
 }
 
 declare class Tab extends Button {
@@ -188,8 +216,10 @@ export {
   Container,
   Drawer,
   Header,
+  Input,
   Modal,
   Progress,
+  Select,
   Tab,
   TabPanel,
   Tabs,
