@@ -19,6 +19,14 @@ const header = new Header({
   },
   rightContent: {
     innerHTML: `v${packageJSON.version}`,
+    style: {
+      base: {
+        fontSize: 'var(--pc-font-size-xs)',
+      },
+      md: {
+        fontSize: 'var(--pc-font-size-sm)',
+      },
+    },
   },
 });
 
