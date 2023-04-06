@@ -9,6 +9,9 @@ const simpleInput = new Input({
       value: 'Simple Input',
     },
   },
+  style: {
+    minWidth: '10rem',
+  },
 });
 
 const lockIcon =
@@ -51,6 +54,9 @@ const passwordInput = new Input({
     children: {
       btToggleInputType,
     },
+  },
+  style: {
+    minWidth: '10rem',
   },
 });
 
