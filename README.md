@@ -33,6 +33,7 @@ import "@nathanssantos/pure-components/style.css";
 
 ## Components
 
+- [ ] Accordion
 - [x] [Avatar](https://nathanssantos.github.io/pure-components/#avatar)
 - [x] [Breadcrumbs](https://nathanssantos.github.io/pure-components/#breadcrumbs)
 - [x] [Button](https://nathanssantos.github.io/pure-components/#button)
