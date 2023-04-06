@@ -752,7 +752,7 @@ class Toast extends Component {
 }
 
 const name = "@nathanssantos/pure-components";
-const version = "0.0.40";
+const version = "0.0.41";
 const author = {
 	name: "Nathan Silva Santos",
 	email: "nathansilvasantos@gmail.com"
