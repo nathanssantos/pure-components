@@ -1,12 +1,12 @@
 import Component from '../component';
-import Input from '../input';
+import Select from '../select';
 
 describe('Components', () => {
-  describe('Input', () => {
+  describe('Select', () => {
     describe('instance and assemble', () => {
-      it('Should create a new input instance.', () => {
-        const component = new Input({
-          className: 'test my-input',
+      it('Should create a new select instance.', () => {
+        const component = new Select({
+          className: 'test my-select',
           label: {
             innerHTML: 'Label',
           },
@@ -28,9 +28,9 @@ describe('Components', () => {
           },
         });
 
-        expect(component.target.classList).toContain('input');
+        expect(component.target.classList).toContain('select');
         expect(component.target.classList).toContain('test');
-        expect(component.target.classList).toContain('my-input');
+        expect(component.target.classList).toContain('my-select');
         expect(component.children.fieldWrapper.children.addon).toBeInstanceOf(Component);
         expect(component.children.fieldWrapper.children.field.target.getAttribute('type')).toBe(
           'password',

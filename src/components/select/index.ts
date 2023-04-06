@@ -29,7 +29,6 @@ class Select extends Component {
         className: 'select__field',
         ...payload.field,
         attributes: {
-          type: 'text',
           size: '1',
           ...payload.field?.attributes,
         },
