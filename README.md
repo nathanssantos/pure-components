@@ -49,7 +49,7 @@ import "@nathanssantos/pure-components/style.css";
 - [ ] Popover
 - [x] [Progress](https://nathanssantos.github.io/pure-components/#progress)
 - [ ] Radio
-- [x] [Select](https://nathanssantos.github.io/pure-components/#progress)
+- [x] [Select](https://nathanssantos.github.io/pure-components/#select)
 - [x] [Tag](https://nathanssantos.github.io/pure-components/#tag)
 - [x] [Tabs](https://nathanssantos.github.io/pure-components/#tabs)
 - [x] [Toast](https://nathanssantos.github.io/pure-components/#toast)
