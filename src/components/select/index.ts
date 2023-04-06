@@ -8,11 +8,10 @@ class Select extends Component {
     const { className, leftSlot, rightSlot, ...rest } = props;
 
     const getClassName = () => {
-      let newClassName = 'select';
+      let newClassName = 'select select--has-right-slot';
 
       if (className) newClassName += ` ${className}`;
       if (leftSlot) newClassName += ' select--has-left-slot';
-      if (rightSlot) newClassName += ' select--has-right-slot';
 
       return newClassName;
     };
