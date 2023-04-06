@@ -10,10 +10,10 @@ const header = new Header({
     style: {
       fontWeight: 'bold',
       base: {
-        fontSize: '1rem',
+        fontSize: 'var(--pc-font-size-md)',
       },
       md: {
-        fontSize: '1.25rem',
+        fontSize: 'var(--pc-font-size-lg)',
       },
     },
   },
