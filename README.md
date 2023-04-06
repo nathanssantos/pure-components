@@ -33,7 +33,6 @@ import "@nathanssantos/pure-components/style.css";
 
 ## Components
 
-- [ ] Autocomplete
 - [x] [Avatar](https://nathanssantos.github.io/pure-components/#avatar)
 - [x] [Breadcrumbs](https://nathanssantos.github.io/pure-components/#breadcrumbs)
 - [x] [Button](https://nathanssantos.github.io/pure-components/#button)
@@ -42,7 +41,6 @@ import "@nathanssantos/pure-components/style.css";
 - [x] [Component](https://nathanssantos.github.io/pure-components/#component)
 - [x] [Container](https://nathanssantos.github.io/pure-components/#container)
 - [x] [Drawer](https://nathanssantos.github.io/pure-components/#drawer)
-- [ ] Floating Action Button
 - [x] [Header](https://nathanssantos.github.io/pure-components/#header)
 - [x] [Modal](https://nathanssantos.github.io/pure-components/#modal)
 - [x] [Input](https://nathanssantos.github.io/pure-components/#input)
