@@ -9,15 +9,16 @@
     align-items: center;
     background-color: var(--pc-input-background);
     border-radius: var(--pc-border-radius);
+    border: 0.063rem solid var(--pc-border-color);
     width: 100%;
   }
 
   &__field {
-    padding: calc(var(--pc-spacing) * 2) calc(var(--pc-spacing) * 3);
+    padding: calc(var(--pc-spacing) * 2.5) calc(var(--pc-spacing) * 3);
     background: none;
     border: none;
     color: var(--pc-text-color);
-    font-size: 0.875rem;
+    font-size: var(--pc-font-size-sm);
     flex: 1;
 
     &:focus {
