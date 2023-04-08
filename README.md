@@ -54,5 +54,3 @@ import "@nathanssantos/pure-components/style.css";
 - [x] [Tabs](https://nathanssantos.github.io/pure-components/#tabs)
 - [x] [Toast](https://nathanssantos.github.io/pure-components/#toast)
 - [ ] Tooltip
-
-**The complete documentation will be written as soon as possible.**
