@@ -7,6 +7,13 @@ interface AvatarConstructorProps extends ComponentConstructorProps {
   textWrapper: Partial<ComponentConstructorProps>;
 }
 
+interface CheckboxConstructorProps extends ComponentConstructorProps {
+  border: Partial<ComponentConstructorProps>;
+  icon: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  label: Partial<ComponentConstructorProps>;
+}
+
 interface ComponentConstructorProps {
   attributes: { [name: string]: string | boolean };
   children: { [name: string]: import('../components/component').default | number | string };

@@ -3,6 +3,7 @@ import Hero from '../components/hero';
 import AvatarSection from '../sections/avatarSection';
 import BreadcrumbsSection from '../sections/breadcrumbsSection';
 import ButtonSection from '../sections/buttonSection';
+import CheckboxSection from '../sections/checkboxSection';
 import ComponentSection from '../sections/componentSection';
 import ContainerSection from '../sections/containerSection';
 import DrawerSection from '../sections/drawerSection';
@@ -41,6 +42,7 @@ class HomeScreen extends Component {
             avatarSection: new AvatarSection(),
             breadcrumbsSection: new BreadcrumbsSection(),
             buttonSection: new ButtonSection(),
+            checkboxSection: new CheckboxSection(),
             componentSection: new ComponentSection(),
             containerSection: new ContainerSection(),
             drawerSection: new DrawerSection(),
