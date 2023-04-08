@@ -2,6 +2,7 @@ import './style.scss';
 import Avatar from './components/avatar';
 import Breadcrumbs from './components/breadcrumbs';
 import Button from './components/button';
+import Checkbox from './components/checkbox';
 import Component from './components/component';
 import Container from './components/container';
 import Drawer from './components/drawer';
@@ -21,6 +22,7 @@ export {
   Avatar,
   Breadcrumbs,
   Button,
+  Checkbox,
   Component,
   Container,
   Drawer,
