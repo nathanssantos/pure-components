@@ -11,6 +11,7 @@ import InputSection from '../sections/inputSection';
 import InstallSection from '../sections/installSection';
 import ModalSection from '../sections/modalSection';
 import ProgressSection from '../sections/progressSection';
+import RadioSection from '../sections/radioSection';
 import SelectSection from '../sections/selectSection';
 import TabsSection from '../sections/tabsSection';
 import TagSection from '../sections/tagSection';
@@ -47,6 +48,7 @@ class HomeScreen extends Component {
             inputSection: new InputSection(),
             modalSection: new ModalSection(),
             progressSection: new ProgressSection(),
+            radioSection: new RadioSection(),
             selectSection: new SelectSection(),
             tabsSection: new TabsSection(),
             tagSection: new TagSection(),
