@@ -45,7 +45,6 @@ import "@nathanssantos/pure-components/style.css";
 - [x] [Header](https://nathanssantos.github.io/pure-components/#header)
 - [x] [Modal](https://nathanssantos.github.io/pure-components/#modal)
 - [x] [Input](https://nathanssantos.github.io/pure-components/#input)
-- [ ] Org Chart
 - [ ] Popover
 - [x] [Progress](https://nathanssantos.github.io/pure-components/#progress)
 - [x] [Radio](https://nathanssantos.github.io/pure-components/#radio)
