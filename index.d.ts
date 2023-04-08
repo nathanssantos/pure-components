@@ -59,6 +59,13 @@ interface ProgressConstructorProps extends ComponentConstructorProps {
   value: Partial<ComponentConstructorProps>;
 }
 
+interface RadioConstructorProps extends ComponentConstructorProps {
+  border: Partial<ComponentConstructorProps>;
+  icon: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  label: Partial<ComponentConstructorProps>;
+}
+
 interface ResponsiveObject<T> {
   base: T;
   md: T;
@@ -171,6 +178,12 @@ declare class Progress extends Component {
   setValue: (value: number) => void;
 }
 
+declare class Radio extends Component {
+  constructor(props?: Partial<RadioConstructorProps>);
+  private assemble;
+  private init;
+}
+
 declare class Select extends Component {
   constructor(props?: Partial<SelectConstructorProps>);
   private assemble;
@@ -219,6 +232,7 @@ export {
   Input,
   Modal,
   Progress,
+  Radio,
   Select,
   Tab,
   TabPanel,
