@@ -1,12 +1,12 @@
 import Component from '../component';
-import Radio from '.';
+import Checkbox from '.';
 
 describe('Components', () => {
-  describe('Radio', () => {
+  describe('Checkbox', () => {
     describe('instance and assemble', () => {
-      it('Should create a new radio instance.', () => {
-        const component1 = new Radio({
-          className: 'test my-radio',
+      it('Should create a new checkbox instance.', () => {
+        const component1 = new Checkbox({
+          className: 'test my-checkbox',
           field: {
             attributes: { 'data-test': 'test' },
           },
@@ -16,18 +16,18 @@ describe('Components', () => {
             },
           },
         });
-        const component2 = new Radio();
+        const component2 = new Checkbox();
 
-        expect(component1.target.classList).toContain('radio');
+        expect(component1.target.classList).toContain('checkbox');
         expect(component1.target.classList).toContain('test');
-        expect(component1.target.classList).toContain('my-radio');
+        expect(component1.target.classList).toContain('my-checkbox');
         expect(component1.children.label).toBeInstanceOf(Component);
         expect(component1.children.label.children.field).toBeInstanceOf(Component);
         expect(component1.children.label.children.border).toBeInstanceOf(Component);
         expect(component1.children.label.children.border.children.icon).toBeInstanceOf(
           Component,
         );
-        expect(component2.target.classList).toContain('radio');
+        expect(component2.target.classList).toContain('checkbox');
       });
     });
   });
