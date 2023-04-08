@@ -44,7 +44,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$g = '';
+const style$h = '';
 
 class Constants {
   static breakpoints = {
@@ -213,7 +213,7 @@ class Component {
   };
 }
 
-const style$f = '';
+const style$g = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -252,7 +252,7 @@ class Avatar extends Component {
   };
 }
 
-const style$e = '';
+const style$f = '';
 
 class Breadcrumbs extends Component {
   constructor(props = {}) {
@@ -264,7 +264,7 @@ class Breadcrumbs extends Component {
   }
 }
 
-const style$d = '';
+const style$e = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -277,7 +277,7 @@ class Button extends Component {
   }
 }
 
-const style$c = '';
+const style$d = '';
 
 class Container extends Component {
   constructor(props = {}) {
@@ -289,7 +289,7 @@ class Container extends Component {
   }
 }
 
-const style$b = '';
+const style$c = '';
 
 class Drawer extends Component {
   constructor(props = {}) {
@@ -355,7 +355,7 @@ class Drawer extends Component {
   };
 }
 
-const style$a = '';
+const style$b = '';
 
 class Header extends Component {
   constructor(props = {}) {
@@ -403,7 +403,7 @@ class Header extends Component {
   };
 }
 
-const style$9 = '';
+const style$a = '';
 
 class Input extends Component {
   activeTabIndex = 0;
@@ -469,7 +469,7 @@ class Input extends Component {
   };
 }
 
-const style$8 = '';
+const style$9 = '';
 
 class Modal extends Component {
   constructor(props = {}) {
@@ -535,7 +535,7 @@ class Modal extends Component {
   };
 }
 
-const style$7 = '';
+const style$8 = '';
 
 class Progress extends Component {
   constructor(props = {}) {
@@ -567,6 +567,49 @@ class Progress extends Component {
   setValue = (value) => {
     this.children.fill.setStyle({ width: `${value}%` });
     this.children.value.target.innerHTML = `${value}%`;
+  };
+}
+
+const style$7 = '';
+
+class Radio extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `radio${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.assemble(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const icon = new Component({
+        className: "radio__icon",
+        ...payload.icon
+      });
+      const field = new Component({
+        className: "radio__field",
+        tagName: "input",
+        ...payload.field,
+        attributes: {
+          type: "radio",
+          ...payload.field?.attributes
+        }
+      });
+      const border = new Component({
+        className: "radio__border",
+        ...payload.border,
+        children: {
+          icon,
+          ...payload.border?.children
+        }
+      });
+      const label = new Component({
+        className: "radio__label",
+        tagName: "label",
+        ...payload.label
+      });
+      label.prependChildren({ border, field });
+      this.appendChildren({ label });
+      resolve(true);
+    });
   };
 }
 
@@ -815,7 +858,7 @@ class Toast extends Component {
 }
 
 const name = "@nathanssantos/pure-components";
-const version = "0.0.42";
+const version = "0.0.43";
 const author = {
 	name: "Nathan Silva Santos",
 	email: "nathansilvasantos@gmail.com"
@@ -1064,7 +1107,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$d = new Component({
+const componentExample$e = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1085,7 +1128,7 @@ const componentExample$d = new Component({
     })
   }
 });
-const codeExample$d = new CodeExample({
+const codeExample$e = new CodeExample({
   language: "typescript",
   content: `import { Avatar } from '@nathanssantos/pure-components';
 
@@ -1137,8 +1180,8 @@ class AvatarSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$d,
-                      codeExample: codeExample$d
+                      componentExample: componentExample$e,
+                      codeExample: codeExample$e
                     }
                   }),
                   panel2: new TabPanel({
@@ -1154,7 +1197,7 @@ class AvatarSection extends Component {
   }
 }
 
-const componentExample$c = new Breadcrumbs({
+const componentExample$d = new Breadcrumbs({
   children: {
     item1: new Component({
       innerHTML: "Home",
@@ -1166,7 +1209,7 @@ const componentExample$c = new Breadcrumbs({
     item3: "Route B"
   }
 });
-const codeExample$c = new CodeExample({
+const codeExample$d = new CodeExample({
   language: "typescript",
   content: `import { Breadcrumbs } from '@nathanssantos/pure-components';
 
@@ -1217,8 +1260,8 @@ class BreadcrumbsSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$c,
-                      codeExample: codeExample$c
+                      componentExample: componentExample$d,
+                      codeExample: codeExample$d
                     }
                   }),
                   panel2: new TabPanel({
@@ -1234,7 +1277,7 @@ class BreadcrumbsSection extends Component {
   }
 }
 
-const componentExample$b = new Component({
+const componentExample$c = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1248,7 +1291,7 @@ const componentExample$b = new Component({
     })
   }
 });
-const codeExample$b = new CodeExample({
+const codeExample$c = new CodeExample({
   language: "typescript",
   content: `import { Button } from '@nathanssantos/pure-components';
 
@@ -1293,8 +1336,8 @@ class ButtonSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$b,
-                      codeExample: codeExample$b
+                      componentExample: componentExample$c,
+                      codeExample: codeExample$c
                     }
                   }),
                   panel2: new TabPanel({
@@ -1310,7 +1353,7 @@ class ButtonSection extends Component {
   }
 }
 
-const componentExample$a = new Component({
+const componentExample$b = new Component({
   innerHTML: "I'm a generic component.",
   style: {
     backgroundColor: "var(--pc-success)",
@@ -1332,7 +1375,7 @@ const componentExample$a = new Component({
     }
   }
 });
-const codeExample$a = new CodeExample({
+const codeExample$b = new CodeExample({
   language: "typescript",
   content: `import { Component } from '@nathanssantos/pure-components';
 
@@ -1393,8 +1436,8 @@ class ComponentSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$a,
-                      codeExample: codeExample$a
+                      componentExample: componentExample$b,
+                      codeExample: codeExample$b
                     }
                   }),
                   panel2: new TabPanel({
@@ -1410,7 +1453,7 @@ class ComponentSection extends Component {
   }
 }
 
-const componentExample$9 = new Component({
+const componentExample$a = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1429,7 +1472,7 @@ const componentExample$9 = new Component({
     })
   }
 });
-const codeExample$9 = new CodeExample({
+const codeExample$a = new CodeExample({
   language: "typescript",
   content: `import { Container } from '@nathanssantos/pure-components';
 
@@ -1480,8 +1523,8 @@ class ContainerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$9,
-                      codeExample: codeExample$9
+                      componentExample: componentExample$a,
+                      codeExample: codeExample$a
                     }
                   }),
                   panel2: new TabPanel({
@@ -1512,7 +1555,7 @@ const drawer = new Drawer({
   }
 });
 const button$1 = new Button({ innerHTML: "Open drawer", events: { click: drawer.open } });
-const componentExample$8 = new Component({
+const componentExample$9 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1522,7 +1565,7 @@ const componentExample$8 = new Component({
     drawer
   }
 });
-const codeExample$8 = new CodeExample({
+const codeExample$9 = new CodeExample({
   language: "typescript",
   content: `import { Button, Drawer } from '@nathanssantos/pure-components';
 
@@ -1579,8 +1622,8 @@ class DrawerSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$8,
-                      codeExample: codeExample$8
+                      componentExample: componentExample$9,
+                      codeExample: codeExample$9
                     }
                   }),
                   panel2: new TabPanel({
@@ -1596,7 +1639,7 @@ class DrawerSection extends Component {
   }
 }
 
-const componentExample$7 = new Component({
+const componentExample$8 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1639,7 +1682,7 @@ const componentExample$7 = new Component({
     })
   }
 });
-const codeExample$7 = new CodeExample({
+const codeExample$8 = new CodeExample({
   language: "typescript",
   content: `import { Avatar, Button, Header } from '@nathanssantos/pure-components';
 
@@ -1713,8 +1756,8 @@ class HeaderSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$7,
-                      codeExample: codeExample$7
+                      componentExample: componentExample$8,
+                      codeExample: codeExample$8
                     }
                   }),
                   panel2: new TabPanel({
@@ -1787,7 +1830,7 @@ const handleToggleInputType = (button) => {
 btToggleInputType.bindEvents({
   click: handleToggleInputType
 });
-const componentExample$6 = new Component({
+const componentExample$7 = new Component({
   style: {
     display: "flex",
     flexDirection: "column",
@@ -1799,7 +1842,7 @@ const componentExample$6 = new Component({
     passwordInput
   }
 });
-const codeExample$6 = new CodeExample({
+const codeExample$7 = new CodeExample({
   language: "typescript",
   content: `import { Input, Component } from '@nathanssantos/pure-components';
 
@@ -1904,8 +1947,8 @@ class InputSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$6,
-                      codeExample: codeExample$6
+                      componentExample: componentExample$7,
+                      codeExample: codeExample$7
                     }
                   }),
                   panel2: new TabPanel({
@@ -1982,7 +2025,7 @@ const modal = new Modal({
   }
 });
 const button = new Button({ innerHTML: "Open modal", events: { click: modal.open } });
-const componentExample$5 = new Component({
+const componentExample$6 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1992,7 +2035,7 @@ const componentExample$5 = new Component({
     modal
   }
 });
-const codeExample$5 = new CodeExample({
+const codeExample$6 = new CodeExample({
   language: "typescript",
   content: `import { Button, Modal } from '@nathanssantos/pure-components';
 
@@ -2049,8 +2092,8 @@ class ModalSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$5,
-                      codeExample: codeExample$5
+                      componentExample: componentExample$6,
+                      codeExample: codeExample$6
                     }
                   }),
                   panel2: new TabPanel({
@@ -2068,7 +2111,7 @@ class ModalSection extends Component {
 
 const progress = new Progress();
 progress.setValue(42);
-const componentExample$4 = new Component({
+const componentExample$5 = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -2077,7 +2120,7 @@ const componentExample$4 = new Component({
     progress
   }
 });
-const codeExample$4 = new CodeExample({
+const codeExample$5 = new CodeExample({
   language: "typescript",
   content: `import { Progress } from '@nathanssantos/pure-components';
 
@@ -2102,6 +2145,160 @@ class ProgressSection extends Component {
             title: new SectionTitle({ innerHTML: "Progress" }),
             description: new SectionDescription({
               innerHTML: "A simple progress bar."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$5,
+                      codeExample: codeExample$5
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$4 = new Component({
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem"
+  },
+  children: {
+    radio1: new Radio({
+      label: {
+        innerHTML: "Option 1"
+      },
+      field: {
+        attributes: {
+          name: "radio-example"
+        }
+      }
+    }),
+    radio2: new Radio({
+      label: {
+        innerHTML: "Option 2"
+      },
+      field: {
+        attributes: {
+          name: "radio-example"
+        }
+      }
+    }),
+    radio3: new Radio({
+      label: {
+        innerHTML: "Option 3"
+      },
+      field: {
+        attributes: {
+          name: "radio-example"
+        }
+      }
+    }),
+    radio4: new Radio({
+      label: {
+        innerHTML: "Option 4"
+      },
+      field: {
+        attributes: {
+          name: "radio-example"
+        }
+      }
+    })
+  }
+});
+const codeExample$4 = new CodeExample({
+  language: "typescript",
+  content: `import { Component, Radio } from '@nathanssantos/pure-components';
+
+new Component({
+  style: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+  },
+  children: {
+    radio1: new Radio({
+      label: {
+        innerHTML: 'Option 1',
+      },
+      field: {
+        attributes: {
+          name: 'radio-example',
+        },
+      },
+    }),
+    radio2: new Radio({
+      label: {
+        innerHTML: 'Option 2',
+      },
+      field: {
+        attributes: {
+          name: 'radio-example',
+        },
+      },
+    }),
+    radio3: new Radio({
+      label: {
+        innerHTML: 'Option 3',
+      },
+      field: {
+        attributes: {
+          name: 'radio-example',
+        },
+      },
+    }),
+    radio4: new Radio({
+      label: {
+        innerHTML: 'Option 4',
+      },
+      field: {
+        attributes: {
+          name: 'radio-example',
+        },
+      },
+    }),
+  },
+}).appendTo(document.body);`
+});
+class RadioSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "radio"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Radio" }),
+            description: new SectionDescription({
+              innerHTML: "A simple radio input."
             }),
             tabs: new Tabs({
               tabList: {
@@ -2914,6 +3111,7 @@ class HomeScreen extends Component {
             inputSection: new InputSection(),
             modalSection: new ModalSection(),
             progressSection: new ProgressSection(),
+            radioSection: new RadioSection(),
             selectSection: new SelectSection(),
             tabsSection: new TabsSection(),
             tagSection: new TagSection(),
