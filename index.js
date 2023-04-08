@@ -44,7 +44,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$h = '';
+const style$i = '';
 
 class Constants {
   static breakpoints = {
@@ -213,7 +213,7 @@ class Component {
   };
 }
 
-const style$g = '';
+const style$h = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -252,7 +252,7 @@ class Avatar extends Component {
   };
 }
 
-const style$f = '';
+const style$g = '';
 
 class Breadcrumbs extends Component {
   constructor(props = {}) {
@@ -264,7 +264,7 @@ class Breadcrumbs extends Component {
   }
 }
 
-const style$e = '';
+const style$f = '';
 
 class Button extends Component {
   constructor(props = {}) {
@@ -275,6 +275,50 @@ class Button extends Component {
       ...rest
     });
   }
+}
+
+const style$e = '';
+
+class Checkbox extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `checkbox${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.assemble(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const icon = new Component({
+        className: "checkbox__icon",
+        innerHTML: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="12" height="12" stroke-width="4" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>',
+        ...payload.icon
+      });
+      const field = new Component({
+        className: "checkbox__field",
+        tagName: "input",
+        ...payload.field,
+        attributes: {
+          type: "checkbox",
+          ...payload.field?.attributes
+        }
+      });
+      const border = new Component({
+        className: "checkbox__border",
+        ...payload.border,
+        children: {
+          icon,
+          ...payload.border?.children
+        }
+      });
+      const label = new Component({
+        className: "checkbox__label",
+        tagName: "label",
+        ...payload.label
+      });
+      label.prependChildren({ border, field });
+      this.appendChildren({ label });
+      resolve(true);
+    });
+  };
 }
 
 const style$d = '';
@@ -858,7 +902,7 @@ class Toast extends Component {
 }
 
 const name = "@nathanssantos/pure-components";
-const version = "0.0.43";
+const version = "0.0.44";
 const author = {
 	name: "Nathan Silva Santos",
 	email: "nathansilvasantos@gmail.com"
@@ -941,13 +985,10 @@ const keywords = [
 	"tabs",
 	"tag",
 	"breadcrumbs",
-	"floating action button",
-	"fab",
 	"progress",
 	"checkbox",
 	"radio",
 	"org chart",
-	"autocomplete",
 	"toast",
 	"tooltip",
 	"popover",
@@ -1107,7 +1148,7 @@ class SectionTitle extends Component {
   }
 }
 
-const componentExample$e = new Component({
+const componentExample$f = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1128,7 +1169,7 @@ const componentExample$e = new Component({
     })
   }
 });
-const codeExample$e = new CodeExample({
+const codeExample$f = new CodeExample({
   language: "typescript",
   content: `import { Avatar } from '@nathanssantos/pure-components';
 
@@ -1180,8 +1221,8 @@ class AvatarSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$e,
-                      codeExample: codeExample$e
+                      componentExample: componentExample$f,
+                      codeExample: codeExample$f
                     }
                   }),
                   panel2: new TabPanel({
@@ -1197,7 +1238,7 @@ class AvatarSection extends Component {
   }
 }
 
-const componentExample$d = new Breadcrumbs({
+const componentExample$e = new Breadcrumbs({
   children: {
     item1: new Component({
       innerHTML: "Home",
@@ -1209,7 +1250,7 @@ const componentExample$d = new Breadcrumbs({
     item3: "Route B"
   }
 });
-const codeExample$d = new CodeExample({
+const codeExample$e = new CodeExample({
   language: "typescript",
   content: `import { Breadcrumbs } from '@nathanssantos/pure-components';
 
@@ -1260,8 +1301,8 @@ class BreadcrumbsSection extends Component {
                       gap: "1rem"
                     },
                     children: {
-                      componentExample: componentExample$d,
-                      codeExample: codeExample$d
+                      componentExample: componentExample$e,
+                      codeExample: codeExample$e
                     }
                   }),
                   panel2: new TabPanel({
@@ -1277,7 +1318,7 @@ class BreadcrumbsSection extends Component {
   }
 }
 
-const componentExample$c = new Component({
+const componentExample$d = new Component({
   style: {
     display: "flex",
     gap: "1rem"
@@ -1291,7 +1332,7 @@ const componentExample$c = new Component({
     })
   }
 });
-const codeExample$c = new CodeExample({
+const codeExample$d = new CodeExample({
   language: "typescript",
   content: `import { Button } from '@nathanssantos/pure-components';
 
@@ -1317,6 +1358,160 @@ class ButtonSection extends Component {
             title: new SectionTitle({ innerHTML: "Button" }),
             description: new SectionDescription({
               innerHTML: "A simple button."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$d,
+                      codeExample: codeExample$d
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
+  }
+}
+
+const componentExample$c = new Component({
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem"
+  },
+  children: {
+    checkbox1: new Checkbox({
+      label: {
+        innerHTML: "Option 1"
+      },
+      field: {
+        attributes: {
+          name: "checkbox-example-1"
+        }
+      }
+    }),
+    checkbox2: new Checkbox({
+      label: {
+        innerHTML: "Option 2"
+      },
+      field: {
+        attributes: {
+          name: "checkbox-example-2"
+        }
+      }
+    }),
+    checkbox3: new Checkbox({
+      label: {
+        innerHTML: "Option 3"
+      },
+      field: {
+        attributes: {
+          name: "checkbox-example-3"
+        }
+      }
+    }),
+    checkbox4: new Checkbox({
+      label: {
+        innerHTML: "Option 4"
+      },
+      field: {
+        attributes: {
+          name: "checkbox-example-4"
+        }
+      }
+    })
+  }
+});
+const codeExample$c = new CodeExample({
+  language: "typescript",
+  content: `import { Component, Checkbox } from '@nathanssantos/pure-components';
+
+new Component({
+  style: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+  },
+  children: {
+    checkbox1: new Checkbox({
+      label: {
+        innerHTML: 'Option 1',
+      },
+      field: {
+        attributes: {
+          name: 'checkbox-example-1',
+        },
+      },
+    }),
+    checkbox2: new Checkbox({
+      label: {
+        innerHTML: 'Option 2',
+      },
+      field: {
+        attributes: {
+          name: 'checkbox-example-2',
+        },
+      },
+    }),
+    checkbox3: new Checkbox({
+      label: {
+        innerHTML: 'Option 3',
+      },
+      field: {
+        attributes: {
+          name: 'checkbox-example-3',
+        },
+      },
+    }),
+    checkbox4: new Checkbox({
+      label: {
+        innerHTML: 'Option 4',
+      },
+      field: {
+        attributes: {
+          name: 'checkbox-example-4',
+        },
+      },
+    }),
+  },
+}).appendTo(document.body);`
+});
+class CheckboxSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "checkbox"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Checkbox" }),
+            description: new SectionDescription({
+              innerHTML: "A simple checkbox input."
             }),
             tabs: new Tabs({
               tabList: {
@@ -3104,6 +3299,7 @@ class HomeScreen extends Component {
             avatarSection: new AvatarSection(),
             breadcrumbsSection: new BreadcrumbsSection(),
             buttonSection: new ButtonSection(),
+            checkboxSection: new CheckboxSection(),
             componentSection: new ComponentSection(),
             containerSection: new ContainerSection(),
             drawerSection: new DrawerSection(),
