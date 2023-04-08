@@ -62,6 +62,13 @@ interface ProgressConstructorProps extends ComponentConstructorProps {
   value: Partial<ComponentConstructorProps>;
 }
 
+interface RadioConstructorProps extends ComponentConstructorProps {
+  border: Partial<ComponentConstructorProps>;
+  icon: Partial<ComponentConstructorProps>;
+  field: Partial<ComponentConstructorProps>;
+  label: Partial<ComponentConstructorProps>;
+}
+
 interface ResponsiveObject<T> {
   base: T;
   md: T;
