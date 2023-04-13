@@ -32,6 +32,68 @@
   --pc-border-radius: 0.25rem;
   --pc-container-max-width: 67.5rem;
   --pc-transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--pc-spacing) * 2);
+  padding: calc(var(--pc-spacing) * 2.5) calc(var(--pc-spacing) * 6);
+  min-height: calc(var(--pc-spacing) * 7);
+  min-width: calc(var(--pc-spacing) * 7);
+  border-radius: var(--pc-border-radius);
+  background-color: var(--pc-clickable-background);
+  color: var(--pc-text-color);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--pc-transition);
+  font-size: var(--pc-font-size-sm);
+  font-family: "Inter";
+}
+.button:hover {
+  background-color: var(--pc-clickable-hover);
+}
+.button:active {
+  background-color: var(--pc-clickable-active);
+}
+.button:disabled {
+  background-color: var(--pc-clickable-disabled);
+  cursor: initial;
+}
+.button:disabled .button__label {
+  opacity: 0.75;
+}.accordion {
+  width: 100%;
+}
+.accordion__header {
+  padding: calc(var(--pc-spacing) * 2);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--pc-spacing) * 2);
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+  background-color: initial;
+  border-bottom: 0.063rem solid var(--pc-border-color);
+  border-radius: initial;
+}
+.accordion__icon {
+  display: flex;
+  transition: var(--pc-transition);
+}
+.accordion__dropdown {
+  position: relative;
+  transition: var(--pc-transition);
+  min-height: 0;
+  overflow: hidden;
+}
+.accordion__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: var(--pc-font-size-sm);
+  background-color: var(--pc-clickable-background);
 }.avatar {
   display: flex;
   align-items: center;
@@ -75,35 +137,6 @@
 .breadcrumbs > div[class*=component--]:not(:first-of-type)::before {
   content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23eee" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg>');
   height: 1rem;
-}.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: calc(var(--pc-spacing) * 2);
-  padding: calc(var(--pc-spacing) * 2.5) calc(var(--pc-spacing) * 6);
-  min-height: calc(var(--pc-spacing) * 7);
-  min-width: calc(var(--pc-spacing) * 7);
-  border-radius: var(--pc-border-radius);
-  background-color: var(--pc-clickable-background);
-  color: var(--pc-text-color);
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: var(--pc-transition);
-  font-size: var(--pc-font-size-sm);
-}
-.button:hover {
-  background-color: var(--pc-clickable-hover);
-}
-.button:active {
-  background-color: var(--pc-clickable-active);
-}
-.button:disabled {
-  background-color: var(--pc-clickable-disabled);
-  cursor: initial;
-}
-.button:disabled .button__label {
-  opacity: 0.75;
 }.checkbox__label {
   display: flex;
   align-items: center;

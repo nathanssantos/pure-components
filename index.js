@@ -44,7 +44,7 @@ true&&(function polyfill() {
     }
 }());
 
-const style$i = '';
+const style$j = '';
 
 class Constants {
   static breakpoints = {
@@ -213,7 +213,86 @@ class Component {
   };
 }
 
+const style$i = '';
+
+class Button extends Component {
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({
+      className: `button${className?.length ? ` ${className}` : ""}`,
+      tagName: "button",
+      ...rest
+    });
+  }
+}
+
 const style$h = '';
+
+class Accordion extends Component {
+  isOpen = false;
+  constructor(props = {}) {
+    const { className, ...rest } = props;
+    super({ className: `accordion${className?.length ? ` ${className}` : ""}`, ...rest });
+    this.init(props);
+  }
+  assemble = (payload) => {
+    return new Promise((resolve) => {
+      const icon = new Component({
+        className: "accordion__icon",
+        innerHTML: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>',
+        ...payload.icon
+      });
+      const header = new Button({
+        className: "accordion__header",
+        children: { icon },
+        ...payload.header
+      });
+      const content = new Component({
+        className: "accordion__content",
+        ...payload.content
+      });
+      const dropdown = new Component({
+        className: "accordion__dropdown",
+        children: { content },
+        ...payload.dropdown
+      });
+      this.appendChildren({ header, dropdown });
+      resolve(true);
+    });
+  };
+  close = async () => {
+    const { header, dropdown } = this.children;
+    header.children.icon.setStyle({ transform: "initial" });
+    dropdown.setStyle({
+      minHeight: "0"
+    });
+    this.isOpen = false;
+  };
+  init = async (payload) => {
+    await this.assemble(payload);
+    this.children.header.bindEvents({
+      click: (_, event) => {
+        event.stopPropagation();
+        this.toggle();
+      }
+    });
+    if (payload.isOpen)
+      this.open();
+  };
+  toggle = async () => {
+    this.isOpen ? this.close() : this.open();
+  };
+  open = async () => {
+    const { header, dropdown } = this.children;
+    header.children.icon.setStyle({ transform: "rotate(-180deg)" });
+    dropdown.setStyle({
+      minHeight: `${dropdown.children.content.target.offsetHeight}px`
+    });
+    this.isOpen = true;
+  };
+}
+
+const style$g = '';
 
 class Avatar extends Component {
   constructor(props = {}) {
@@ -252,26 +331,13 @@ class Avatar extends Component {
   };
 }
 
-const style$g = '';
+const style$f = '';
 
 class Breadcrumbs extends Component {
   constructor(props = {}) {
     const { className, ...rest } = props;
     super({
       className: `breadcrumbs${className?.length ? ` ${className}` : ""}`,
-      ...rest
-    });
-  }
-}
-
-const style$f = '';
-
-class Button extends Component {
-  constructor(props = {}) {
-    const { className, ...rest } = props;
-    super({
-      className: `button${className?.length ? ` ${className}` : ""}`,
-      tagName: "button",
       ...rest
     });
   }
@@ -902,7 +968,7 @@ class Toast extends Component {
 }
 
 const name = "@nathanssantos/pure-components";
-const version = "0.0.44";
+const version = "0.0.45";
 const author = {
 	name: "Nathan Silva Santos",
 	email: "nathansilvasantos@gmail.com"
@@ -1144,6 +1210,215 @@ class SectionTitle extends Component {
         }
       },
       ...props
+    });
+  }
+}
+
+const componentExample$g = new Component({
+  style: {
+    maxWidth: "20rem"
+  },
+  children: {
+    accordion: new Accordion({
+      header: {
+        innerHTML: "Accordion Header"
+      },
+      content: {
+        style: {
+          padding: "0.5rem"
+        },
+        innerHTML: "Accordion Content"
+      }
+    }),
+    accordion_1: new Accordion({
+      header: {
+        innerHTML: "Accordion Item 1"
+      },
+      content: {
+        style: {
+          padding: "0.5rem"
+        },
+        innerHTML: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?"
+      }
+    }),
+    accordion_2: new Accordion({
+      header: {
+        innerHTML: "Accordion Item 2"
+      },
+      content: {
+        style: {
+          padding: "0.5rem"
+        },
+        innerHTML: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?"
+      }
+    }),
+    accordion_3: new Accordion({
+      isOpen: true,
+      header: {
+        innerHTML: "Accordion Item 3"
+      },
+      content: {
+        style: {
+          padding: "0.5rem"
+        },
+        innerHTML: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?"
+      }
+    }),
+    accordion_4: new Accordion({
+      header: {
+        innerHTML: "Accordion Item 4"
+      },
+      content: {
+        style: {
+          padding: "0.5rem"
+        },
+        innerHTML: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?"
+      }
+    }),
+    accordion_5: new Accordion({
+      header: {
+        innerHTML: "Accordion Item 5"
+      },
+      content: {
+        style: {
+          padding: "0.5rem"
+        },
+        innerHTML: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?"
+      }
+    })
+  }
+});
+const codeExample$g = new CodeExample({
+  language: "typescript",
+  content: `import { Accordion, Component } from '@nathanssantos/pure-components';
+
+new Component({
+  style: {
+    maxWidth: '20rem',
+  },
+  children: {
+    accordion: new Accordion({
+      header: {
+        innerHTML: 'Accordion Header',
+      },
+      content: {
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML: 'Accordion Content',
+      },
+    }),
+    accordion_1: new Accordion({
+      header: {
+        innerHTML: 'Accordion Item 1',
+      },
+      content: {
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?',
+      },
+    }),
+    accordion_2: new Accordion({
+      header: {
+        innerHTML: 'Accordion Item 2',
+      },
+      content: {
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?',
+      },
+    }),
+    accordion_3: new Accordion({
+      isOpen: true,
+      header: {
+        innerHTML: 'Accordion Item 3',
+      },
+      content: {
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?',
+      },
+    }),
+    accordion_4: new Accordion({
+      header: {
+        innerHTML: 'Accordion Item 4',
+      },
+      content: {
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?',
+      },
+    }),
+    accordion_5: new Accordion({
+      header: {
+        innerHTML: 'Accordion Item 5',
+      },
+      content: {
+        style: {
+          padding: '0.5rem',
+        },
+        innerHTML:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, labore dignissimos at explicabo consequatur cum quis vero modi, et reiciendis ab reprehenderit ullam facere natus ducimus accusamus laboriosam a nihil in dolorem molestiae alias facilis voluptate? Iste saepe a aut nihil, ipsam odio esse, fuga eaque quisquam minus quibusdam est culpa reprehenderit ullam! Tempore itaque optio est, sint ex doloremque qui reiciendis assumenda distinctio, deserunt officia ab, dignissimos soluta quae amet incidunt illum?',
+      },
+    }),
+  },
+}).appendTo(document.body);`
+});
+class AccordionSection extends Component {
+  constructor() {
+    super({
+      attributes: {
+        id: "accordion"
+      },
+      style: {
+        paddingTop: "4rem"
+      },
+      children: {
+        container: new Container({
+          children: {
+            title: new SectionTitle({ innerHTML: "Accordion" }),
+            description: new SectionDescription({
+              innerHTML: "A simple accordion component."
+            }),
+            tabs: new Tabs({
+              tabList: {
+                children: {
+                  tab1: new Tab({
+                    innerHTML: "Usage"
+                  }),
+                  tab2: new Tab({
+                    innerHTML: "Props"
+                  })
+                }
+              },
+              tabPanels: {
+                children: {
+                  panel1: new TabPanel({
+                    style: {
+                      gap: "1rem"
+                    },
+                    children: {
+                      componentExample: componentExample$g,
+                      codeExample: codeExample$g
+                    }
+                  }),
+                  panel2: new TabPanel({
+                    innerHTML: "Coming soon."
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
     });
   }
 }
@@ -2186,7 +2461,7 @@ class InstallSection extends Component {
               content: "$ npm install @nathanssantos/pure-components",
               language: "bash",
               style: {
-                marginBottom: "1rem"
+                marginBottom: "3rem"
               }
             }),
             description2: new SectionDescription({
@@ -2194,6 +2469,17 @@ class InstallSection extends Component {
             }),
             styleImport: new CodeExample({
               content: 'import "@nathanssantos/pure-components/style.css";',
+              style: {
+                marginBottom: "3rem"
+              }
+            }),
+            description3: new SectionDescription({
+              innerHTML: "Import Inter font:"
+            }),
+            fontImport: new CodeExample({
+              content: `&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"&gt;`,
               style: {
                 marginBottom: "3rem"
               }
@@ -3296,6 +3582,7 @@ class HomeScreen extends Component {
             gap: "4rem"
           },
           children: {
+            accordionSection: new AccordionSection(),
             avatarSection: new AvatarSection(),
             breadcrumbsSection: new BreadcrumbsSection(),
             buttonSection: new ButtonSection(),
