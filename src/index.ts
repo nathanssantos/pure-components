@@ -1,4 +1,5 @@
 import './style.scss';
+import Accordion from './components/accordion';
 import Avatar from './components/avatar';
 import Breadcrumbs from './components/breadcrumbs';
 import Button from './components/button';
@@ -19,6 +20,7 @@ import Tag from './components/tag';
 import Toast from './components/toast';
 
 export {
+  Accordion,
   Avatar,
   Breadcrumbs,
   Button,

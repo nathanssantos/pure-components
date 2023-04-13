@@ -31,7 +31,7 @@ class InstallSection extends Component {
               content: '$ npm install @nathanssantos/pure-components',
               language: 'bash',
               style: {
-                marginBottom: '1rem',
+                marginBottom: '3rem',
               },
             }),
             description2: new SectionDescription({
@@ -39,6 +39,17 @@ class InstallSection extends Component {
             }),
             styleImport: new CodeExample({
               content: 'import "@nathanssantos/pure-components/style.css";',
+              style: {
+                marginBottom: '3rem',
+              },
+            }),
+            description3: new SectionDescription({
+              innerHTML: 'Import Inter font:',
+            }),
+            fontImport: new CodeExample({
+              content: `&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"&gt;`,
               style: {
                 marginBottom: '3rem',
               },

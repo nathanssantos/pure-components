@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+interface AccordionConstructorProps extends ComponentConstructorProps {
+  header: Partial<ComponentConstructorProps>;
+  icon: Partial<ComponentConstructorProps>;
+  dropdown: Partial<ComponentConstructorProps>;
+  content: Partial<ComponentConstructorProps>;
+  isOpen: boolean;
+}
+
 interface AvatarConstructorProps extends ComponentConstructorProps {
   description: Partial<ComponentConstructorProps>;
   image: Partial<ComponentConstructorProps>;
@@ -136,6 +144,13 @@ declare class Component {
   show: () => void;
 }
 
+declare class Accordion extends Component {
+  constructor(props?: Partial<AccordionConstructorProps>);
+  isOpen: boolean;
+  private assemble;
+  private init;
+}
+
 declare class Avatar extends Component {
   constructor(props?: Partial<AvatarConstructorProps>);
   private assemble;
@@ -236,6 +251,7 @@ declare class Toast extends Component {
 }
 
 export {
+  Accordion,
   Avatar,
   Button,
   Checkbox,
