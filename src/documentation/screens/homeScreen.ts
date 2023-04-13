@@ -1,5 +1,6 @@
 import { Component } from '../..';
 import Hero from '../components/hero';
+import AccordionSection from '../sections/accordionSection';
 import AvatarSection from '../sections/avatarSection';
 import BreadcrumbsSection from '../sections/breadcrumbsSection';
 import ButtonSection from '../sections/buttonSection';
@@ -39,6 +40,7 @@ class HomeScreen extends Component {
             gap: '4rem',
           },
           children: {
+            accordionSection: new AccordionSection(),
             avatarSection: new AvatarSection(),
             breadcrumbsSection: new BreadcrumbsSection(),
             buttonSection: new ButtonSection(),

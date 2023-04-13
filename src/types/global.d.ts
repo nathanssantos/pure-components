@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+interface AccordionConstructorProps extends ComponentConstructorProps {
+  header: Partial<ComponentConstructorProps>;
+  icon: Partial<ComponentConstructorProps>;
+  dropdown: Partial<ComponentConstructorProps>;
+  content: Partial<ComponentConstructorProps>;
+  isOpen: boolean;
+}
+
 interface AvatarConstructorProps extends ComponentConstructorProps {
   description: Partial<ComponentConstructorProps>;
   image: Partial<ComponentConstructorProps>;
