@@ -28,7 +28,7 @@ npm install @nathanssantos/pure-components
 Import styles in your app's entry point:
 
 ```
-import "@nathanssantos/pure-components/style.css";
+import '@nathanssantos/pure-components/style.css';
 ```
 
 ## Components
