@@ -60,4 +60,3 @@ Import Inter font:
 - [x] [Tag](https://nathanssantos.github.io/pure-components/#tag)
 - [x] [Tabs](https://nathanssantos.github.io/pure-components/#tabs)
 - [x] [Toast](https://nathanssantos.github.io/pure-components/#toast)
-- [ ] Tooltip
