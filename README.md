@@ -17,23 +17,23 @@ Pure Components provides prebuild dependency-free ui components to help you buil
 
 To use Pure Components in your project, run one of the following commands in your terminal:
 
-```
-$ yarn add @nathanssantos/pure-components
+```bash
+yarn add @nathanssantos/pure-components
 ```
 
-```
-$ npm install @nathanssantos/pure-components
+```bash
+npm install @nathanssantos/pure-components
 ```
 
 Import styles in your app's entry point:
 
-```
+```typescript
 import '@nathanssantos/pure-components/style.css';
 ```
 
 Import Inter font:
 
-```
+```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
