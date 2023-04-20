@@ -1,6 +1,6 @@
 # Pure Components
 
-Pure Components provides prebuild dependency-free ui components to help you build your projects faster.
+Pure Components provides dependency-free ui components to help you build your projects faster.
 
 ![Version 0.0.45](https://img.shields.io/badge/Version-%200.0.45-green)
 ![Components: 17](https://img.shields.io/badge/Components-%2017-green)
